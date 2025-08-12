@@ -1,0 +1,23 @@
+# Core Django packages - fast installation
+Django>=5.0.1,<5.1.0
+djangorestframework>=3.14.0,<4.0.0
+djangorestframework-simplejwt>=5.3.0,<6.0.0
+
+# Database and cache
+psycopg2-binary>=2.9.9
+redis>=5.0.1,<6.0.0
+
+# Essential utilities
+python-decouple>=3.8
+Pillow>=10.1.0
+django-cors-headers>=4.3.1,<5.0.0
+django-filter>=23.5,<24.0.0
+requests>=2.31.0,<3.0.0
+python-dateutil>=2.8.0,<3.0.0
+
+# Background tasks
+celery>=5.3.4,<6.0.0
+
+# Development tools
+django-extensions>=3.2.0,<4.0.0
+django-debug-toolbar>=4.2.0,<5.0.0
