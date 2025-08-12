@@ -6915,3 +6915,11 @@ INFO 2025-08-12 17:38:35,029 views 2440 3172 User logged in: alio
 INFO 2025-08-12 17:39:33,127 autoreload 2440 16492 C:\Users\maaab\OneDrive\Desktop\Complete_GP\Complete_GP\bestinclickbackend\products\views.py changed, reloading.
 INFO 2025-08-12 17:39:48,390 autoreload 3132 1536 Watching for file changes with StatReloader
 INFO 2025-08-12 17:40:41,253 views 3132 10700 User logged in: alio
+INFO 2025-08-12 18:09:12,744 autoreload 15224 18424 Watching for file changes with StatReloader
+WARNING 2025-08-12 18:12:12,741 log 15224 12544 Unauthorized: /api/auth/profile/
+WARNING 2025-08-12 18:12:13,338 log 15224 7088 Unauthorized: /api/recommendations/personalized/
+WARNING 2025-08-12 18:12:13,340 log 15224 8924 Unauthorized: /api/products/
+WARNING 2025-08-12 18:12:13,341 log 15224 6932 Unauthorized: /api/products/
+INFO 2025-08-12 18:12:21,127 views 15224 8924 User logged in: alio
+ERROR 2025-08-12 18:13:12,058 views 15224 14080 Error generating personalized recommendations for user 339: No module named 'redis'
+ERROR 2025-08-12 18:13:28,301 views 15224 3828 Error generating personalized recommendations for user 339: No module named 'redis'
