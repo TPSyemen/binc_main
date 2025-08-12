@@ -1,0 +1,366 @@
+/* Product Image Gallery Styles */
+
+.product-gallery {
+  position: relative;
+}
+
+.main-image-container {
+  position: relative;
+  margin-bottom: 1rem;
+}
+
+.main-image-container img {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: zoom-in;
+}
+
+.main-image-container:hover img {
+  transform: scale(1.05);
+}
+
+/* Thumbnail Gallery Styles */
+.thumbnail-gallery {
+  position: relative;
+}
+
+.thumbnail-gallery .flex {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+}
+
+.thumbnail-gallery .flex::-webkit-scrollbar {
+  display: none; /* WebKit */
+}
+
+.thumbnail-wrapper {
+  position: relative;
+}
+
+.thumbnail-container {
+  position: relative;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+}
+
+.thumbnail-container:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.thumbnail-container img {
+  transition: opacity 0.3s ease;
+}
+
+.thumbnail-container:hover img {
+  opacity: 0.8;
+}
+
+/* Loading States */
+.thumbnail-loading {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* Navigation Arrows */
+.main-image-container button {
+  transition: all 0.3s ease;
+  backdrop-filter: blur(4px);
+}
+
+.main-image-container button:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.main-image-container button:active {
+  transform: scale(0.95);
+}
+
+/* Image Counter */
+.main-image-container .absolute.bottom-4.right-4 {
+  backdrop-filter: blur(4px);
+  font-weight: 500;
+}
+
+/* Zoom Indicator */
+.main-image-container .absolute.top-4.right-4 {
+  backdrop-filter: blur(4px);
+  font-weight: 500;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .main-image-container {
+    margin-bottom: 0.75rem;
+  }
+  
+  .thumbnail-gallery .flex {
+    gap: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+  
+  .thumbnail-container {
+    width: 4rem;
+    height: 4rem;
+  }
+  
+  /* Touch-friendly navigation */
+  .main-image-container button {
+    padding: 0.75rem;
+    width: 3rem;
+    height: 3rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .thumbnail-container {
+    width: 3.5rem;
+    height: 3.5rem;
+  }
+  
+  .main-image-container button {
+    padding: 0.5rem;
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+}
+
+/* High-resolution displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .main-image-container img,
+  .thumbnail-container img {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+  }
+}
+
+/* Focus states for accessibility */
+.thumbnail-container:focus {
+  outline: 2px solid #23A6F0;
+  outline-offset: 2px;
+}
+
+.main-image-container button:focus {
+  outline: 2px solid #23A6F0;
+  outline-offset: 2px;
+}
+
+/* Animation for image transitions */
+.main-image-container img {
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* Smooth scrolling for thumbnail gallery */
+.thumbnail-gallery .flex {
+  scroll-behavior: smooth;
+}
+
+/* Enhanced hover effects */
+.thumbnail-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, transparent 30%, rgba(35, 166, 240, 0.1) 50%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  border-radius: inherit;
+}
+
+.thumbnail-container:hover::before {
+  opacity: 1;
+}
+
+/* Loading spinner for main image */
+#image-loading {
+  backdrop-filter: blur(2px);
+}
+
+#image-loading .animate-spin {
+  border-color: #23A6F0;
+}
+
+/* Thumbnail scroll indicators */
+.thumbnail-gallery::before,
+.thumbnail-gallery::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 1rem;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.thumbnail-gallery::before {
+  left: 0;
+  background: linear-gradient(to right, rgba(255, 255, 255, 0.8), transparent);
+}
+
+.thumbnail-gallery::after {
+  right: 0;
+  background: linear-gradient(to left, rgba(255, 255, 255, 0.8), transparent);
+}
+
+/* Hide scroll indicators on mobile */
+@media (max-width: 768px) {
+  .thumbnail-gallery::before,
+  .thumbnail-gallery::after {
+    display: none;
+  }
+}
+
+/* Improved touch targets */
+@media (max-width: 768px) {
+  .thumbnail-container {
+    min-width: 4rem;
+    min-height: 4rem;
+  }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .thumbnail-gallery::before {
+    background: linear-gradient(to right, rgba(31, 41, 55, 0.8), transparent);
+  }
+  
+  .thumbnail-gallery::after {
+    background: linear-gradient(to left, rgba(31, 41, 55, 0.8), transparent);
+  }
+  
+  .main-image-container button {
+    background-color: rgba(31, 41, 55, 0.8);
+    color: white;
+  }
+  
+  .main-image-container button:hover {
+    background-color: rgba(31, 41, 55, 1);
+  }
+}
+
+/* Performance optimizations */
+.thumbnail-container img,
+.main-image-container img {
+  will-change: transform, opacity;
+}
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  .main-image-container img,
+  .thumbnail-container,
+  .thumbnail-container img,
+  .main-image-container button {
+    transition: none;
+  }
+
+  .main-image-container:hover img {
+    transform: none;
+  }
+
+  .thumbnail-container:hover {
+    transform: none;
+  }
+}
+
+/* Image Modal Styles */
+#image-modal {
+  animation: fadeIn 0.3s ease-out;
+}
+
+#image-modal img {
+  animation: scaleIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Modal responsive design */
+@media (max-width: 768px) {
+  #image-modal .relative.max-w-7xl {
+    max-width: 95vw;
+    padding: 1rem;
+  }
+
+  #image-modal img {
+    max-height: 80vh;
+  }
+
+  #image-modal button {
+    padding: 0.75rem;
+  }
+}
+
+/* Improved focus states for modal */
+#image-modal:focus {
+  outline: none;
+}
+
+#image-modal button:focus {
+  outline: 2px solid #23A6F0;
+  outline-offset: 2px;
+}
+
+/* Better loading state for modal */
+#modal-loading {
+  backdrop-filter: blur(2px);
+}
+
+/* Smooth transitions for modal navigation */
+#modal-image {
+  transition: opacity 0.2s ease;
+}
+
+/* Enhanced thumbnail selection indicator */
+.thumbnail-container.border-secondary {
+  box-shadow: 0 0 0 2px #23A6F0, 0 4px 12px rgba(35, 166, 240, 0.3);
+}
+
+/* Improved touch targets for mobile */
+@media (max-width: 768px) {
+  .thumbnail-container {
+    min-width: 4rem;
+    min-height: 4rem;
+    touch-action: manipulation;
+  }
+
+  .main-image-container button {
+    min-width: 3rem;
+    min-height: 3rem;
+    touch-action: manipulation;
+  }
+}

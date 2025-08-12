@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clear Cache - Best in Click</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        .btn {
+            background: #23A6F0;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px;
+        }
+        .btn:hover {
+            background: #1e90d0;
+        }
+        .success {
+            color: #2DC071;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔄 Clear Browser Cache</h1>
+        <p>If you're experiencing issues with the website, please clear your browser cache:</p>
+        
+        <div style="text-align: left; margin: 20px 0;">
+            <h3>Manual Steps:</h3>
+            <ol>
+                <li>Press <strong>Ctrl + Shift + Delete</strong> (Windows) or <strong>Cmd + Shift + Delete</strong> (Mac)</li>
+                <li>Select "Cached images and files"</li>
+                <li>Click "Clear data"</li>
+                <li>Refresh the page</li>
+            </ol>
+        </div>
+
+        <button class="btn" onclick="clearCache()">🗑️ Clear Cache Automatically</button>
+        <button class="btn" onclick="goToSite()">🏠 Go to Website</button>
+        
+        <div id="message"></div>
+    </div>
+
+    <script>
+        function clearCache() {
+            // Clear localStorage
+            localStorage.clear();
+            
+            // Clear sessionStorage
+            sessionStorage.clear();
+            
+            // Force reload with cache bypass
+            location.reload(true);
+            
+            document.getElementById('message').innerHTML = '<div class="success">✅ Cache cleared! Redirecting...</div>';
+            
+            setTimeout(() => {
+                window.location.href = '/';
+            }, 2000);
+        }
+        
+        function goToSite() {
+            window.location.href = '/?v=' + Date.now();
+        }
+        
+        // Auto-redirect after 10 seconds
+        setTimeout(() => {
+            document.getElementById('message').innerHTML = '<div style="color: #666;">Auto-redirecting in 3 seconds...</div>';
+            setTimeout(() => {
+                goToSite();
+            }, 3000);
+        }, 7000);
+    </script>
+</body>
+</html>

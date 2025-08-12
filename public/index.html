@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Best in Click</title>
+    <link rel="icon" href="./assets/logo.png" type="image/png">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS Output -->
+    <link rel="stylesheet" href="./css/tailwind.css?v=2024">
+
+    <!-- Custom Categories Styles -->
+    <link rel="stylesheet" href="./css/categories.css?v=2024">
+
+    <!-- Product Gallery Styles -->
+    <link rel="stylesheet" href="./css/product-gallery.css?v=2024">
+
+    <!-- Product Card Actions Styles -->
+    <link rel="stylesheet" href="./css/product-card-actions.css?v=2024">
+
+    <!-- External Libraries -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="bg-light-gray font-sans text-primary">
+
+    <!-- Main application container -->
+    <div id="app">
+        <!-- The Navbar will be rendered here by JS -->
+        <header id="navbar-container"></header>
+        
+        <!-- Page content will be dynamically rendered here -->
+        <main id="page-container" class="min-h-screen">
+            <!-- Initial Loader -->
+            <div class="flex justify-center items-center h-screen">
+                <div class="loader"></div>
+            </div>
+        </main>
+
+        <!-- The Footer will be rendered here by JS -->
+        <footer id="footer-container"></footer>
+    </div>
+
+    <!-- Main JavaScript Entry Point -->
+    <script type="module" src="./js/main.js?v=2024"></script>
+</body>
+</html>

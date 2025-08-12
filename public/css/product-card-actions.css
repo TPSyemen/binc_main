@@ -1,0 +1,309 @@
+/* Product Card Action Buttons Styles */
+
+.product-card-actions {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  opacity: 0;
+}
+
+.group:hover .product-card-actions {
+  background: rgba(0, 0, 0, 0.1);
+  opacity: 1;
+}
+
+.action-button {
+  background: white;
+  padding: 0.75rem;
+  border-radius: 50%;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: none;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.action-button:hover {
+  background: #23A6F0;
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.action-button:active {
+  transform: translateY(0);
+}
+
+.action-button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.action-button:disabled:hover {
+  background: white;
+  color: inherit;
+  transform: none;
+}
+
+/* Wishlist button specific styles */
+.action-button.wishlist-active {
+  background: #fee2e2;
+  color: #dc2626;
+}
+
+.action-button.wishlist-active:hover {
+  background: #dc2626;
+  color: white;
+}
+
+/* Cart button success state */
+.action-button.cart-success {
+  background: #dcfce7;
+  color: #16a34a;
+}
+
+.action-button.cart-success:hover {
+  background: #16a34a;
+  color: white;
+}
+
+/* Loading spinner animation */
+.action-button .fa-spinner {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Ripple effect for button clicks */
+.action-button::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.action-button:active::before {
+  width: 300px;
+  height: 300px;
+}
+
+/* Tooltip styles for action buttons */
+.action-button[title]:hover::after {
+  content: attr(title);
+  position: absolute;
+  bottom: -2.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  font-size: 0.75rem;
+  white-space: nowrap;
+  z-index: 10;
+  pointer-events: none;
+}
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+  .product-card-actions {
+    opacity: 1;
+    background: rgba(0, 0, 0, 0.05);
+  }
+  
+  .action-button {
+    padding: 0.5rem;
+    width: 2.5rem;
+    height: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .action-button[title]:hover::after {
+    display: none;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .action-button {
+    border: 2px solid #000;
+  }
+  
+  .action-button:hover {
+    border-color: #23A6F0;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .action-button,
+  .product-card-actions {
+    transition: none;
+  }
+  
+  .action-button:hover {
+    transform: none;
+  }
+  
+  .action-button .fa-spinner {
+    animation: none;
+  }
+}
+
+/* Focus states for accessibility */
+.action-button:focus {
+  outline: 2px solid #23A6F0;
+  outline-offset: 2px;
+}
+
+.action-button:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .action-button {
+    background: rgba(31, 41, 55, 0.9);
+    color: white;
+  }
+  
+  .action-button:hover {
+    background: #23A6F0;
+  }
+  
+  .product-card-actions {
+    background: rgba(0, 0, 0, 0.3);
+  }
+  
+  .group:hover .product-card-actions {
+    background: rgba(0, 0, 0, 0.5);
+  }
+}
+
+/* Animation for icon changes */
+.action-button i {
+  transition: all 0.3s ease;
+}
+
+.action-button.loading i {
+  opacity: 0.7;
+}
+
+/* Success pulse animation */
+@keyframes successPulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.action-button.success {
+  animation: successPulse 0.6s ease-in-out;
+}
+
+/* Error shake animation */
+@keyframes errorShake {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-5px);
+  }
+  75% {
+    transform: translateX(5px);
+  }
+}
+
+.action-button.error {
+  animation: errorShake 0.5s ease-in-out;
+  background: #fee2e2;
+  color: #dc2626;
+}
+
+/* Improved touch targets for mobile */
+@media (max-width: 640px) {
+  .action-button {
+    min-width: 44px;
+    min-height: 44px;
+    touch-action: manipulation;
+  }
+}
+
+/* Loading state overlay */
+.action-button.loading::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Smooth state transitions */
+.action-button.state-transition {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Icon-specific styles */
+.action-button .fa-heart.text-red-500 {
+  color: #dc2626 !important;
+}
+
+.action-button .fa-check.text-green-500 {
+  color: #16a34a !important;
+}
+
+.action-button .fa-spinner {
+  color: #6b7280;
+}
+
+/* Hover effects for different states */
+.action-button:hover .fa-heart {
+  transform: scale(1.1);
+}
+
+.action-button:hover .fa-shopping-cart {
+  transform: scale(1.1);
+}
+
+.action-button:hover .fa-eye {
+  transform: scale(1.1);
+}
+
+/* Group hover effects */
+.group:hover .action-button {
+  transform: translateY(-1px);
+}
+
+.group:hover .action-button:hover {
+  transform: translateY(-3px);
+}

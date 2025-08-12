@@ -1,0 +1,10 @@
+Django>=5.0
+djangorestframework>=3.14
+djangorestframework-simplejwt>=5.3
+psycopg2-binary # For PostgreSQL in production
+python-dotenv
+django-cors-headers
+# For AI/ML conceptual stubs - these would be used in a real implementation
+# spacy
+# nltk
+# scikit-learn
