@@ -62,14 +62,6 @@ export default function StoreOwnerDashboard() {
             <p class="text-muted">Total Products</p>
           </div>
           <div class="card text-center">
-            <div class="text-3xl font-bold text-success mb-2" id="total-revenue">-</div>
-            <p class="text-muted">Total Revenue</p>
-          </div>
-          <div class="card text-center">
-            <div class="text-3xl font-bold text-primary mb-2" id="total-orders">-</div>
-            <p class="text-muted">Total Orders</p>
-          </div>
-          <div class="card text-center">
             <div class="text-3xl font-bold text-warning mb-2" id="avg-rating">-</div>
             <p class="text-muted">Average Rating</p>
           </div>
@@ -83,14 +75,6 @@ export default function StoreOwnerDashboard() {
               <button id="add-product-btn" class="btn btn-primary w-full">
                 <i class="fa-solid fa-plus mr-2"></i>
                 Add New Product
-              </button>
-              <button id="manage-inventory-btn" class="btn btn-outline w-full">
-                <i class="fa-solid fa-boxes mr-2"></i>
-                Manage Inventory
-              </button>
-              <button id="view-analytics-btn" class="btn btn-outline w-full">
-                <i class="fa-solid fa-chart-line mr-2"></i>
-                View Analytics
               </button>
               <button id="generate-report-btn" class="btn btn-outline w-full">
                 <i class="fa-solid fa-file-alt mr-2"></i>
@@ -307,7 +291,7 @@ async function loadDashboardStats(page, storeId) {
       dashboardService.getStorePerformance(storeId)
     ])
 
-    console.log('Analytics data:', analytics)
+    // console.log('Analytics data:', analytics)
     console.log('Performance data:', performance)
 
     // Get products list for rating calculation
@@ -324,8 +308,8 @@ async function loadDashboardStats(page, storeId) {
     page.querySelector('#total-products').textContent = totalProducts;
 
     // Total orders
-    const totalOrders = analytics.orders_count ?? performance.orders_count ?? analytics.total_orders ?? performance.total_orders ?? 0;
-    page.querySelector('#total-orders').textContent = totalOrders;
+    // const totalOrders = analytics.orders_count ?? performance.orders_count ?? analytics.total_orders ?? performance.total_orders ?? 0;
+    // page.querySelector('#total-orders').textContent = totalOrders;
 
     // Total reviews (not available yet)
     // يمكنك إضافة عنصر جديد في الواجهة إذا أردت عرض عدد الريفيو
@@ -341,17 +325,17 @@ async function loadDashboardStats(page, storeId) {
     }
     page.querySelector('#avg-rating').textContent = avgRating.toFixed(1);
 
-    // Total revenue
-    const totalRevenue = analytics.total_revenue ?? performance.total_revenue ?? 0;
-    page.querySelector('#total-revenue').textContent = `$${Number(totalRevenue).toLocaleString()}`;
+    // // Total revenue
+    // const totalRevenue = analytics.total_revenue ?? performance.total_revenue ?? 0;
+    // page.querySelector('#total-revenue').textContent = `$${Number(totalRevenue).toLocaleString()}`;
 
   } catch (error) {
     console.error('Error loading dashboard stats:', error)
 
     // Show error state in stats
     page.querySelector('#total-products').textContent = 'Error'
-    page.querySelector('#total-revenue').textContent = 'Error'
-    page.querySelector('#total-orders').textContent = 'Error'
+    // page.querySelector('#total-revenue').textContent = 'Error'
+    // page.querySelector('#total-orders').textContent = 'Error'
     page.querySelector('#avg-rating').textContent = 'Error'
 
     showToast('Failed to load dashboard statistics', 'error')
@@ -430,10 +414,10 @@ async function loadRecentProducts(page, storeId) {
                 </td>
                 <td class="p-3">
                   <div class="flex gap-2">
-                    <button class="text-secondary hover:text-blue-600" onclick="editProduct('${product.id}')" title="Edit">
+                    <button class="text-secondary hover:text-blue-600" onclick="editProduct('${product.slug || product.id}')" title="Edit">
                       <i class="fa-solid fa-edit"></i>
                     </button>
-                    <button class="text-primary hover:text-gray-600" onclick="viewProduct('${product.id}')" title="View">
+                    <button class="text-primary hover:text-gray-600" onclick="viewProduct('${product.slug || product.id}')" title="View">
                       <i class="fa-solid fa-eye"></i>
                     </button>
                     <button class="text-warning hover:text-yellow-600" onclick="toggleStock('${product.id}')" title="Toggle Stock">
@@ -473,10 +457,12 @@ window.addNewProduct = function() {
 }
 
 window.editProduct = function(productId) {
+  // Use product slug for editing if available, otherwise use ID
   location.hash = `#/products/edit/${productId}`
 }
 
 window.viewProduct = function(productId) {
+  // Use product slug for viewing if available, otherwise use ID
   location.hash = `#/products/${productId}`
 }
 
@@ -639,13 +625,13 @@ function setupEventListeners(page, storeId) {
     location.hash = '#/products/add'
   })
 
-  page.querySelector('#manage-inventory-btn').addEventListener('click', () => {
-    location.hash = '#/inventory'
-  })
+  // page.querySelector('#manage-inventory-btn').addEventListener('click', () => {
+  //   location.hash = '#/inventory'
+  // })
 
-  page.querySelector('#view-analytics-btn').addEventListener('click', () => {
-    location.hash = '#/analytics'
-  })
+  // page.querySelector('#view-analytics-btn').addEventListener('click', () => {
+  //   location.hash = '#/analytics'
+  // })
 
   page.querySelector('#generate-report-btn').addEventListener('click', () => {
     location.hash = '#/reports'

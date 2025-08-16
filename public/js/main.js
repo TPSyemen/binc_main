@@ -3,6 +3,7 @@ import { renderFooter } from "./components/Footer.js"
 import { router } from "./router.js"
 import store from "./state/store.js"
 import { initBehaviorTracker } from "./services/behaviorTracker.js"
+import { dashboardService } from "./services/api.js"
 import "./components/Cart.js"
 import "./components/Auth.js"
 
@@ -29,6 +30,18 @@ function main() {
 
   // Initialize the user behavior tracker
   initBehaviorTracker()
+
+  // Make dashboardService available globally for components that need it
+  window.dashboardService = dashboardService
+
+  // Load test fixes in development
+  if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+    import('./utils/testFixes.js').then(({ testFixes }) => {
+      // Tests will auto-run
+    }).catch(error => {
+      console.log('Test fixes not available:', error.message)
+    })
+  }
 
   console.log("Best in Click App Initialized")
 }

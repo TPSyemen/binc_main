@@ -91,28 +91,62 @@ export default function ComparePage() {
                             </thead>
                             <tbody class='text-gray-800 text-sm font-light divide-y divide-gray-200 bg-white'>`;
 
+            // Group products by store to handle duplicates properly
+            const storeGroups = {};
             productsList.forEach(p => {
-                const imageUrl = (p.images && p.images[0]?.image) || (p.image_urls && p.image_urls[0]) || '/public/placeholder.jpg';
+                const storeId = p.store?.id || 'unknown';
                 const storeName = p.store?.name || 'متجر غير معروف';
-                const productUrl = p.product_url || '#';
+                
+                if (!storeGroups[storeId]) {
+                    storeGroups[storeId] = {
+                        storeName: storeName,
+                        products: [],
+                        totalQuantity: 0
+                    };
+                }
+                
+                storeGroups[storeId].products.push(p);
+                storeGroups[storeId].totalQuantity += (p.stock_quantity || 0);
+            });
+
+            // Display one row per store with aggregated information
+            Object.values(storeGroups).forEach(group => {
+                // Use the first product as representative (they should have same name)
+                const representativeProduct = group.products[0];
+                const imageUrl = (representativeProduct.images && representativeProduct.images[0]?.image) || 
+                                (representativeProduct.image_urls && representativeProduct.image_urls[0]) || 
+                                '/public/placeholder.jpg';
+                const productUrl = representativeProduct.product_url || '#';
+                
+                // Calculate average price and rating for products in this store
+                const avgPrice = group.products.reduce((sum, p) => sum + (parseFloat(p.price) || 0), 0) / group.products.length;
+                const avgFinalPrice = group.products.reduce((sum, p) => sum + (parseFloat(p.final_price) || 0), 0) / group.products.length;
+                const avgRating = group.products.reduce((sum, p) => sum + (parseFloat(p.average_rating) || 0), 0) / group.products.length;
 
                 tableHtml += `
                     <tr class='even:bg-gray-50 odd:bg-white hover:bg-blue-50 transition duration-200'>
                         <td class='py-3 px-4 text-center'>
-                            <img src='${imageUrl}' alt='${p.name}' class='w-16 h-16 object-contain mx-auto rounded shadow-sm'>
+                            <img src='${imageUrl}' alt='${representativeProduct.name}' class='w-16 h-16 object-contain mx-auto rounded shadow-sm'>
                         </td>
-                        <td class='py-3 px-4 text-center font-medium'>${p.name}</td>
-                        <td class='py-3 px-4 text-center'>${storeName}</td>
-                        <td class='py-3 px-4 text-center line-through text-gray-500'>${p.price ? parseFloat(p.price).toFixed(2) : '-'}</td>
+                        <td class='py-3 px-4 text-center font-medium'>
+                            ${representativeProduct.name}
+                            ${group.products.length > 1 ? `<br><small class="text-gray-500">(${group.products.length} variants)</small>` : ''}
+                        </td>
+                        <td class='py-3 px-4 text-center'>${group.storeName}</td>
+                        <td class='py-3 px-4 text-center line-through text-gray-500'>${avgPrice > 0 ? avgPrice.toFixed(2) : '-'}</td>
                         <td class='py-3 px-4 text-center font-bold text-green-700 bg-green-50'>
-                            ${p.final_price ? parseFloat(p.final_price).toFixed(2) : '-'} <span class="text-xs text-gray-500">ريال</span>
+                            ${avgFinalPrice > 0 ? avgFinalPrice.toFixed(2) : '-'} <span class="text-xs text-gray-500">ريال</span>
                         </td>
                         <td class='py-3 px-4 text-center'>
-                            ${p.average_rating ? `${parseFloat(p.average_rating).toFixed(1)} <i class="fas fa-star text-yellow-400"></i>` : '-'}
+                            ${avgRating > 0 ? `${avgRating.toFixed(1)} <i class="fas fa-star text-yellow-400"></i>` : '-'}
                         </td>
-                        <td class='py-3 px-4 text-center'>${p.stock_quantity ?? '-'}</td>
                         <td class='py-3 px-4 text-center'>
-                            ${p.product_url ? `<a href="${productUrl}" target="_blank" class="text-blue-600 hover:text-blue-800 hover:underline transition duration-300">عرض المنتج <i class="fas fa-external-link-alt text-xs ml-1"></i></a>` : '-'}
+                            <span class="px-2 py-1 rounded text-xs ${group.totalQuantity > 10 ? 'bg-success text-white' : group.totalQuantity > 0 ? 'bg-warning text-white' : 'bg-danger text-white'}">
+                                ${group.totalQuantity} units
+                            </span>
+                        </td>
+                        <td class='py-3 px-4 text-center'>
+                            ${productUrl !== '#' ? `<a href="${productUrl}" target="_blank" class="text-blue-600 hover:text-blue-800 hover:underline transition duration-300">عرض المنتج <i class="fas fa-external-link-alt text-xs ml-1"></i></a>` : '-'}
                         </td>
                     </tr>`;
             });
@@ -144,23 +178,45 @@ export default function ComparePage() {
                     if (aiComparisonResult.error) {
                         aiDiv.innerHTML = `
                             <p class='text-red-600 text-center bg-red-100 p-4 rounded-lg border border-red-200 mt-6'>
-                                </p>`;
+                                <i class="fas fa-exclamation-triangle mr-2"></i>
+                                Failed to generate AI analysis: ${aiComparisonResult.error}
+                            </p>`;
                     } else {
                         aiDiv.innerHTML = `
                             <div class="bg-blue-50 p-6 rounded-lg border border-blue-200 mt-6 max-w-3xl mx-auto shadow-md">
-                              </div>`;
+                                <h3 class="text-xl font-bold text-blue-800 mb-4 flex items-center">
+                                    <i class="fas fa-robot mr-2"></i>
+                                    AI Analysis & Recommendations
+                                </h3>
+                                <div class="text-gray-700 leading-relaxed">
+                                    ${aiComparisonResult.analysis || 'AI analysis completed successfully.'}
+                                </div>
+                                ${aiComparisonResult.recommendation ? `
+                                    <div class="mt-4 p-4 bg-green-50 border border-green-200 rounded-lg">
+                                        <h4 class="font-semibold text-green-800 mb-2">
+                                            <i class="fas fa-thumbs-up mr-2"></i>
+                                            Recommendation
+                                        </h4>
+                                        <p class="text-green-700">${aiComparisonResult.recommendation}</p>
+                                    </div>
+                                ` : ''}
+                            </div>`;
                     }
                 })
                 .catch(aiError => {
                     console.error("Error fetching AI comparison:", aiError);
                     aiDiv.innerHTML = `
                         <p class='text-red-600 text-center bg-red-100 p-4 rounded-lg border border-red-200 mt-6'>
-                         </p>`;
+                            <i class="fas fa-exclamation-triangle mr-2"></i>
+                            Failed to generate AI analysis. Please try again later.
+                        </p>`;
                 });
             } else {
                 aiDiv.innerHTML = `
                     <div class="bg-yellow-50 p-4 rounded-lg border border-yellow-200 mt-6 max-w-3xl mx-auto text-center text-orange-800">
-                     </div>`;
+                        <i class="fas fa-info-circle mr-2"></i>
+                        Need at least 2 products for AI comparison analysis.
+                    </div>`;
             }
         })
         .catch(error => {

@@ -88,7 +88,7 @@ def general_recommendations(request):
 
 
 @api_view(['GET'])
-@permission_classes([IsAuthenticated])
+@permission_classes([AllowAny])
 def personalized_recommendations(request):
     """
     Get personalized recommendations based on user behavior and preferences.
@@ -98,20 +98,29 @@ def personalized_recommendations(request):
         if not serializer.is_valid():
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-        # Check cache for this user
-        cache_key = f"personalized_recommendations_{request.user.id}_{serializer.validated_data.get('limit', 10)}"
+        # Check cache for this user (or anonymous)
+        user_id = request.user.id if request.user.is_authenticated else 'anonymous'
+        cache_key = f"personalized_recommendations_{user_id}_{serializer.validated_data.get('limit', 10)}"
         cached_result = cache.get(cache_key)
         if cached_result:
             return Response(cached_result, status=status.HTTP_200_OK)
 
-        # Generate personalized recommendations
+        # Generate personalized recommendations (or general for anonymous users)
         recommendation_service = RecommendationService()
-        recommendations = recommendation_service.get_personalized_recommendations(
-            user=request.user,
-            limit=serializer.validated_data.get('limit', 10),
-            category_id=serializer.validated_data.get('category_id'),
-            exclude_products=serializer.validated_data.get('exclude_products', [])
-        )
+        if request.user.is_authenticated:
+            recommendations = recommendation_service.get_personalized_recommendations(
+                user=request.user,
+                limit=serializer.validated_data.get('limit', 10),
+                category_id=serializer.validated_data.get('category_id'),
+                exclude_products=serializer.validated_data.get('exclude_products', [])
+            )
+        else:
+            # For anonymous users, use general recommendations
+            recommendations = recommendation_service.get_general_recommendations(
+                limit=serializer.validated_data.get('limit', 10),
+                category_id=serializer.validated_data.get('category_id'),
+                exclude_products=serializer.validated_data.get('exclude_products', [])
+            )
 
         # إذا لم توجد توصيات شخصية، جرب التوصيات العامة
         if not recommendations:
@@ -129,9 +138,9 @@ def personalized_recommendations(request):
 
         # Create session for tracking
         session = RecommendationSession.objects.create(
-            user=request.user,
+            user=request.user if request.user.is_authenticated else None,
             session_id=serializer.validated_data.get('session_id'),
-            recommendation_type='personalized'
+            recommendation_type='personalized' if request.user.is_authenticated else 'general'
         )
 
         # Store results
@@ -164,6 +173,7 @@ def personalized_recommendations(request):
         response_data = {
             'count': len(serialized_products),
             'results': serialized_products,
+            'recommendations': serialized_products,  # Add for frontend compatibility
         }
 
         # Cache for 5 minutes (shorter for personalized)
@@ -172,7 +182,8 @@ def personalized_recommendations(request):
         return Response(response_data, status=status.HTTP_200_OK)
 
     except Exception as e:
-        logger.error(f"Error generating personalized recommendations for user {request.user.id}: {str(e)}")
+        user_info = f"user {request.user.id}" if request.user.is_authenticated else "anonymous user"
+        logger.error(f"Error generating personalized recommendations for {user_info}: {str(e)}")
         # جرب fallback للتوصيات العامة إذا حدث خطأ
         try:
             recommendation_service = RecommendationService()

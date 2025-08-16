@@ -172,8 +172,12 @@ def user_behavior_analytics(request):
 
 from transformers import pipeline
 
-# تحميل نموذج التحليل مرة واحدة عند بدء التشغيل
-sentiment_pipeline = pipeline("sentiment-analysis")
+# تحميل نموذج التحليل مرة واحدة عند بدء التشغيل مع تحديد النموذج بوضوح
+sentiment_pipeline = pipeline(
+    "sentiment-analysis",
+    model="distilbert/distilbert-base-uncased-finetuned-sst-2-english",
+    revision="714eb0f"
+)
 
 class SentimentAnalysisView(APIView):
     permission_classes = [IsAuthenticated]

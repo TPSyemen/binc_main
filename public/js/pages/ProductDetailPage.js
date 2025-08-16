@@ -183,8 +183,12 @@ function renderProductDetails(page, product) {
             <button class="btn btn-outline" onclick="shareProduct()"><i class="fa-solid fa-share-nodes mr-2"></i> Share</button>
           </div>
           <div class="flex items-center gap-2 mb-2">
-            <span class="text-xs text-gray-500">Brand: ${product.brand?.name || product.brand || '-'}</span>
-            <span class="text-xs text-gray-500">Store: ${product.store?.name || product.store || '-'}</span>
+            <span class="mb-4 text-gray-700">Brand:</span>
+            <span class="text-lg font-bold text-secondary"> ${product.brand?.name || product.brand || '-'}</span>
+          </div>
+          <div class="flex items-center gap-2 mb-2">
+            <span class="mb-4 text-gray-700">Store:</span>
+            <span class="text-lg font-bold text-secondary"> ${product.store?.name || product.store || '-'}</span>
           </div>
           <div class="flex items-center gap-2 mb-2">
             <span class="text-xs text-gray-500">SKU: ${product.sku || '-'}</span>

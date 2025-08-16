@@ -62,15 +62,33 @@ export class Auth {
         localStorage.setItem('access_token', response.tokens.access)
         localStorage.setItem('refresh_token', response.tokens.refresh)
         
+        // If user is a store owner, fetch store information
+        let userWithStore = response.user
+        if (response.user.role === 'store_owner') {
+          try {
+            const { dashboardService } = await import('../services/api.js')
+            const storeInfo = await dashboardService.getMyStore()
+            if (storeInfo && storeInfo.name) {
+              userWithStore = {
+                ...response.user,
+                store_name: storeInfo.name,
+                store_id: storeInfo.id
+              }
+            }
+          } catch (storeError) {
+            console.warn('Failed to fetch store information during login:', storeError)
+          }
+        }
+        
         // Update store
         store.setState({
           isAuthenticated: true,
-          user: response.user,
+          user: userWithStore,
           token: response.tokens.access
         })
         
         showToast('Login successful!', 'success')
-        return { success: true, user: response.user }
+        return { success: true, user: userWithStore }
       }
       
       throw new Error('Invalid response format')
@@ -156,6 +174,21 @@ export class Auth {
   async getProfile() {
     try {
       const response = await authService.getProfile()
+      
+      // If user is a store owner, fetch store information
+      if (response.role === 'store_owner') {
+        try {
+          const { dashboardService } = await import('../services/api.js')
+          const storeInfo = await dashboardService.getMyStore()
+          if (storeInfo && storeInfo.name) {
+            response.store_name = storeInfo.name
+            response.store_id = storeInfo.id
+          }
+        } catch (storeError) {
+          console.warn('Failed to fetch store information:', storeError)
+        }
+      }
+      
       return response
     } catch (error) {
       console.error('Failed to get profile:', error)

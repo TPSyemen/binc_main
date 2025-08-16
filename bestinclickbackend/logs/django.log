@@ -6923,3 +6923,267 @@ WARNING 2025-08-12 18:12:13,341 log 15224 6932 Unauthorized: /api/products/
 INFO 2025-08-12 18:12:21,127 views 15224 8924 User logged in: alio
 ERROR 2025-08-12 18:13:12,058 views 15224 14080 Error generating personalized recommendations for user 339: No module named 'redis'
 ERROR 2025-08-12 18:13:28,301 views 15224 3828 Error generating personalized recommendations for user 339: No module named 'redis'
+INFO 2025-08-14 12:47:14,026 autoreload 4524 13364 Watching for file changes with StatReloader
+INFO 2025-08-14 19:33:33,505 autoreload 6468 5788 Watching for file changes with StatReloader
+INFO 2025-08-14 19:35:45,540 views 6468 14872 User logged in: alio
+WARNING 2025-08-14 19:36:39,934 log 6468 9748 Bad Request: /api/products/
+WARNING 2025-08-14 19:36:46,942 log 6468 9748 Bad Request: /api/products/
+WARNING 2025-08-14 19:37:03,656 log 6468 8272 Bad Request: /api/products/
+WARNING 2025-08-14 19:37:11,147 log 6468 17784 Bad Request: /api/products/
+WARNING 2025-08-14 19:37:13,488 log 6468 17784 Bad Request: /api/products/
+ERROR 2025-08-14 19:37:30,878 views 6468 16628 Error in report generation: {'non_field_errors': [ErrorDetail(string='date_from must be before date_to', code='invalid')]}
+Traceback:
+Traceback (most recent call last):
+  File "C:\Users\maaab\OneDrive\Documents\GitHub\binc_main\bestinclickbackend\reports\views.py", line 52, in create
+    serializer.is_valid(raise_exception=True)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\rest_framework\serializers.py", line 231, in is_valid
+    raise ValidationError(self.errors)
+rest_framework.exceptions.ValidationError: {'non_field_errors': [ErrorDetail(string='date_from must be before date_to', code='invalid')]}
+
+ERROR 2025-08-14 19:37:30,880 log 6468 16628 Internal Server Error: /api/reports/generate/
+ERROR 2025-08-14 19:38:07,821 views 6468 18912 Error generating personalized recommendations for user 339: No module named 'redis'
+ERROR 2025-08-14 19:38:40,252 views 6468 12152 Error generating personalized recommendations for user 339: No module named 'redis'
+ERROR 2025-08-14 19:38:43,233 services 6468 17592 Error comparing products: division by zero
+ERROR 2025-08-14 19:38:43,311 views 6468 17592 Error comparing products: 'criteria'
+ERROR 2025-08-14 19:38:43,360 log 6468 17592 Internal Server Error: /api/comparisons/products/
+ERROR 2025-08-14 19:39:04,500 views 6468 12764 Error generating personalized recommendations for user 339: No module named 'redis'
+WARNING 2025-08-14 19:39:33,854 log 6468 13112 Bad Request: /api/products/
+INFO 2025-08-15 20:56:01,295 autoreload 7784 18472 Watching for file changes with StatReloader
+INFO 2025-08-15 21:01:11,942 autoreload 11396 13784 Watching for file changes with StatReloader
+WARNING 2025-08-15 21:04:28,058 log 11396 5736 Unauthorized: /api/auth/profile/
+WARNING 2025-08-15 21:04:28,978 log 11396 11764 Unauthorized: /api/recommendations/personalized/
+WARNING 2025-08-15 21:04:28,980 log 11396 19468 Unauthorized: /api/products/
+WARNING 2025-08-15 21:04:28,981 log 11396 15416 Unauthorized: /api/products/
+INFO 2025-08-15 21:04:39,673 views 11396 20728 User logged in: alio
+INFO 2025-08-15 21:04:57,831 views 11396 18116 User logged in: mugahed
+ERROR 2025-08-15 21:04:58,147 views 11396 12412 Error generating personalized recommendations for user 334: No module named 'redis'
+WARNING 2025-08-15 21:05:09,597 log 11396 20708 Bad Request: /api/products/
+WARNING 2025-08-15 21:05:12,175 log 11396 10844 Bad Request: /api/products/
+ERROR 2025-08-15 21:05:19,366 views 11396 10844 Error generating personalized recommendations for user 334: No module named 'redis'
+WARNING 2025-08-15 21:06:54,073 log 11396 8340 Unauthorized: /api/auth/profile/
+ERROR 2025-08-15 21:06:54,161 views 11396 8340 Error generating personalized recommendations for user 334: No module named 'redis'
+INFO 2025-08-15 21:07:00,174 views 11396 6136 User logged in: mugahed
+ERROR 2025-08-15 21:07:00,312 views 11396 6136 Error generating personalized recommendations for user 334: No module named 'redis'
+INFO 2025-08-15 21:08:23,547 views 11396 8392 New user registered: Ahmedo
+WARNING 2025-08-15 21:08:35,756 log 11396 8392 Bad Request: /api/auth/register/
+WARNING 2025-08-15 21:10:29,390 log 11396 20136 Unauthorized: /api/auth/profile/
+INFO 2025-08-15 21:10:37,558 views 11396 20136 User logged in: Ahmedo
+ERROR 2025-08-15 21:11:03,796 views 11396 8392 Error generating personalized recommendations for user 340: No module named 'redis'
+ERROR 2025-08-15 21:12:22,741 views 11396 6136 Error generating personalized recommendations for user 340: No module named 'redis'
+ERROR 2025-08-15 21:12:31,654 views 11396 6136 Error generating personalized recommendations for user 340: No module named 'redis'
+INFO 2025-08-15 21:16:58,719 autoreload 11396 13784 C:\Users\maaab\OneDrive\Documents\GitHub\binc_main\bestinclickbackend\best_on_click\settings.py changed, reloading.
+INFO 2025-08-15 21:17:22,490 autoreload 16988 10408 Watching for file changes with StatReloader
+INFO 2025-08-15 21:17:51,323 autoreload 11764 2916 Watching for file changes with StatReloader
+WARNING 2025-08-15 21:19:01,272 log 11764 19764 Unauthorized: /api/auth/profile/
+ERROR 2025-08-15 21:19:02,836 views 11764 19764 Error generating personalized recommendations for user 340: No module named 'redis'
+INFO 2025-08-15 21:19:08,183 views 11764 7880 User logged in: Ahmedo
+INFO 2025-08-15 21:24:46,686 views 11764 17444 User logged in: Ahmedo
+WARNING 2025-08-15 21:25:50,486 log 11764 12876 Unauthorized: /api/auth/profile/
+WARNING 2025-08-15 21:26:05,893 log 11764 8428 Bad Request: /api/auth/login/
+INFO 2025-08-15 21:26:14,098 views 11764 8428 User logged in: Ahmedo
+INFO 2025-08-15 21:26:30,858 views 11764 8428 User logged in: Ahmedo
+INFO 2025-08-15 21:26:45,008 views 11764 8428 User logged in: Ahmedo
+WARNING 2025-08-15 21:27:43,374 log 11764 8428 Unauthorized: /api/auth/profile/
+INFO 2025-08-15 21:28:00,609 views 11764 13596 User logged in: Ahmedo
+WARNING 2025-08-15 21:29:51,368 log 11764 15892 Unauthorized: /api/auth/profile/
+INFO 2025-08-15 21:30:09,781 views 11764 13648 User logged in: Ahmedo
+WARNING 2025-08-15 21:30:29,252 log 11764 14896 Unauthorized: /api/auth/profile/
+WARNING 2025-08-15 21:30:29,502 log 11764 13648 Unauthorized: /api/dashboard/my-store/
+WARNING 2025-08-15 21:30:29,532 log 11764 14896 Unauthorized: /api/dashboard/stores/141/analytics/
+WARNING 2025-08-15 21:30:29,513 log 11764 17264 Unauthorized: /api/dashboard/stores/141/products/
+WARNING 2025-08-15 21:30:29,517 log 11764 19404 Unauthorized: /api/dashboard/stores/141/ai-insights/
+WARNING 2025-08-15 21:30:29,507 log 11764 5936 Unauthorized: /api/dashboard/stores/141/performance/
+INFO 2025-08-15 21:30:52,146 views 11764 11616 User logged in: Ahmedo
+WARNING 2025-08-15 21:34:56,528 log 11764 15012 Unauthorized: /api/auth/profile/
+INFO 2025-08-15 21:35:11,725 views 11764 11616 User logged in: Ahmedo
+INFO 2025-08-15 21:35:19,782 views 11764 11616 User logged in: Ahmedo
+INFO 2025-08-15 21:35:28,268 views 11764 11616 User logged in: Ahmedo
+WARNING 2025-08-15 21:36:10,558 log 11764 16004 Unauthorized: /api/auth/profile/
+INFO 2025-08-15 21:36:20,443 views 11764 14080 User logged in: Ahmedo
+INFO 2025-08-15 21:36:27,627 views 11764 14080 User logged in: Ahmedo
+WARNING 2025-08-15 21:37:03,316 log 11764 17816 Unauthorized: /api/auth/profile/
+INFO 2025-08-15 21:37:10,257 views 11764 16004 User logged in: Ahmedo
+INFO 2025-08-15 21:37:45,621 views 11764 16004 User logged in: Ahmedo
+WARNING 2025-08-15 21:37:48,025 log 11764 14080 Unauthorized: /api/auth/profile/
+INFO 2025-08-15 21:41:31,623 views 11764 16004 User logged in: Ahmedo
+INFO 2025-08-15 21:41:47,075 views 11764 16004 User logged in: Ahmedo
+WARNING 2025-08-15 21:41:49,544 log 11764 16004 Unauthorized: /api/auth/profile/
+INFO 2025-08-16 05:47:09,480 autoreload 13024 1940 Watching for file changes with StatReloader
+INFO 2025-08-16 05:54:00,443 autoreload 3196 5896 Watching for file changes with StatReloader
+INFO 2025-08-16 05:57:17,617 views 3196 16380 User logged in: Ahmedo
+WARNING 2025-08-16 05:58:52,088 log 3196 5304 Unauthorized: /api/auth/profile/
+INFO 2025-08-16 05:58:57,294 views 3196 16380 User logged in: Ahmedo
+WARNING 2025-08-16 05:59:34,884 log 3196 5304 Unauthorized: /api/auth/profile/
+WARNING 2025-08-16 05:59:35,125 log 3196 16380 Unauthorized: /api/dashboard/my-store/
+WARNING 2025-08-16 05:59:35,128 log 3196 17504 Unauthorized: /api/dashboard/stores/141/analytics/
+WARNING 2025-08-16 05:59:35,130 log 3196 17776 Unauthorized: /api/dashboard/stores/141/performance/
+WARNING 2025-08-16 05:59:35,133 log 3196 17548 Unauthorized: /api/dashboard/stores/141/products/
+WARNING 2025-08-16 05:59:35,138 log 3196 16220 Unauthorized: /api/dashboard/stores/141/ai-insights/
+WARNING 2025-08-16 05:59:35,168 log 3196 17504 Unauthorized: /api/dashboard/stores/141/analytics/
+INFO 2025-08-16 05:59:39,243 views 3196 17776 User logged in: Ahmedo
+WARNING 2025-08-16 06:00:14,538 log 3196 1376 Unauthorized: /api/auth/profile/
+INFO 2025-08-16 06:00:27,220 views 3196 17396 User logged in: Ahmedo
+WARNING 2025-08-16 06:01:17,556 log 3196 8528 Unauthorized: /api/auth/profile/
+INFO 2025-08-16 06:01:22,429 views 3196 17040 User logged in: Ahmedo
+WARNING 2025-08-16 06:03:45,220 log 3196 17040 Unauthorized: /api/auth/profile/
+WARNING 2025-08-16 06:03:45,427 log 3196 10668 Unauthorized: /api/dashboard/stores/141/analytics/
+WARNING 2025-08-16 06:03:45,429 log 3196 11000 Unauthorized: /api/dashboard/stores/141/performance/
+WARNING 2025-08-16 06:03:45,444 log 3196 17040 Unauthorized: /api/dashboard/my-store/
+WARNING 2025-08-16 06:03:45,486 log 3196 10668 Unauthorized: /api/dashboard/stores/141/products/
+INFO 2025-08-16 06:03:51,386 views 3196 5676 User logged in: Ahmedo
+WARNING 2025-08-16 06:05:46,138 log 3196 5676 Unauthorized: /api/auth/profile/
+INFO 2025-08-16 06:05:51,138 views 3196 16708 User logged in: Ahmedo
+WARNING 2025-08-16 06:06:11,458 log 3196 16708 Unauthorized: /api/auth/profile/
+INFO 2025-08-16 06:06:20,365 views 3196 11884 User logged in: Ahmedo
+WARNING 2025-08-16 06:07:10,804 log 3196 17288 Unauthorized: /api/auth/profile/
+INFO 2025-08-16 06:07:15,812 views 3196 3908 User logged in: Ahmedo
+INFO 2025-08-16 06:07:35,860 views 3196 3908 User logged in: Ahmedo
+WARNING 2025-08-16 06:08:35,561 log 3196 3908 Unauthorized: /api/auth/profile/
+INFO 2025-08-16 06:08:40,846 views 3196 1096 User logged in: Ahmedo
+WARNING 2025-08-16 06:09:31,017 log 3196 1096 Unauthorized: /api/auth/profile/
+INFO 2025-08-16 06:09:36,420 views 3196 15728 User logged in: Ahmedo
+WARNING 2025-08-16 06:09:55,072 log 3196 1096 Unauthorized: /api/auth/profile/
+WARNING 2025-08-16 06:09:55,247 log 3196 2684 Unauthorized: /api/dashboard/my-store/
+WARNING 2025-08-16 06:09:55,293 log 3196 2684 Unauthorized: /api/dashboard/stores/141/analytics/
+WARNING 2025-08-16 06:09:55,295 log 3196 15728 Unauthorized: /api/dashboard/stores/141/ai-insights/
+WARNING 2025-08-16 06:09:55,297 log 3196 5520 Unauthorized: /api/dashboard/stores/141/performance/
+WARNING 2025-08-16 06:09:55,301 log 3196 14328 Unauthorized: /api/dashboard/stores/141/products/
+INFO 2025-08-16 06:09:59,188 views 3196 9676 User logged in: Ahmedo
+WARNING 2025-08-16 06:11:17,434 log 3196 148 Unauthorized: /api/auth/profile/
+WARNING 2025-08-16 06:11:17,593 log 3196 18132 Unauthorized: /api/dashboard/my-store/
+WARNING 2025-08-16 06:11:17,659 log 3196 148 Unauthorized: /api/dashboard/stores/141/analytics/
+WARNING 2025-08-16 06:11:17,662 log 3196 9676 Unauthorized: /api/dashboard/stores/141/performance/
+INFO 2025-08-16 06:11:22,314 views 3196 7516 User logged in: Ahmedo
+WARNING 2025-08-16 06:11:31,115 log 3196 14856 Unauthorized: /api/auth/profile/
+INFO 2025-08-16 06:11:36,209 views 3196 7516 User logged in: Ahmedo
+WARNING 2025-08-16 06:11:44,746 log 3196 7516 Unauthorized: /api/auth/profile/
+INFO 2025-08-16 06:11:48,636 views 3196 7516 User logged in: Ahmedo
+WARNING 2025-08-16 06:12:54,691 log 3196 4108 Unauthorized: /api/auth/profile/
+INFO 2025-08-16 06:12:59,575 views 3196 13344 User logged in: Ahmedo
+WARNING 2025-08-16 06:14:40,102 log 3196 13344 Unauthorized: /api/auth/profile/
+WARNING 2025-08-16 06:14:40,292 log 3196 10612 Unauthorized: /api/dashboard/my-store/
+WARNING 2025-08-16 06:14:40,300 log 3196 3780 Unauthorized: /api/dashboard/stores/141/analytics/
+WARNING 2025-08-16 06:14:40,303 log 3196 13344 Unauthorized: /api/dashboard/stores/141/performance/
+WARNING 2025-08-16 06:14:40,312 log 3196 3808 Unauthorized: /api/dashboard/stores/141/products/
+WARNING 2025-08-16 06:14:40,345 log 3196 10612 Unauthorized: /api/dashboard/stores/141/ai-insights/
+INFO 2025-08-16 06:14:46,710 views 3196 1348 User logged in: Ahmedo
+WARNING 2025-08-16 06:15:50,493 log 3196 3616 Unauthorized: /api/auth/profile/
+INFO 2025-08-16 06:15:54,904 views 3196 6828 User logged in: Ahmedo
+WARNING 2025-08-16 06:17:10,132 log 3196 2164 Unauthorized: /api/auth/profile/
+WARNING 2025-08-16 06:17:10,378 log 3196 6828 Unauthorized: /api/dashboard/my-store/
+WARNING 2025-08-16 06:17:10,380 log 3196 17960 Unauthorized: /api/dashboard/stores/141/analytics/
+WARNING 2025-08-16 06:17:10,879 log 3196 2164 Unauthorized: /api/dashboard/stores/141/performance/
+INFO 2025-08-16 06:17:16,832 views 3196 18100 User logged in: Ahmedo
+ERROR 2025-08-16 06:17:41,320 views 3196 18100 Error generating personalized recommendations for user 340: No module named 'redis'
+WARNING 2025-08-16 06:22:05,775 log 3196 16156 Unauthorized: /api/auth/profile/
+INFO 2025-08-16 06:22:11,225 views 3196 16156 User logged in: Ahmedo
+ERROR 2025-08-16 06:22:15,027 views 3196 18100 Error generating personalized recommendations for user 340: No module named 'redis'
+WARNING 2025-08-16 06:23:37,363 log 3196 18080 Unauthorized: /api/auth/profile/
+INFO 2025-08-16 06:23:43,749 views 3196 18080 User logged in: mugahed
+ERROR 2025-08-16 06:23:43,831 views 3196 18080 Error generating personalized recommendations for user 334: No module named 'redis'
+WARNING 2025-08-16 06:25:20,971 log 3196 6444 Unauthorized: /api/auth/profile/
+INFO 2025-08-16 06:25:28,479 views 3196 16156 User logged in: mugahed
+ERROR 2025-08-16 06:25:28,553 views 3196 16156 Error generating personalized recommendations for user 334: No module named 'redis'
+INFO 2025-08-16 06:25:49,988 views 3196 6444 User logged in: mugahed
+ERROR 2025-08-16 06:25:50,050 views 3196 6444 Error generating personalized recommendations for user 334: No module named 'redis'
+INFO 2025-08-16 06:26:57,270 views 3196 18100 User logged in: Ahmedo
+WARNING 2025-08-16 06:27:55,727 log 3196 18100 Unauthorized: /api/auth/profile/
+INFO 2025-08-16 06:28:01,660 views 3196 16164 User logged in: mugahed
+ERROR 2025-08-16 06:28:01,710 views 3196 16164 Error generating personalized recommendations for user 334: No module named 'redis'
+ERROR 2025-08-16 06:29:40,936 services 3196 12000 Error comparing products: division by zero
+ERROR 2025-08-16 06:29:40,940 views 3196 12000 Error comparing products: 'criteria'
+ERROR 2025-08-16 06:29:40,943 log 3196 12000 Internal Server Error: /api/comparisons/products/
+ERROR 2025-08-16 06:30:14,107 views 3196 12000 Error generating personalized recommendations for user 334: No module named 'redis'
+ERROR 2025-08-16 06:30:20,513 services 3196 16164 Error comparing products: division by zero
+ERROR 2025-08-16 06:30:20,515 views 3196 16164 Error comparing products: 'criteria'
+ERROR 2025-08-16 06:30:20,516 log 3196 16164 Internal Server Error: /api/comparisons/products/
+ERROR 2025-08-16 06:30:30,872 views 3196 16164 Error generating personalized recommendations for user 334: No module named 'redis'
+WARNING 2025-08-16 06:31:32,082 log 3196 13652 Unauthorized: /api/auth/profile/
+ERROR 2025-08-16 06:31:32,122 views 3196 12000 Error generating personalized recommendations for user 334: No module named 'redis'
+INFO 2025-08-16 06:32:57,981 views 3196 13652 User logged in: mugahed
+ERROR 2025-08-16 06:32:58,052 views 3196 12000 Error generating personalized recommendations for user 334: No module named 'redis'
+ERROR 2025-08-16 06:33:41,090 views 3196 13652 Error generating personalized recommendations for user 334: No module named 'redis'
+WARNING 2025-08-16 06:33:46,672 log 3196 12000 Not Found: /api/products/undefined/
+ERROR 2025-08-16 06:35:33,909 views 3196 5140 Error generating personalized recommendations for user 334: No module named 'redis'
+WARNING 2025-08-16 06:43:04,956 log 3196 10896 Unauthorized: /api/recommendations/personalized/
+INFO 2025-08-16 06:43:15,536 views 3196 10896 User logged in: Ahmedo
+WARNING 2025-08-16 06:43:27,756 log 3196 9436 Unauthorized: /api/auth/profile/
+WARNING 2025-08-16 06:43:28,074 log 3196 10896 Unauthorized: /api/dashboard/stores/141/products/
+WARNING 2025-08-16 06:43:28,556 log 3196 16604 Unauthorized: /api/recommendations/personalized/
+INFO 2025-08-16 06:43:33,591 views 3196 1344 User logged in: Ahmedo
+ERROR 2025-08-16 06:44:04,644 views 3196 7300 Error generating personalized recommendations for user 340: No module named 'redis'
+WARNING 2025-08-16 06:44:10,365 log 3196 3780 Not Found: /api/products/product-1/
+ERROR 2025-08-16 06:44:13,980 views 3196 1344 Error generating personalized recommendations for user 340: No module named 'redis'
+WARNING 2025-08-16 06:44:17,287 log 3196 1344 Not Found: /api/products/product-2/
+ERROR 2025-08-16 06:44:18,850 views 3196 7300 Error generating personalized recommendations for user 340: No module named 'redis'
+WARNING 2025-08-16 06:44:30,720 log 3196 3780 Not Found: /api/products/product-2/
+ERROR 2025-08-16 06:44:32,969 views 3196 3780 Error generating personalized recommendations for user 340: No module named 'redis'
+WARNING 2025-08-16 06:44:46,065 log 3196 3780 Not Found: /api/products/product-1/
+ERROR 2025-08-16 06:46:05,061 views 3196 1344 Error generating personalized recommendations for user 340: No module named 'redis'
+WARNING 2025-08-16 06:46:13,572 log 3196 1344 Not Found: /api/comparisons/products/temp-id-5/
+WARNING 2025-08-16 06:49:02,018 log 3196 3780 Unauthorized: /api/auth/profile/
+WARNING 2025-08-16 06:49:02,175 log 3196 3780 Unauthorized: /api/dashboard/stores/141/analytics/
+WARNING 2025-08-16 06:49:02,197 log 3196 15696 Unauthorized: /api/dashboard/stores/141/performance/
+WARNING 2025-08-16 06:49:02,199 log 3196 6884 Unauthorized: /api/dashboard/stores/141/products/
+WARNING 2025-08-16 06:49:02,202 log 3196 7300 Unauthorized: /api/dashboard/stores/141/ai-insights/
+WARNING 2025-08-16 06:49:02,305 log 3196 3780 Unauthorized: /api/dashboard/stores/141/analytics/
+WARNING 2025-08-16 06:49:02,767 log 3196 15696 Unauthorized: /api/recommendations/personalized/
+INFO 2025-08-16 06:49:11,412 views 3196 15696 User logged in: mugahed
+ERROR 2025-08-16 06:49:11,487 views 3196 15696 Error generating personalized recommendations for user 334: No module named 'redis'
+WARNING 2025-08-16 06:49:15,548 log 3196 6884 Not Found: /api/products/product-2/
+ERROR 2025-08-16 06:49:18,776 views 3196 15696 Error generating personalized recommendations for user 334: No module named 'redis'
+WARNING 2025-08-16 06:49:22,137 log 3196 15696 Not Found: /api/products/product-0/
+ERROR 2025-08-16 06:49:24,690 views 3196 15696 Error generating personalized recommendations for user 334: No module named 'redis'
+WARNING 2025-08-16 06:49:34,384 log 3196 6884 Not Found: /api/products/product-1/
+WARNING 2025-08-16 06:49:35,328 log 3196 6884 Not Found: /api/products/product-1/
+ERROR 2025-08-16 06:53:05,264 views 3196 7104 Error generating personalized recommendations for user 334: No module named 'redis'
+WARNING 2025-08-16 06:53:07,050 log 3196 16372 Unauthorized: /api/auth/profile/
+ERROR 2025-08-16 06:53:07,613 views 3196 7104 Error generating personalized recommendations for user 334: No module named 'redis'
+WARNING 2025-08-16 06:53:08,740 log 3196 8520 Unauthorized: /api/recommendations/personalized/
+INFO 2025-08-16 06:53:13,593 views 3196 3956 User logged in: mugahed
+ERROR 2025-08-16 06:53:13,729 views 3196 17124 Error generating personalized recommendations for user 334: No module named 'redis'
+WARNING 2025-08-16 06:53:21,111 log 3196 3956 Not Found: /api/products/product-1/
+WARNING 2025-08-16 07:01:05,615 log 3196 17332 Unauthorized: /api/auth/profile/
+WARNING 2025-08-16 07:01:06,087 log 3196 5036 Not Found: /api/products/product-1/
+WARNING 2025-08-16 07:01:07,347 log 3196 2984 Unauthorized: /api/recommendations/personalized/
+INFO 2025-08-16 07:01:12,391 views 3196 2004 User logged in: mugahed
+ERROR 2025-08-16 07:01:12,562 views 3196 2004 Error generating personalized recommendations for user 334: No module named 'redis'
+ERROR 2025-08-16 07:01:23,034 views 3196 18332 Error generating personalized recommendations for user 334: No module named 'redis'
+INFO 2025-08-16 07:03:36,719 autoreload 15568 9772 Watching for file changes with StatReloader
+INFO 2025-08-16 07:06:07,448 views 15568 8748 User logged in: Ahmedo
+INFO 2025-08-16 07:06:14,940 views 15568 2120 User logged in: Ahmedo
+INFO 2025-08-16 07:06:20,613 views 15568 2120 User logged in: Ahmedo
+ERROR 2025-08-16 07:06:21,303 views 15568 2120 Error generating personalized recommendations for user 340: No module named 'redis'
+ERROR 2025-08-16 07:06:48,100 views 15568 17228 Error generating personalized recommendations for user 340: No module named 'redis'
+WARNING 2025-08-16 07:06:48,184 log 15568 6140 Unauthorized: /api/auth/profile/
+WARNING 2025-08-16 07:06:48,352 log 15568 6140 Unauthorized: /api/auth/token/refresh/
+WARNING 2025-08-16 07:06:50,678 log 15568 2200 Unauthorized: /api/recommendations/personalized/
+INFO 2025-08-16 07:07:00,358 views 15568 12196 User logged in: mugahed
+ERROR 2025-08-16 07:07:00,665 views 15568 12196 Error generating personalized recommendations for user 334: No module named 'redis'
+INFO 2025-08-16 07:08:36,299 autoreload 15568 9772 C:\Users\maaab\OneDrive\Documents\GitHub\binc_main\bestinclickbackend\ai_models\views.py changed, reloading.
+INFO 2025-08-16 07:08:46,702 autoreload 15816 17500 Watching for file changes with StatReloader
+WARNING 2025-08-16 07:11:30,318 log 15816 6816 Unauthorized: /api/auth/profile/
+ERROR 2025-08-16 07:11:32,095 views 15816 16208 Error generating personalized recommendations for user 334: No module named 'redis'
+WARNING 2025-08-16 07:11:32,738 log 15816 17388 Unauthorized: /api/recommendations/personalized/
+INFO 2025-08-16 07:11:43,443 views 15816 8924 User logged in: mugahed
+ERROR 2025-08-16 07:11:43,714 views 15816 8924 Error generating personalized recommendations for user 334: No module named 'redis'
+INFO 2025-08-16 07:13:11,949 autoreload 15816 17500 C:\Users\maaab\OneDrive\Documents\GitHub\binc_main\bestinclickbackend\recommendations\views.py changed, reloading.
+INFO 2025-08-16 07:13:22,292 autoreload 6512 10128 Watching for file changes with StatReloader
+WARNING 2025-08-16 07:14:03,495 log 6512 9400 Unauthorized: /api/auth/profile/
+ERROR 2025-08-16 07:14:04,260 views 6512 17304 Error generating personalized recommendations for user 334: No module named 'redis'
+WARNING 2025-08-16 07:14:04,555 log 6512 6444 Unauthorized: /api/recommendations/personalized/
+INFO 2025-08-16 07:14:09,482 views 6512 17908 User logged in: mugahed
+ERROR 2025-08-16 07:14:09,562 views 6512 17908 Error generating personalized recommendations for user 334: No module named 'redis'
+INFO 2025-08-16 07:15:14,387 autoreload 6512 10128 C:\Users\maaab\OneDrive\Documents\GitHub\binc_main\bestinclickbackend\recommendations\views.py changed, reloading.
+INFO 2025-08-16 07:15:20,680 autoreload 17920 7084 Watching for file changes with StatReloader
+INFO 2025-08-16 07:18:31,777 autoreload 10068 13604 Watching for file changes with StatReloader
+WARNING 2025-08-16 07:19:16,705 log 17920 6908 Unauthorized: /api/auth/profile/
+ERROR 2025-08-16 07:19:18,623 views 17920 8440 Error generating personalized recommendations for anonymous user: No module named 'redis'
+ERROR 2025-08-16 07:19:20,598 views 17920 16372 Error generating personalized recommendations for user 334: No module named 'redis'
+INFO 2025-08-16 07:19:55,921 views 17920 15792 User logged in: mugahed
+ERROR 2025-08-16 07:19:56,066 views 17920 15792 Error generating personalized recommendations for user 334: No module named 'redis'
+WARNING 2025-08-16 07:21:54,265 log 17920 5296 Unauthorized: /api/auth/profile/
+ERROR 2025-08-16 07:21:54,349 views 17920 1308 Error generating personalized recommendations for user 334: No module named 'redis'
+INFO 2025-08-16 07:22:01,976 views 17920 6412 User logged in: mugahed
+ERROR 2025-08-16 07:22:02,067 views 17920 6412 Error generating personalized recommendations for user 334: No module named 'redis'

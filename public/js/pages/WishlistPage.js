@@ -7,14 +7,14 @@ import store from "../state/store.js"
 export default function WishlistPage() {
   const page = createElementFromHTML(`
     <div class="container mx-auto py-8 px-4">
-      <h1 class="text-3xl font-bold text-primary mb-6 text-center">My Wishlist</h1>
+      <h1 class="text-3xl font-bold text-primary mb-6 text-center">Favorites</h1>
       <div id="wishlist-items" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         ${LoadingSpinner('lg', 'Loading your wishlist...').outerHTML}
       </div>
       <div id="empty-wishlist-message" class="hidden text-center py-12">
         <i class="fa-solid fa-heart-crack text-gray-400 text-6xl mb-4"></i>
-        <p class="text-xl text-gray-600 font-semibold">Your wishlist is empty!</p>
-        <p class="text-gray-500 mt-2">Start adding products you love to your wishlist.</p>
+        <p class="text-xl text-gray-600 font-semibold">Your favorites list is empty!</p>
+        <p class="text-gray-500 mt-2">Start adding products you love to your favorites.</p>
         <a href="#/products" class="btn btn-primary mt-6">Browse Products</a>
       </div>
     </div>
@@ -30,12 +30,12 @@ export default function WishlistPage() {
     const state = store.getState()
     // It's crucial that state.isAuthenticated is correctly updated upon login/logout.
     if (!state.isAuthenticated) {
-      showToast('Please log in to view your wishlist.', 'info')
+      showToast('Please log in to view your favorites.', 'info')
 
       wishlistItemsContainer.innerHTML = `
         <div class="col-span-full text-center py-12">
           <i class="fa-solid fa-user-lock text-gray-400 text-6xl mb-4"></i>
-          <p class="text-xl text-gray-600 font-semibold">Please log in to view your wishlist.</p>
+          <p class="text-xl text-gray-600 font-semibold">Please log in to view your favorites.</p>
           <p class="text-gray-500 mt-2">Log in or create an account to save your favorite items.</p>
           <a href="#/login" class="btn btn-primary mt-6">Log In</a>
         </div>
@@ -74,7 +74,7 @@ export default function WishlistPage() {
           }
 
           const removeBtn = createElementFromHTML(`
-            <button class="absolute top-2 right-2 bg-white rounded-full p-2 shadow-md text-danger hover:scale-110 transition-transform" title="Remove from Wishlist">
+            <button class="absolute top-2 right-2 bg-white rounded-full p-2 shadow-md text-danger hover:scale-110 transition-transform" title="Remove from Favorites">
               <i class="fa-solid fa-xmark"></i>
             </button>
           `)
@@ -113,11 +113,11 @@ export default function WishlistPage() {
   const removeFromWishlist = async (productId) => {
     try {
       await cartService.unsaveItem(productId)
-      showToast('Product removed from wishlist!', 'success')
+      showToast('Product removed from favorites!', 'success')
       fetchWishlist() // Re-fetch wishlist to update UI
     } catch (error) {
       console.error('Error removing from wishlist:', error)
-      showToast('Failed to remove product from wishlist.', 'error')
+      showToast('Failed to remove product from favorites.', 'error')
     }
   }
 

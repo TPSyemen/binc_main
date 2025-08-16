@@ -1,4 +1,4 @@
-import store from "../state/store.js"
+import store from "../state/store.js";
 
 /**
  * Renders the navigation bar.
@@ -6,18 +6,37 @@ import store from "../state/store.js"
  * @param {HTMLElement} container - The container element to render the navbar into.
  */
 export function renderNavbar(container) {
-  if (!container) return
+  if (!container) return;
 
-  function render() {
-    const { isAuthenticated, user } = store.getState()
+  async function render() {
+    const { isAuthenticated, user } = store.getState();
+    
+    // Get store information for store owners
+    let storeInfo = null;
+    if (user && user.role === 'store_owner') {
+      // First check if store info is already in user object
+      if (user.store_name) {
+        storeInfo = {
+          name: user.store_name,
+          id: user.store_id
+        };
+      } else if (window.dashboardService) {
+        // If not in user object, fetch from API
+        try {
+          storeInfo = await window.dashboardService.getMyStore(); // eslint-disable-line no-undef
+        } catch (error) {
+          console.warn('Failed to fetch store info for navbar:', error);
+        }
+      }
+    }
 
-  const authLinks = isAuthenticated
+    const authLinks = isAuthenticated
     ? `
             ${user.role === 'store_owner' ? `
                 <div class="relative group">
                     <button class="flex items-center gap-2 hover:text-blue-600 transition-colors">
-                        <i class="fa-solid fa-store text-xl"></i>
-                        <span>Store</span>
+                        <i class="fa-solid fa-store text-xl"></i> 
+                        <span>${storeInfo ? storeInfo.name : 'Store'}</span>
                         <i class="fa-solid fa-chevron-down text-xs"></i>
                     </button>
                     <div class="absolute right-0 top-full mt-2 w-48 bg-white rounded-lg shadow-xl border border-gray-200 z-50 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
@@ -35,10 +54,6 @@ export function renderNavbar(container) {
                                 Add Product
                             </a>
                             <div class="border-t border-gray-200 my-1"></div>
-                            <a href="#/analytics" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
-                                <i class="fa-solid fa-chart-bar mr-2"></i>
-                                Analytics
-                            </a>
                             <a href="#/reports" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
                                 <i class="fa-solid fa-file-alt mr-2"></i>
                                 Reports
@@ -68,9 +83,9 @@ export function renderNavbar(container) {
                 <!-- Top bar -->
                 <div class="hidden md:flex justify-between items-center py-2 text-sm text-muted border-b">
                     <div>
-                        <span>(225) 555-0118</span>
+                        <span>776468322</span>
                         <span class="mx-2">|</span>
-                        <span>michelle.rivera@example.com</span>
+                        <span>ttt.ppp.sss.77@gmail.com</span>
                     </div>
                     <div>Follow Us and get a chance to win 80% off</div>
                 </div>
@@ -104,7 +119,7 @@ export function renderNavbar(container) {
                                 <span class="cart-badge text-xs bg-danger text-white rounded-full w-5 h-5 flex items-center justify-center absolute -top-2 -right-2" style="display: none;">0</span>
                             </a>
                         </div>
-                        <a href="#/wishlist" class="flex items-center gap-1 hover:text-blue-600 transition-colors relative" title="Wishlist">
+                        <a href="#/wishlist" class="flex items-center gap-1 hover:text-blue-600 transition-colors relative" title="Favorites">
                             <i class="fa-solid fa-heart"></i>
                             <span class="wishlist-badge text-xs bg-danger text-white rounded-full w-5 h-5 flex items-center justify-center absolute -top-2 -right-2" style="display: none;">0</span>
                         </a>
@@ -146,82 +161,80 @@ export function renderNavbar(container) {
 
     container.innerHTML = html
 
-  // Add event listener for logout button
-  const logoutBtn = document.getElementById("logout-btn")
-  if (logoutBtn) {
-    logoutBtn.addEventListener("click", async (e) => {
-      e.preventDefault()
+    // Add event listener for logout button
+    const logoutBtn = document.getElementById("logout-btn");
+    if (logoutBtn) {
+      logoutBtn.addEventListener("click", async (e) => {
+        e.preventDefault();
 
-      // Use the global auth service if available
-      if (window.auth) {
-        await window.auth.logout()
+        // Use the global auth service if available
+        if (window.auth) { // eslint-disable-line no-undef
+          await window.auth.logout(); // eslint-disable-line no-undef
+        } else {
+          // Fallback to manual logout
+          localStorage.removeItem('access_token');
+          localStorage.removeItem('refresh_token');
+          store.setState({ isAuthenticated: false, user: null, token: null });
+          location.hash = "/";
+        }
+      });
+    }
+
+    // Cart functionality is handled by direct navigation to cart page
+
+    // Add global functions for navbar interactions
+    window.toggleSearch = function() {
+      const searchBar = document.getElementById("search-bar");
+      const searchInput = document.getElementById("global-search");
+
+      if (searchBar.classList.contains("hidden")) {
+        searchBar.classList.remove("hidden");
+        searchInput.focus();
       } else {
-        // Fallback to manual logout
-        localStorage.removeItem('access_token')
-        localStorage.removeItem('refresh_token')
-        store.setState({ isAuthenticated: false, user: null, token: null })
-        location.hash = "/"
+        searchBar.classList.add("hidden");
+        searchInput.value = "";
       }
-    })
-  }
+    };
 
-  // Cart functionality is handled by direct navigation to cart page
+    window.performSearch = function() {
+      const searchInput = document.getElementById("global-search");
+      const query = searchInput.value.trim();
 
-  // Add global functions for navbar interactions
-  window.toggleSearch = function() {
-    const searchBar = document.getElementById("search-bar")
-    const searchInput = document.getElementById("global-search")
-
-    if (searchBar.classList.contains("hidden")) {
-      searchBar.classList.remove("hidden")
-      searchInput.focus()
-    } else {
-      searchBar.classList.add("hidden")
-      searchInput.value = ""
-    }
-  }
-
-  window.performSearch = function() {
-    const searchInput = document.getElementById("global-search")
-    const query = searchInput.value.trim()
-
-    if (query) {
-      location.hash = `/products?search=${encodeURIComponent(query)}`
-      window.toggleSearch() // Close search bar
-    }
-  }
-
-  window.toggleMobileMenu = function() {
-    const mobileMenu = document.getElementById("mobile-menu")
-    const menuButton = document.querySelector('[onclick="toggleMobileMenu()"] i')
-
-    if (mobileMenu.classList.contains("hidden")) {
-      mobileMenu.classList.remove("hidden")
-      menuButton.classList.remove("fa-bars")
-      menuButton.classList.add("fa-times")
-    } else {
-      mobileMenu.classList.add("hidden")
-      menuButton.classList.remove("fa-times")
-      menuButton.classList.add("fa-bars")
-    }
-  }
-
-  // Add enter key support for search
-  const searchInput = document.getElementById("global-search")
-  if (searchInput) {
-    searchInput.addEventListener("keypress", (e) => {
-      if (e.key === "Enter") {
-        window.performSearch()
+      if (query) {
+        location.hash = `/products?search=${encodeURIComponent(query)}`;
+        window.toggleSearch(); // Close search bar
       }
-    })
-  }
+    };
+
+    window.toggleMobileMenu = function() {
+      const mobileMenu = document.getElementById("mobile-menu");
+      const menuButton = document.querySelector('[onclick="toggleMobileMenu()"] i');
+
+      if (mobileMenu.classList.contains("hidden")) {
+        mobileMenu.classList.remove("hidden");
+        menuButton.classList.remove("fa-bars");
+        menuButton.classList.add("fa-times");
+      } else {
+        mobileMenu.classList.add("hidden");
+        menuButton.classList.remove("fa-times");
+        menuButton.classList.add("fa-bars");
+      }
+    };
+
+    // Add enter key support for search
+    const searchInput = document.getElementById("global-search");
+    if (searchInput) {
+      searchInput.addEventListener("keypress", (e) => {
+        if (e.key === "Enter") {
+          window.performSearch();
+        }
+      });
+    }
   }
 
   // Initial render
   render()
 
   // Subscribe to state changes
-  store.addObserver(() => {
-    render()
-  })
+  store.addObserver(render);
 }

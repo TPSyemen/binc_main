@@ -343,21 +343,8 @@ async function handleFormSubmit(page, productId, isDraft = false) {
 
     let result
     if (productId) {
-      // إذا كان المدخل رقم، جلب السلق من الباك
-      let productSlug = productId
-      if (!isNaN(productId)) {
-        try {
-          const { productService } = await import('../services/api.js');
-          const product = await productService.getProductById(productId);
-          if (product.slug) {
-            productSlug = product.slug;
-          }
-        } catch (error) {
-          showToast('تعذر جلب السلق من الباك، سيتم استخدام المعرف مباشرة', 'warning');
-        }
-      }
-      // Update existing product
-      result = await dashboardService.updateProduct(productSlug, productData)
+      // Use productId directly for update (it should be the slug from the URL)
+      result = await dashboardService.updateProduct(productId, productData)
       showToast('Product updated successfully!', 'success')
     } else {
       // Create new product
@@ -442,7 +429,7 @@ async function loadBrands(page) {
  */
 async function loadProductData(page, productId) {
   try {
-    // استخدم السلق دائماً لجلب المنتج
+    // Use productId (which should be slug from URL) to fetch product
     const product = await productService.getProductById(productId)
     console.log('Loaded product for editing:', product)
 

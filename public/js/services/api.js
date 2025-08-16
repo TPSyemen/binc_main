@@ -5,7 +5,8 @@ import {
   mockProductService,
   mockDashboardService,
   mockBehaviorService,
-  mockReportService
+  mockReportService,
+  mockRecommendationService
 } from "./mockApi.js"
 
 // The base URL for all API requests, as specified.
@@ -259,9 +260,36 @@ export const authService = {
 }
 
 export const productService = {
-  getProducts: (params = "") => apiFetch(`/products/?${params}`),
-  getProductById: (slug) => apiFetch(`/products/${slug}/`),
-  getSimilarProducts: (slug) => apiFetch(`/products/${slug}/similar/`),
+  getProducts: async (params = "") => {
+    try {
+      return await apiFetch(`/products/?${params}`);
+    } catch (error) {
+      if (USE_MOCK_API || error.message === "BACKEND_UNAVAILABLE") {
+        return await mockProductService.getProducts(params);
+      }
+      throw error;
+    }
+  },
+  getProductById: async (identifier) => {
+    try {
+      return await apiFetch(`/products/${identifier}/`);
+    } catch (error) {
+      if (USE_MOCK_API || error.message === "BACKEND_UNAVAILABLE") {
+        return await mockProductService.getProductById(identifier);
+      }
+      throw error;
+    }
+  },
+  getSimilarProducts: async (identifier) => {
+    try {
+      return await apiFetch(`/products/${identifier}/similar/`);
+    } catch (error) {
+      if (USE_MOCK_API || error.message === "BACKEND_UNAVAILABLE") {
+        return await mockProductService.getSimilarProducts(identifier);
+      }
+      throw error;
+    }
+  },
   /**
    * جلب مراجعات منتج معين
    */
@@ -452,8 +480,28 @@ export const reportService = {
 }
 
 export const recommendationService = {
-  getRecommendations: (params = "") => apiFetch(`/recommendations/?${params}`),
-  getPersonalizedRecs: () => apiFetch("/recommendations/personalized/"),
+  getRecommendations: async (params = "") => {
+    try {
+      return await apiFetch(`/recommendations/?${params}`);
+    } catch (error) {
+      if (USE_MOCK_API || error.message === "BACKEND_UNAVAILABLE") {
+        return await mockRecommendationService.getRecommendations(params);
+      }
+      throw error;
+    }
+  },
+  getPersonalizedRecs: async () => {
+    try {
+      const response = await apiFetch("/recommendations/personalized/");
+      return response;
+    } catch (error) {
+      console.warn("Backend unavailable, using mock data:", error.message);
+      if (USE_MOCK_API || error.message === "BACKEND_UNAVAILABLE") {
+        return await mockRecommendationService.getPersonalizedRecs();
+      }
+      throw error;
+    }
+  },
 }
 
 export const comparisonService = {

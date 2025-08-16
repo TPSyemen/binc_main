@@ -21,25 +21,44 @@ import { formatCurrency, showToast } from "../utils/helpers.js?v=2024"
  * @returns {string} The HTML string for the product card.
  */
 export function ProductCard(product) {
+  if (!product) {
+    console.error('ProductCard: No product data provided');
+    return '';
+  }
+  
   // Handle backend data structure
   const finalPrice = product.final_price || product.price
   const originalPrice = product.price
   const hasDiscount = (product.discount_percentage || 0) > 0
   const categoryName = product.category?.name || product.category || 'Uncategorized'
-  const productSlug = product.slug || product.id
-  const productId = product.id
+  // Use original slug from backend - no modification
+  const productSlug = product.slug || product.id;
+  
+  const productId = product.id || product.slug
   const rating = product.average_rating || product.rating || 0
   const reviewsCount = product.total_reviews || product.reviews_count || 0
   const isInStock = product.in_stock !== undefined ? product.in_stock : (product.stock || 0) > 0
 
-  // Get primary image
+  // Use original image data from backend without modification
   let imageUrl = '/placeholder.jpg'
-  if (product.image_urls && product.image_urls.length > 0) {
+  
+  // Use backend image structure as-is
+  if (product.image_urls && Array.isArray(product.image_urls) && product.image_urls.length > 0) {
     imageUrl = product.image_urls[0]
-  } else if (product.images && product.images.length > 0) {
-    imageUrl = product.images.find(img => img.is_primary)?.image || product.images[0]?.image
-  }  if (!imageUrl) {
-    imageUrl = product.images?.[0]?.image || product.images?.[0]?.url || '/placeholder.jpg'
+  } else if (product.image_url) {
+    imageUrl = product.image_url
+  } else if (product.images && Array.isArray(product.images) && product.images.length > 0) {
+    const firstImage = product.images[0]
+    imageUrl = firstImage.image || firstImage.url || firstImage
+  }
+  
+  // Log only if image is missing
+  if (imageUrl === '/placeholder.jpg') {
+    console.warn(`Product ${product.name} using placeholder - no valid images found:`, {
+      image_urls: product.image_urls,
+      image_url: product.image_url,
+      images: product.images
+    });
   }
 
 
@@ -140,6 +159,11 @@ export function ProductCard(product) {
 // Helper functions for product card interactions
 async function getProductIdFromSlug(slug) {
   try {
+    // Validate input
+    if (!slug) {
+      throw new Error('Slug is required');
+    }
+
     // If slug is actually an ID, return it
     if (!isNaN(slug)) {
       return parseInt(slug)
@@ -151,12 +175,38 @@ async function getProductIdFromSlug(slug) {
       return currentProduct.id
     }
 
+    // Try to get from cached products data with enhanced matching
+    if (window.allNewArrivals && Array.isArray(window.allNewArrivals)) {
+      const cachedProduct = window.allNewArrivals.find(p => 
+        p.slug === slug || p.id === slug || String(p.id) === slug
+      );
+      if (cachedProduct && cachedProduct.id) {
+        return cachedProduct.id;
+      }
+    }
+
+    if (window.allRecommendations && Array.isArray(window.allRecommendations)) {
+      const cachedProduct = window.allRecommendations.find(p => 
+        p.slug === slug || p.id === slug || String(p.id) === slug
+      );
+      if (cachedProduct && cachedProduct.id) {
+        return cachedProduct.id;
+      }
+    }
+
     // Fallback: fetch product by slug
     const { productService } = await import('../services/api.js')
     const product = await productService.getProductById(slug)
+    if (!product || !product.id) {
+      throw new Error(`Product not found for slug: ${slug}`);
+    }
     return product.id
   } catch (error) {
-    console.error('Failed to get product ID:', error)
+    console.error('Failed to get product ID for slug:', slug, error)
+    // Return slug as fallback if it looks like a number
+    if (!isNaN(slug)) {
+      return parseInt(slug);
+    }
     throw error
   }
 }
@@ -218,7 +268,7 @@ window.toggleWishlist = async function(productSlug, event = null) {
       return
     }
 
-    // Get product ID from slug
+    // Get product ID from slug with enhanced error handling
     const productId = await getProductIdFromSlug(productSlug)
 
     // Import cart service dynamically to avoid circular dependencies
@@ -284,7 +334,7 @@ window.addToCart = async function(productSlug, event = null) {
       button.disabled = true
     }
 
-    // Get product ID from slug
+    // Get product ID from slug with enhanced error handling
     const productId = await getProductIdFromSlug(productSlug)
 
     // Check if cart component is available

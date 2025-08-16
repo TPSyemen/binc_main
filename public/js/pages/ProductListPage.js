@@ -346,6 +346,7 @@ function initializeProductList(page) {
         params.append('ordering', ordering)
       }
 
+      // Fetch all products (no page_size limit for filtering page)
       const data = await productService.getProducts(params.toString())
       let products = data.results || data
 

@@ -4,11 +4,12 @@
 export const mockProducts = [
   {
     id: 1,
+    slug: "iphone-15-pro",
     name: "iPhone 15 Pro",
     category: "Phones",
     price: 999.99,
     discount_percentage: 10,
-    image_urls: ["https://images.unsplash.com/photo-1592750475338-74b7b21085ab?w=400&h=400&fit=crop"],
+    image_urls: ["https://images.unsplash.com/photo-1592750475338-74b7b21085ab?w=400&h=400&fit=crop&crop=center"],
     description: "Latest iPhone with advanced camera system and A17 Pro chip.",
     stock: 50,
     rating: 4.8,
@@ -16,11 +17,12 @@ export const mockProducts = [
   },
   {
     id: 2,
+    slug: "macbook-pro-16",
     name: "MacBook Pro 16\"",
     category: "Computers",
     price: 2499.99,
     discount_percentage: 5,
-    image_urls: ["https://images.unsplash.com/photo-1541807084-5c52b6b3adef?w=400&h=400&fit=crop"],
+    image_urls: ["https://images.unsplash.com/photo-1541807084-5c52b6b3adef?w=400&h=400&fit=crop&crop=center"],
     description: "Powerful laptop for professionals with M3 chip.",
     stock: 25,
     rating: 4.9,
@@ -28,6 +30,7 @@ export const mockProducts = [
   },
   {
     id: 3,
+    slug: "apple-watch-series-9",
     name: "Apple Watch Series 9",
     category: "SmartWatch",
     price: 399.99,
@@ -40,6 +43,7 @@ export const mockProducts = [
   },
   {
     id: 4,
+    slug: "canon-eos-r5",
     name: "Canon EOS R5",
     category: "Camera",
     price: 3899.99,
@@ -52,6 +56,7 @@ export const mockProducts = [
   },
   {
     id: 5,
+    slug: "sony-wh-1000xm5",
     name: "Sony WH-1000XM5",
     category: "HeadPhones",
     price: 399.99,
@@ -64,6 +69,7 @@ export const mockProducts = [
   },
   {
     id: 6,
+    slug: "playstation-5",
     name: "PlayStation 5",
     category: "Gaming",
     price: 499.99,
@@ -76,6 +82,7 @@ export const mockProducts = [
   },
   {
     id: 7,
+    slug: "samsung-galaxy-s24-ultra",
     name: "Samsung Galaxy S24 Ultra",
     category: "Phones",
     price: 1199.99,
@@ -88,6 +95,7 @@ export const mockProducts = [
   },
   {
     id: 8,
+    slug: "dell-xps-13",
     name: "Dell XPS 13",
     category: "Computers",
     price: 1299.99,
