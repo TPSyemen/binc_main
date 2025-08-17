@@ -7187,3 +7187,247 @@ WARNING 2025-08-16 07:21:54,265 log 17920 5296 Unauthorized: /api/auth/profile/
 ERROR 2025-08-16 07:21:54,349 views 17920 1308 Error generating personalized recommendations for user 334: No module named 'redis'
 INFO 2025-08-16 07:22:01,976 views 17920 6412 User logged in: mugahed
 ERROR 2025-08-16 07:22:02,067 views 17920 6412 Error generating personalized recommendations for user 334: No module named 'redis'
+INFO 2025-08-16 17:13:23,018 autoreload 14700 1876 Watching for file changes with StatReloader
+WARNING 2025-08-16 17:17:26,363 log 14700 3196 Unauthorized: /api/auth/profile/
+WARNING 2025-08-16 17:17:27,457 log 14700 9792 Unauthorized: /api/recommendations/personalized/
+WARNING 2025-08-16 17:17:27,458 log 14700 420 Unauthorized: /api/products/
+WARNING 2025-08-16 17:17:27,460 log 14700 10212 Unauthorized: /api/products/
+INFO 2025-08-16 17:17:32,776 views 14700 7068 User logged in: mugahed
+ERROR 2025-08-16 17:17:32,881 views 14700 7068 Error generating personalized recommendations for user 334: No module named 'redis'
+WARNING 2025-08-16 17:17:38,273 log 14700 10752 Not Found: /api/products/undefined/
+INFO 2025-08-16 17:17:46,354 views 14700 3196 User logged in: Ahmedo
+ERROR 2025-08-16 17:17:56,077 views 14700 9232 Error generating personalized recommendations for user 340: No module named 'redis'
+INFO 2025-08-16 17:34:34,008 views 14700 14368 User logged in: mugahed
+ERROR 2025-08-16 17:34:34,068 views 14700 14368 Error generating personalized recommendations for user 334: No module named 'redis'
+INFO 2025-08-16 17:49:28,113 views 14700 6312 User logged in: mugahed
+ERROR 2025-08-16 17:49:28,225 views 14700 6312 Error generating personalized recommendations for user 334: No module named 'redis'
+ERROR 2025-08-16 17:49:44,564 views 14700 1308 Error generating personalized recommendations for user 334: No module named 'redis'
+WARNING 2025-08-16 17:49:44,575 log 14700 6580 Unauthorized: /api/auth/profile/
+INFO 2025-08-16 17:50:05,987 views 14700 1308 User logged in: mugahed
+ERROR 2025-08-16 17:50:06,065 views 14700 1308 Error generating personalized recommendations for user 334: No module named 'redis'
+WARNING 2025-08-16 17:53:24,142 log 14700 10180 Unauthorized: /api/auth/profile/
+ERROR 2025-08-16 17:53:24,191 views 14700 9600 Error generating personalized recommendations for user 334: No module named 'redis'
+INFO 2025-08-17 05:57:52,173 autoreload 16284 17720 Watching for file changes with StatReloader
+ERROR 2025-08-17 05:58:56,303 views 16284 18976 Error generating personalized recommendations for anonymous user: No module named 'redis'
+INFO 2025-08-17 05:59:04,873 views 16284 12524 User logged in: Ahmedo
+ERROR 2025-08-17 05:59:09,750 views 16284 12444 Error generating personalized recommendations for user 340: No module named 'redis'
+ERROR 2025-08-17 06:02:36,054 views 16284 7616 Error generating personalized recommendations for user 340: No module named 'redis'
+WARNING 2025-08-17 06:02:36,081 log 16284 7616 Unauthorized: /api/auth/profile/
+ERROR 2025-08-17 06:02:37,852 views 16284 18848 Error generating personalized recommendations for anonymous user: No module named 'redis'
+INFO 2025-08-17 06:02:51,997 views 16284 11080 User logged in: Ahmedo
+ERROR 2025-08-17 06:02:56,941 views 16284 13064 Error generating personalized recommendations for user 340: No module named 'redis'
+INFO 2025-08-17 06:05:31,514 autoreload 16284 17720 C:\Users\maaab\OneDrive\Documents\GitHub\binc_main\bestinclickbackend\recommendations\models.py changed, reloading.
+INFO 2025-08-17 06:05:38,674 autoreload 1572 13820 Watching for file changes with StatReloader
+INFO 2025-08-17 06:26:07,880 autoreload 1572 13820 C:\Users\maaab\OneDrive\Documents\GitHub\binc_main\bestinclickbackend\recommendations\models.py changed, reloading.
+INFO 2025-08-17 06:26:16,377 autoreload 17296 2172 Watching for file changes with StatReloader
+INFO 2025-08-17 06:28:49,525 autoreload 17296 2172 C:\Users\maaab\OneDrive\Documents\GitHub\binc_main\bestinclickbackend\recommendations\urls.py changed, reloading.
+INFO 2025-08-17 06:28:55,287 autoreload 2692 16340 Watching for file changes with StatReloader
+INFO 2025-08-17 06:29:43,354 autoreload 2692 16340 C:\Users\maaab\OneDrive\Documents\GitHub\binc_main\bestinclickbackend\recommendations\services.py changed, reloading.
+INFO 2025-08-17 06:29:50,160 autoreload 12084 13628 Watching for file changes with StatReloader
+INFO 2025-08-17 06:31:10,710 autoreload 12084 13628 C:\Users\maaab\OneDrive\Documents\GitHub\binc_main\bestinclickbackend\recommendations\services.py changed, reloading.
+INFO 2025-08-17 06:31:16,438 autoreload 3296 2596 Watching for file changes with StatReloader
+INFO 2025-08-17 06:31:53,723 autoreload 3296 2596 C:\Users\maaab\OneDrive\Documents\GitHub\binc_main\bestinclickbackend\recommendations\services.py changed, reloading.
+INFO 2025-08-17 06:31:59,691 autoreload 5220 15516 Watching for file changes with StatReloader
+INFO 2025-08-17 06:37:00,216 autoreload 5220 15516 C:\Users\maaab\OneDrive\Documents\GitHub\binc_main\bestinclickbackend\ai_models\real_recommendation_engine.py changed, reloading.
+INFO 2025-08-17 06:37:05,641 autoreload 9080 16432 Watching for file changes with StatReloader
+INFO 2025-08-17 06:37:33,478 autoreload 9080 16432 C:\Users\maaab\OneDrive\Documents\GitHub\binc_main\bestinclickbackend\recommendations\services.py changed, reloading.
+INFO 2025-08-17 06:37:38,477 autoreload 5964 13896 Watching for file changes with StatReloader
+INFO 2025-08-17 06:38:03,331 autoreload 5964 13896 C:\Users\maaab\OneDrive\Documents\GitHub\binc_main\bestinclickbackend\recommendations\views.py changed, reloading.
+INFO 2025-08-17 06:38:08,423 autoreload 10136 6460 Watching for file changes with StatReloader
+ERROR 2025-08-17 06:42:51,128 views 10136 14932 Error generating general recommendations: No module named 'redis'
+ERROR 2025-08-17 06:43:44,091 views 13212 14808 Error generating general recommendations: No module named 'redis'
+INFO 2025-08-17 06:43:57,772 autoreload 10136 6460 C:\Users\maaab\OneDrive\Documents\GitHub\binc_main\bestinclickbackend\recommendations\views.py changed, reloading.
+INFO 2025-08-17 06:44:04,264 autoreload 11036 1152 Watching for file changes with StatReloader
+ERROR 2025-08-17 06:44:37,684 views 12488 1160 Error generating general recommendations: No module named 'redis'
+INFO 2025-08-17 06:50:27,626 autoreload 13372 13344 Watching for file changes with StatReloader
+WARNING 2025-08-17 06:52:32,499 log 13372 17544 Unauthorized: /api/auth/profile/
+INFO 2025-08-17 06:52:51,060 views 13372 3788 User logged in: mugahed
+INFO 2025-08-17 06:52:52,519 services 13372 6320 Logged view for product 508
+INFO 2025-08-17 06:52:52,569 services 13372 6320 Logged view for product 509
+INFO 2025-08-17 06:52:52,619 services 13372 6320 Logged view for product 506
+INFO 2025-08-17 06:52:52,669 services 13372 6320 Logged view for product 510
+INFO 2025-08-17 06:52:52,718 services 13372 6320 Logged view for product 507
+INFO 2025-08-17 06:52:52,767 services 13372 6320 Logged view for product 504
+INFO 2025-08-17 06:52:52,801 services 13372 6320 Logged view for product 505
+INFO 2025-08-17 06:52:52,851 services 13372 6320 Logged view for product 503
+INFO 2025-08-17 06:52:52,901 services 13372 6320 Logged view for product 499
+INFO 2025-08-17 06:52:52,949 services 13372 6320 Logged view for product 501
+INFO 2025-08-17 06:52:52,995 services 13372 6320 Logged view for product 496
+INFO 2025-08-17 06:52:53,032 services 13372 6320 Logged view for product 502
+INFO 2025-08-17 06:52:53,071 services 13372 6320 Logged view for product 497
+INFO 2025-08-17 06:52:53,184 services 13372 6320 Logged view for product 498
+INFO 2025-08-17 06:52:53,234 services 13372 6320 Logged view for product 500
+INFO 2025-08-17 06:52:53,284 services 13372 6320 Logged view for product 492
+INFO 2025-08-17 06:52:53,353 services 13372 6320 Logged view for product 491
+INFO 2025-08-17 06:52:53,422 services 13372 6320 Logged view for product 493
+INFO 2025-08-17 06:52:53,477 services 13372 6320 Logged view for product 494
+INFO 2025-08-17 06:52:53,548 services 13372 6320 Logged view for product 495
+INFO 2025-08-17 06:52:54,407 services 13372 3788 Logged view for product 506
+INFO 2025-08-17 06:52:54,444 services 13372 3788 Logged view for product 509
+INFO 2025-08-17 06:52:54,478 services 13372 3788 Logged view for product 504
+INFO 2025-08-17 06:52:54,515 services 13372 3788 Logged view for product 507
+INFO 2025-08-17 06:52:54,550 services 13372 3788 Logged view for product 505
+INFO 2025-08-17 06:52:59,419 services 13372 3788 Logged view for product 510
+INFO 2025-08-17 06:52:59,451 services 13372 3788 Logged view for product 487
+INFO 2025-08-17 06:52:59,481 services 13372 3788 Logged view for product 488
+INFO 2025-08-17 06:52:59,515 services 13372 3788 Logged view for product 434
+INFO 2025-08-17 06:52:59,548 services 13372 3788 Logged view for product 508
+WARNING 2025-08-17 06:53:07,571 log 13372 6320 Unauthorized: /api/auth/profile/
+INFO 2025-08-17 06:53:10,315 services 13372 11248 Logged view for product 509
+INFO 2025-08-17 06:53:10,351 services 13372 11248 Logged view for product 506
+INFO 2025-08-17 06:53:10,417 services 13372 11248 Logged view for product 505
+INFO 2025-08-17 06:53:10,515 services 13372 11248 Logged view for product 504
+INFO 2025-08-17 06:53:10,566 services 13372 11248 Logged view for product 507
+INFO 2025-08-17 06:53:10,602 services 13372 11248 Logged view for product 434
+INFO 2025-08-17 06:53:10,650 services 13372 11248 Logged view for product 503
+INFO 2025-08-17 06:53:10,780 services 13372 11248 Logged view for product 510
+INFO 2025-08-17 06:53:10,913 services 13372 11248 Logged view for product 508
+INFO 2025-08-17 06:53:10,984 services 13372 11248 Logged view for product 502
+INFO 2025-08-17 06:53:18,180 services 13372 17648 Logged view for product 495
+INFO 2025-08-17 06:53:18,209 services 13372 17648 Logged view for product 492
+INFO 2025-08-17 06:53:18,235 services 13372 17648 Logged view for product 493
+INFO 2025-08-17 06:53:18,264 services 13372 17648 Logged view for product 494
+INFO 2025-08-17 06:53:18,292 services 13372 17648 Logged view for product 491
+INFO 2025-08-17 06:53:18,478 services 13372 17648 Logged view for product 498
+INFO 2025-08-17 06:53:18,505 services 13372 17648 Logged view for product 500
+INFO 2025-08-17 06:53:18,531 services 13372 17648 Logged view for product 497
+INFO 2025-08-17 06:53:18,558 services 13372 17648 Logged view for product 499
+INFO 2025-08-17 06:53:18,583 services 13372 17648 Logged view for product 496
+INFO 2025-08-17 06:53:18,611 services 13372 17648 Logged view for product 505
+INFO 2025-08-17 06:53:18,640 services 13372 17648 Logged view for product 504
+INFO 2025-08-17 06:53:18,669 services 13372 17648 Logged view for product 501
+INFO 2025-08-17 06:53:18,696 services 13372 17648 Logged view for product 502
+INFO 2025-08-17 06:53:18,725 services 13372 17648 Logged view for product 503
+INFO 2025-08-17 06:53:22,239 services 13372 2176 Logged view for product 508
+INFO 2025-08-17 06:53:22,526 services 13372 2176 Logged view for product 506
+INFO 2025-08-17 06:53:22,556 services 13372 2176 Logged view for product 509
+INFO 2025-08-17 06:53:22,591 services 13372 2176 Logged view for product 507
+INFO 2025-08-17 06:53:22,640 services 13372 2176 Logged view for product 510
+INFO 2025-08-17 06:55:40,327 views 13372 9032 User logged in: mugahed
+INFO 2025-08-17 06:55:42,684 services 13372 19004 Logged view for product 476
+INFO 2025-08-17 06:55:42,756 services 13372 19004 Logged view for product 509
+INFO 2025-08-17 06:55:42,821 services 13372 19004 Logged view for product 436
+INFO 2025-08-17 06:55:42,870 services 13372 19004 Logged view for product 507
+INFO 2025-08-17 06:55:42,916 services 13372 19004 Logged view for product 506
+INFO 2025-08-17 06:55:42,984 services 13372 19004 Logged view for product 508
+INFO 2025-08-17 06:55:43,028 services 13372 19004 Logged view for product 510
+INFO 2025-08-17 06:55:43,067 services 13372 19004 Logged view for product 507
+INFO 2025-08-17 06:55:43,132 services 13372 19004 Logged view for product 506
+INFO 2025-08-17 06:55:43,174 services 13372 19004 Logged view for product 509
+INFO 2025-08-17 06:55:44,061 services 13372 9032 Logged view for product 503
+INFO 2025-08-17 06:55:44,101 services 13372 9032 Logged view for product 502
+INFO 2025-08-17 06:55:44,147 services 13372 9032 Logged view for product 501
+INFO 2025-08-17 06:55:44,192 services 13372 9032 Logged view for product 505
+INFO 2025-08-17 06:55:44,238 services 13372 9032 Logged view for product 504
+INFO 2025-08-17 06:55:44,278 services 13372 9032 Logged view for product 497
+INFO 2025-08-17 06:55:44,315 services 13372 9032 Logged view for product 499
+INFO 2025-08-17 06:55:44,356 services 13372 9032 Logged view for product 496
+INFO 2025-08-17 06:55:44,389 services 13372 9032 Logged view for product 500
+INFO 2025-08-17 06:55:44,433 services 13372 9032 Logged view for product 498
+INFO 2025-08-17 06:55:47,299 services 13372 14160 Logged view for product 493
+INFO 2025-08-17 06:55:47,921 services 13372 14160 Logged view for product 494
+INFO 2025-08-17 06:55:47,958 services 13372 14160 Logged view for product 491
+INFO 2025-08-17 06:55:48,008 services 13372 14160 Logged view for product 492
+INFO 2025-08-17 06:55:48,099 services 13372 14160 Logged view for product 495
+INFO 2025-08-17 06:55:48,203 services 13372 14160 Logged view for product 488
+INFO 2025-08-17 06:55:48,275 services 13372 14160 Logged view for product 504
+INFO 2025-08-17 06:55:48,326 services 13372 14160 Logged view for product 505
+INFO 2025-08-17 06:55:48,406 services 13372 14160 Logged view for product 434
+INFO 2025-08-17 06:55:48,459 services 13372 2572 Logged view for product 507
+INFO 2025-08-17 06:55:48,511 services 13372 2572 Logged view for product 509
+INFO 2025-08-17 06:55:48,561 services 13372 14160 Logged view for product 510
+INFO 2025-08-17 06:55:48,587 services 13372 2572 Logged view for product 504
+INFO 2025-08-17 06:55:48,644 services 13372 2572 Logged view for product 506
+INFO 2025-08-17 06:55:48,686 services 13372 2572 Logged view for product 505
+INFO 2025-08-17 06:55:51,202 services 13372 2572 Logged view for product 508
+INFO 2025-08-17 06:55:51,232 services 13372 2572 Logged view for product 502
+INFO 2025-08-17 06:55:51,277 services 13372 2572 Logged view for product 503
+INFO 2025-08-17 06:55:51,315 services 13372 2572 Logged view for product 434
+INFO 2025-08-17 06:55:51,358 services 13372 2572 Logged view for product 510
+INFO 2025-08-17 06:55:51,396 services 13372 2572 Logged view for product 494
+INFO 2025-08-17 06:55:51,437 services 13372 2572 Logged view for product 495
+INFO 2025-08-17 06:55:51,477 services 13372 2572 Logged view for product 493
+INFO 2025-08-17 06:55:51,516 services 13372 2572 Logged view for product 491
+INFO 2025-08-17 06:55:51,557 services 13372 2572 Logged view for product 492
+INFO 2025-08-17 06:55:53,419 services 13372 2572 Logged view for product 497
+INFO 2025-08-17 06:55:53,452 services 13372 2572 Logged view for product 498
+INFO 2025-08-17 06:55:53,489 services 13372 2572 Logged view for product 496
+INFO 2025-08-17 06:55:53,526 services 13372 2572 Logged view for product 500
+INFO 2025-08-17 06:55:53,559 services 13372 2572 Logged view for product 499
+INFO 2025-08-17 06:56:09,995 services 13372 3016 Logged view for product 509
+INFO 2025-08-17 06:56:10,039 services 13372 3016 Logged view for product 506
+INFO 2025-08-17 06:56:10,079 services 13372 3016 Logged view for product 504
+INFO 2025-08-17 06:56:10,130 services 13372 3016 Logged view for product 505
+INFO 2025-08-17 06:56:10,207 services 13372 3016 Logged view for product 507
+INFO 2025-08-17 06:56:10,264 services 13372 3016 Logged view for product 486
+INFO 2025-08-17 06:56:10,314 services 13372 3016 Logged view for product 434
+INFO 2025-08-17 06:56:10,396 services 13372 3016 Logged view for product 509
+INFO 2025-08-17 06:56:10,446 services 13372 3016 Logged view for product 406
+INFO 2025-08-17 06:56:10,512 services 13372 3016 Logged view for product 506
+INFO 2025-08-17 06:56:13,407 services 13372 3016 Logged view for product 510
+INFO 2025-08-17 06:56:13,440 services 13372 3016 Logged view for product 504
+INFO 2025-08-17 06:56:13,476 services 13372 3016 Logged view for product 488
+INFO 2025-08-17 06:56:13,519 services 13372 3016 Logged view for product 505
+INFO 2025-08-17 06:56:13,557 services 13372 3016 Logged view for product 507
+INFO 2025-08-17 06:56:20,203 services 13372 3016 Logged view for product 510
+INFO 2025-08-17 06:56:20,236 services 13372 3016 Logged view for product 434
+INFO 2025-08-17 06:56:20,433 services 13372 3016 Logged view for product 502
+INFO 2025-08-17 06:56:20,537 services 13372 3016 Logged view for product 508
+INFO 2025-08-17 06:56:20,577 services 13372 3016 Logged view for product 503
+INFO 2025-08-17 06:56:20,611 services 13372 3016 Logged view for product 493
+INFO 2025-08-17 06:56:20,645 services 13372 3016 Logged view for product 492
+INFO 2025-08-17 06:56:20,685 services 13372 3016 Logged view for product 491
+INFO 2025-08-17 06:56:20,723 services 13372 3016 Logged view for product 495
+INFO 2025-08-17 06:56:20,768 services 13372 3016 Logged view for product 494
+INFO 2025-08-17 06:56:28,424 services 13372 3016 Logged view for product 499
+INFO 2025-08-17 06:56:28,473 services 13372 3016 Logged view for product 496
+INFO 2025-08-17 06:56:28,516 services 13372 3016 Logged view for product 500
+INFO 2025-08-17 06:56:28,554 services 13372 3016 Logged view for product 497
+INFO 2025-08-17 06:56:28,591 services 13372 3016 Logged view for product 498
+INFO 2025-08-17 06:56:30,609 services 13372 3016 Logged view for product 493
+INFO 2025-08-17 06:56:30,638 services 13372 3016 Logged view for product 492
+INFO 2025-08-17 06:56:30,675 services 13372 3016 Logged view for product 495
+INFO 2025-08-17 06:56:30,711 services 13372 3016 Logged view for product 491
+INFO 2025-08-17 06:56:30,751 services 13372 3016 Logged view for product 494
+INFO 2025-08-17 06:56:30,787 services 13372 3016 Logged view for product 498
+INFO 2025-08-17 06:56:30,837 services 13372 3016 Logged view for product 499
+INFO 2025-08-17 06:56:30,878 services 13372 3016 Logged view for product 500
+INFO 2025-08-17 06:56:30,901 services 13372 13024 Logged view for product 501
+INFO 2025-08-17 06:56:30,933 services 13372 3016 Logged view for product 496
+INFO 2025-08-17 06:56:30,979 services 13372 3016 Logged view for product 497
+INFO 2025-08-17 06:56:31,003 services 13372 13024 Logged view for product 502
+INFO 2025-08-17 06:56:31,038 services 13372 13024 Logged view for product 504
+INFO 2025-08-17 06:56:31,073 services 13372 13024 Logged view for product 505
+INFO 2025-08-17 06:56:31,109 services 13372 13024 Logged view for product 503
+INFO 2025-08-17 06:56:31,150 services 13372 13024 Logged view for product 508
+INFO 2025-08-17 06:56:31,190 services 13372 13024 Logged view for product 509
+INFO 2025-08-17 06:56:31,232 services 13372 13024 Logged view for product 510
+INFO 2025-08-17 06:56:31,267 services 13372 13024 Logged view for product 507
+INFO 2025-08-17 06:56:31,303 services 13372 13024 Logged view for product 506
+WARNING 2025-08-17 06:57:13,537 log 13372 13024 Bad Request: /api/cart/add/
+WARNING 2025-08-17 06:57:13,873 log 13372 13024 Bad Request: /api/cart/add/
+INFO 2025-08-17 06:57:36,036 services 13372 3016 Logged view for product 510
+INFO 2025-08-17 06:57:36,069 services 13372 3016 Logged view for product 508
+INFO 2025-08-17 06:57:36,148 services 13372 3016 Logged view for product 506
+INFO 2025-08-17 06:57:36,218 services 13372 3016 Logged view for product 509
+INFO 2025-08-17 06:57:36,276 services 13372 3016 Logged view for product 507
+INFO 2025-08-17 06:57:36,353 services 13372 3016 Logged view for product 502
+INFO 2025-08-17 06:57:36,398 services 13372 3016 Logged view for product 501
+INFO 2025-08-17 06:57:36,430 services 13372 3016 Logged view for product 503
+INFO 2025-08-17 06:57:36,467 services 13372 3016 Logged view for product 505
+INFO 2025-08-17 06:57:36,514 services 13372 3016 Logged view for product 504
+INFO 2025-08-17 06:57:36,659 services 13372 3016 Logged view for product 498
+INFO 2025-08-17 06:57:36,721 services 13372 3016 Logged view for product 497
+INFO 2025-08-17 06:57:36,763 services 13372 3016 Logged view for product 499
+INFO 2025-08-17 06:57:36,798 services 13372 3016 Logged view for product 500
+INFO 2025-08-17 06:57:36,831 services 13372 3016 Logged view for product 496
+INFO 2025-08-17 06:57:36,864 services 13372 3016 Logged view for product 495
+INFO 2025-08-17 06:57:36,899 services 13372 3016 Logged view for product 493
+INFO 2025-08-17 06:57:36,945 services 13372 3016 Logged view for product 491
+INFO 2025-08-17 06:57:36,991 services 13372 3016 Logged view for product 494
+INFO 2025-08-17 06:57:37,029 services 13372 3016 Logged view for product 492
+INFO 2025-08-17 06:57:38,403 services 13372 3016 Logged view for product 506
+INFO 2025-08-17 06:57:38,441 services 13372 3016 Logged view for product 489
+INFO 2025-08-17 06:57:38,484 services 13372 3016 Logged view for product 507
+INFO 2025-08-17 06:57:38,527 services 13372 3016 Logged view for product 454
+INFO 2025-08-17 06:57:38,559 services 13372 3016 Logged view for product 509

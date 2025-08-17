@@ -482,7 +482,7 @@ export const reportService = {
 export const recommendationService = {
   getRecommendations: async (params = "") => {
     try {
-      return await apiFetch(`/recommendations/?${params}`);
+      return await apiFetch(`/recommendations/general/?${params}`);
     } catch (error) {
       if (USE_MOCK_API || error.message === "BACKEND_UNAVAILABLE") {
         return await mockRecommendationService.getRecommendations(params);
@@ -490,9 +490,10 @@ export const recommendationService = {
       throw error;
     }
   },
-  getPersonalizedRecs: async () => {
+  
+  getPersonalizedRecs: async (params = "") => {
     try {
-      const response = await apiFetch("/recommendations/personalized/");
+      const response = await apiFetch(`/recommendations/personalized/?${params}`);
       return response;
     } catch (error) {
       console.warn("Backend unavailable, using mock data:", error.message);
@@ -500,6 +501,48 @@ export const recommendationService = {
         return await mockRecommendationService.getPersonalizedRecs();
       }
       throw error;
+    }
+  },
+
+  getSimilarProducts: async (productId, limit = 10) => {
+    try {
+      return await apiFetch(`/recommendations/similar/${productId}/?limit=${limit}`);
+    } catch (error) {
+      console.warn("Failed to get similar products:", error);
+      return { recommendations: [], message: "Failed to load similar products" };
+    }
+  },
+
+  getTrendingProducts: async (limit = 20) => {
+    try {
+      return await apiFetch(`/recommendations/trending/?limit=${limit}`);
+    } catch (error) {
+      console.warn("Failed to get trending products:", error);
+      return { recommendations: [], message: "Failed to load trending products" };
+    }
+  },
+
+  trackBehavior: async (behaviorData) => {
+    try {
+      return await apiFetch("/recommendations/track-behavior/", {
+        method: "POST",
+        body: JSON.stringify(behaviorData),
+      });
+    } catch (error) {
+      console.warn("Failed to track behavior:", error);
+      return false;
+    }
+  },
+
+  trackRecommendationInteraction: async (interactionData) => {
+    try {
+      return await apiFetch("/recommendations/track/", {
+        method: "POST",
+        body: JSON.stringify(interactionData),
+      });
+    } catch (error) {
+      console.warn("Failed to track recommendation interaction:", error);
+      return false;
     }
   },
 }

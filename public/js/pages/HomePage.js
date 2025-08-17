@@ -2,12 +2,23 @@ import { createElementFromHTML } from "../utils/helpers.js?v=2024"
 import { productService, recommendationService } from "../services/api.js" // Import recommendationService
 import { ProductCard } from "../components/ProductCard.js"
 import store from "../state/store.js" // Import store for authentication check
+import { behaviorTracker } from "../services/behaviorTracker.js"
 
 /**
  * Renders the Home Page, inspired by the provided image.
  * @returns {HTMLElement} The page element.
  */
 export default function HomePage() {
+  // Variables for Load More functionality
+  let allRecommendations = [];
+  let allNewArrivals = [];
+  let allTrendingProducts = [];
+  let displayedRecommendationsCount = 0;
+  let displayedArrivalsCount = 0;
+  let displayedTrendingCount = 0;
+  const INITIAL_LOAD = 20;
+  const LOAD_MORE_INCREMENT = 10;
+
   const page = createElementFromHTML(`
         <div class="animate-fade-in">
             <section class="bg-gradient-to-r from-blue-50 to-indigo-50 py-20">
@@ -95,10 +106,23 @@ export default function HomePage() {
                     <div id="new-arrivals-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8">
                         <div class="loader"></div>
                     </div>
+                    <div class="text-center mt-6">
+                        <button id="load-more-arrivals" class="btn btn-outline hidden hover:bg-secondary hover:text-white transition-all duration-300" onclick="loadMoreArrivals()">
+                            <i class="fa-solid fa-plus mr-2"></i>
+                            Load More Products
+                            <span id="arrivals-count" class="ml-2 text-xs bg-secondary text-white px-2 py-1 rounded-full"></span>
+                        </button>
+                        <div id="arrivals-complete" class="hidden text-center text-gray-600 mt-4">
+                            <i class="fa-solid fa-check-circle text-green-500 mr-2"></i>
+                            All products loaded!
+                        </div>
+                    </div>
                 </div>
-            </section>
+            </section> 
 
             <div id="personalized-recommendations-section"></div>
+            
+            <div id="trending-products-section"></div>
 
             </div>
     `);
@@ -106,8 +130,8 @@ export default function HomePage() {
   // Handle Personalized Recommendations Section
   const personalizedRecsContainer = page.querySelector("#personalized-recommendations-section");
 
-  // Only show recommendations section if user is authenticated
-  if (store.state.isAuthenticated) {
+  // Always show recommendations section (for all users)
+  if (personalizedRecsContainer) {
     const recSectionHtml = `
             <section class="py-16">
                 <div class="container mx-auto px-4">
@@ -121,6 +145,17 @@ export default function HomePage() {
                         <div class="loader"></div>
                         <p class="text-gray-500 col-span-full text-center">جاري تحميل التوصيات المخصصة...</p>
                     </div>
+                    <div class="text-center mt-6">
+                        <button id="load-more-recommendations" class="btn btn-outline hidden hover:bg-secondary hover:text-white transition-all duration-300" onclick="loadMoreRecommendations()">
+                            <i class="fa-solid fa-plus mr-2"></i>
+                            Load More Recommendations
+                            <span id="recommendations-count" class="ml-2 text-xs bg-secondary text-white px-2 py-1 rounded-full"></span>
+                        </button>
+                        <div id="recommendations-complete" class="hidden text-center text-gray-600 mt-4">
+                            <i class="fa-solid fa-check-circle text-green-500 mr-2"></i>
+                            All recommendations loaded!
+                        </div>
+                    </div>
                 </div>
             </section>
         `;
@@ -131,64 +166,197 @@ export default function HomePage() {
     // Fetch personalized recommendations using recommendationService
     recommendationService.getPersonalizedRecs()
       .then(data => {
-        if (data && data.recommendations && data.recommendations.length > 0) {
-          personalizedRecommendationsGrid.innerHTML = '';
-          // Patch product data for legacy compatibility
-          data.recommendations.forEach(product => {
-            if (!product.id && product.slug) product.id = product.slug;
-            if (!product.slug && product.id) product.slug = product.id;
-            if (!product.image_url && Array.isArray(product.image_urls) && product.image_urls.length > 0) product.image_url = product.image_urls[0];
-            if (!product.short_description && product.description) product.short_description = product.description;
-            const cardElem = ProductCard(product);
-            // If ProductCard returns a string, convert to DOM
-            if (typeof cardElem === 'string') {
-              const tempDiv = document.createElement('div');
-              tempDiv.innerHTML = cardElem;
-              personalizedRecommendationsGrid.appendChild(tempDiv.firstElementChild);
-            } else {
-              personalizedRecommendationsGrid.appendChild(cardElem);
+        // Check different possible data structures
+        let recommendations = null;
+        if (data && data.recommendations && Array.isArray(data.recommendations)) {
+          recommendations = data.recommendations;
+        } else if (data && Array.isArray(data.results)) {
+          recommendations = data.results;
+        } else if (data && Array.isArray(data)) {
+          recommendations = data;
+        }
+        
+        if (recommendations && recommendations.length > 0) {
+          // Store all recommendations
+          allRecommendations = recommendations.map(product => {
+            // Fix backend data structure - map product_id to id
+            if (product.product_id && !product.id) {
+              product.id = product.product_id;
             }
-          });
+            
+            // Create slug from name if missing
+            if (!product.slug && product.name) {
+              product.slug = product.name.toLowerCase()
+                .replace(/[^a-zA-Z0-9\u0600-\u06FF\s]/g, '') // Keep Arabic and English letters
+                .replace(/\s+/g, '-')
+                .substring(0, 50);
+            }
+            
+            return product;
+          }).filter(product => product.name && product.id); // Filter out invalid products
+          
+          personalizedRecommendationsGrid.innerHTML = '';
+          
+          // Display initial recommendations
+          const initialRecommendations = allRecommendations.slice(0, INITIAL_LOAD);
+          renderProductsInGrid(initialRecommendations, personalizedRecommendationsGrid);
+          displayedRecommendationsCount = initialRecommendations.length;
+          
+          // Make data available globally for ProductCard helper functions
+          window.allRecommendations = allRecommendations;
+          
+          // Update load more button
+          updateLoadMoreButton('load-more-recommendations', 'recommendations-count', displayedRecommendationsCount, allRecommendations.length);
         } else {
           // Display message from backend or default no recommendations message
-          if (data && data.message) {
-            personalizedRecommendationsGrid.innerHTML = `<p class="text-gray-500 col-span-full text-center">${data.message}</p>`;
-          } else {
-            personalizedRecommendationsGrid.innerHTML = `<p class="text-gray-500 col-span-full text-center">لا توجد توصيات مخصصة حاليا.</p>`;
-          }
+          const message = (data && data.message) || 'لا توجد توصيات مخصصة حاليا.';
+          personalizedRecommendationsGrid.innerHTML = `<p class="text-gray-500 col-span-full text-center">${message}</p>`;
+          
+          // Hide load more button
+          const loadMoreButton = page.querySelector('#load-more-recommendations');
+          if (loadMoreButton) loadMoreButton.classList.add('hidden');
         }
       })
       .catch((err) => {
         console.error('Error loading personalized recommendations:', err);
         personalizedRecommendationsGrid.innerHTML = `<p class="text-danger col-span-full text-center">تعذر تحميل التوصيات المخصصة.</p>`;
+        
+        // Hide load more button on error
+        const loadMoreButton = page.querySelector('#load-more-recommendations');
+        if (loadMoreButton) loadMoreButton.classList.add('hidden');
       });
   } else {
-    // If user is not authenticated, ensure the section is empty or hidden
-    personalizedRecsContainer.innerHTML = "";
+    console.warn('Personalized recommendations container not found in DOM');
   }
 
+  // Handle Trending Products Section
+  const trendingProductsContainer = page.querySelector("#trending-products-section");
+  
+  if (trendingProductsContainer) {
+    const trendingSectionHtml = `
+            <section class="py-16 bg-gray-50">
+                <div class="container mx-auto px-4">
+                    <div class="flex justify-between items-center mb-8">
+                        <h2 class="text-2xl font-bold">🔥 Trending Products</h2>
+                        <a href="#/products" class="text-secondary font-bold">View All &rarr;</a>
+                    </div>
+                    <div id="trending-products-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8">
+                        <div class="loader"></div>
+                        <div class="loader"></div>
+                        <div class="loader"></div>
+                        <p class="text-gray-500 col-span-full text-center">جاري تحميل المنتجات الرائجة...</p>
+                    </div>
+                    <div class="text-center mt-6">
+                        <button id="load-more-trending" class="btn btn-outline hidden hover:bg-secondary hover:text-white transition-all duration-300" onclick="loadMoreTrending()">
+                            <i class="fa-solid fa-plus mr-2"></i>
+                            Load More Trending
+                            <span id="trending-count" class="ml-2 text-xs bg-secondary text-white px-2 py-1 rounded-full"></span>
+                        </button>
+                        <div id="trending-complete" class="hidden text-center text-gray-600 mt-4">
+                            <i class="fa-solid fa-check-circle text-green-500 mr-2"></i>
+                            All trending products loaded!
+                        </div>
+                    </div>
+                </div>
+            </section>
+        `;
+    trendingProductsContainer.innerHTML = trendingSectionHtml;
+
+    const trendingProductsGrid = trendingProductsContainer.querySelector("#trending-products-grid");
+
+    // Fetch trending products using recommendationService
+    recommendationService.getTrendingProducts(20)
+      .then(data => {
+        // Check different possible data structures
+        let trendingProducts = null;
+        if (data && data.recommendations && Array.isArray(data.recommendations)) {
+          trendingProducts = data.recommendations;
+        } else if (data && Array.isArray(data.results)) {
+          trendingProducts = data.results;
+        } else if (data && Array.isArray(data)) {
+          trendingProducts = data;
+        }
+        
+        if (trendingProducts && trendingProducts.length > 0) {
+          // Store all trending products
+          allTrendingProducts = trendingProducts.map(product => {
+            // Fix backend data structure - map product_id to id
+            if (product.product_id && !product.id) {
+              product.id = product.product_id;
+            }
+            
+            // Create slug from name if missing
+            if (!product.slug && product.name) {
+              product.slug = product.name.toLowerCase()
+                .replace(/[^a-zA-Z0-9\u0600-\u06FF\s]/g, '') // Keep Arabic and English letters
+                .replace(/\s+/g, '-')
+                .substring(0, 50);
+            }
+            
+            return product;
+          }).filter(product => product.name && product.id); // Filter out invalid products
+          
+          trendingProductsGrid.innerHTML = '';
+          
+          // Display initial trending products
+          const initialTrending = allTrendingProducts.slice(0, INITIAL_LOAD);
+          renderProductsInGrid(initialTrending, trendingProductsGrid);
+          displayedTrendingCount = initialTrending.length;
+          
+          // Make data available globally for ProductCard helper functions
+          window.allTrendingProducts = allTrendingProducts;
+          
+          // Update load more button
+          updateLoadMoreButton('load-more-trending', 'trending-count', displayedTrendingCount, allTrendingProducts.length);
+        } else {
+          // Display message from backend or default no trending message
+          const message = (data && data.message) || 'لا توجد منتجات رائجة حاليا.';
+          trendingProductsGrid.innerHTML = `<p class="text-gray-500 col-span-full text-center">${message}</p>`;
+          
+          // Hide load more button
+          const loadMoreButton = page.querySelector('#load-more-trending');
+          if (loadMoreButton) loadMoreButton.classList.add('hidden');
+        }
+      })
+      .catch((err) => {
+        console.error('Error loading trending products:', err);
+        trendingProductsGrid.innerHTML = `<p class="text-danger col-span-full text-center">تعذر تحميل المنتجات الرائجة.</p>`;
+        
+        // Hide load more button on error
+        const loadMoreButton = page.querySelector('#load-more-trending');
+        if (loadMoreButton) loadMoreButton.classList.add('hidden');
+      });
+  } else {
+    console.warn('Trending products container not found in DOM');
+  }
 
   // Fetch and render products for New Arrivals
   const newArrivalsGrid = page.querySelector("#new-arrivals-grid");
   productService
-    .getProducts("page_size=5") // Fetch 5 for new arrivals
+    .getProducts() // Fetch all products
     .then((data) => {
-      newArrivalsGrid.innerHTML = '';
-      data.results.forEach(product => {
+      // Store all new arrivals
+      allNewArrivals = data.results.map(product => {
         // Patch product data for legacy compatibility
         if (!product.id && product.slug) product.id = product.slug;
         if (!product.slug && product.id) product.slug = product.id;
         if (!product.image_url && Array.isArray(product.image_urls) && product.image_urls.length > 0) product.image_url = product.image_urls[0];
         if (!product.short_description && product.description) product.short_description = product.description;
-        const cardElem = ProductCard(product);
-        if (typeof cardElem === 'string') {
-          const tempDiv = document.createElement('div');
-          tempDiv.innerHTML = cardElem;
-          newArrivalsGrid.appendChild(tempDiv.firstElementChild);
-        } else {
-          newArrivalsGrid.appendChild(cardElem);
-        }
+        return product;
       });
+      
+      newArrivalsGrid.innerHTML = '';
+      
+      // Display initial products
+      const initialProducts = allNewArrivals.slice(0, INITIAL_LOAD);
+      renderProductsInGrid(initialProducts, newArrivalsGrid);
+      displayedArrivalsCount = initialProducts.length;
+      
+      // Make data available globally for ProductCard helper functions
+      window.allNewArrivals = allNewArrivals;
+      
+      // Update load more button
+      updateLoadMoreButton('load-more-arrivals', 'arrivals-count', displayedArrivalsCount, allNewArrivals.length);
     })
     .catch((err) => {
       newArrivalsGrid.innerHTML = `<p class="text-danger col-span-full text-center">Could not load new arrivals.</p>`;
@@ -423,6 +591,180 @@ export default function HomePage() {
       e.target.click();
     }
   });
+
+  // Function to render products in grid
+  function renderProductsInGrid(products, grid) {
+    if (!products || !Array.isArray(products)) {
+      console.warn('Invalid products data provided to renderProductsInGrid');
+      return;
+    }
+    
+    products.forEach(product => {
+      const cardElem = ProductCard(product);
+      if (typeof cardElem === 'string') {
+        const tempDiv = document.createElement('div');
+        tempDiv.innerHTML = cardElem;
+        const cardElement = tempDiv.firstElementChild;
+        if (cardElement) {
+          // Add behavior tracking to product card
+          addBehaviorTracking(cardElement, product);
+          grid.appendChild(cardElement);
+        }
+      } else if (cardElem && cardElem.nodeType === Node.ELEMENT_NODE) {
+        // Add behavior tracking to product card
+        addBehaviorTracking(cardElem, product);
+        grid.appendChild(cardElem);
+      }
+    });
+  }
+
+  // Function to add behavior tracking to product cards
+  function addBehaviorTracking(cardElement, product) {
+    if (!cardElement || !product) return;
+
+    // Set product ID as data attribute
+    cardElement.setAttribute('data-product-id', product.id);
+
+    // Track product view when card comes into viewport
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          behaviorTracker.trackProductView(product.id);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.5 });
+
+    observer.observe(cardElement);
+
+    // Track clicks on product card
+    cardElement.addEventListener('click', (e) => {
+      // Don't track if clicking on buttons
+      if (e.target.closest('button') || e.target.closest('.btn')) {
+        return;
+      }
+      behaviorTracker.trackProductView(product.id);
+    });
+
+    // Track like button clicks
+    const likeBtn = cardElement.querySelector('[data-action="like"], .like-btn');
+    if (likeBtn) {
+      likeBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const isLiked = likeBtn.classList.contains('liked');
+        behaviorTracker.trackProductLike(product.id, !isLiked);
+      });
+    }
+
+    // Track add to cart button clicks
+    const addToCartBtn = cardElement.querySelector('[data-action="add-to-cart"], .add-to-cart-btn');
+    if (addToCartBtn) {
+      addToCartBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        behaviorTracker.trackAddToCart(product.id);
+      });
+    }
+
+    // Track wishlist button clicks
+    const wishlistBtn = cardElement.querySelector('[data-action="wishlist"], .wishlist-btn');
+    if (wishlistBtn) {
+      wishlistBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const isInWishlist = wishlistBtn.classList.contains('in-wishlist');
+        if (isInWishlist) {
+          behaviorTracker.trackWishlistRemove(product.id);
+        } else {
+          behaviorTracker.trackWishlistAdd(product.id);
+        }
+      });
+    }
+  }
+
+  // Function to update load more button
+  function updateLoadMoreButton(buttonId, countId, displayedCount, totalCount) {
+    const button = page.querySelector(`#${buttonId}`);
+    const countSpan = page.querySelector(`#${countId}`);
+    const completeId = buttonId.replace('load-more-', '') + '-complete';
+    const completeDiv = page.querySelector(`#${completeId}`);
+
+    if (button && countSpan) {
+      if (displayedCount < totalCount) {
+        button.classList.remove('hidden');
+        countSpan.textContent = `${displayedCount}/${totalCount}`;
+        if (completeDiv) completeDiv.classList.add('hidden');
+      } else {
+        button.classList.add('hidden');
+        if (completeDiv) completeDiv.classList.remove('hidden');
+      }
+    }
+  }
+
+  // Global functions for load more buttons
+  window.loadMoreRecommendations = function() {
+    const button = page.querySelector('#load-more-recommendations');
+    const recommendationsGrid = page.querySelector('#personalized-recommendations-grid');
+    
+    if (!allRecommendations || !recommendationsGrid) return;
+    
+    const originalText = button.innerHTML;
+    button.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-2"></i>Loading...';
+    button.disabled = true;
+    
+    setTimeout(() => {
+      const nextRecommendations = allRecommendations.slice(displayedRecommendationsCount, displayedRecommendationsCount + LOAD_MORE_INCREMENT);
+      renderProductsInGrid(nextRecommendations, recommendationsGrid);
+      displayedRecommendationsCount += nextRecommendations.length;
+      
+      // Update button
+      updateLoadMoreButton('load-more-recommendations', 'recommendations-count', displayedRecommendationsCount, allRecommendations.length);
+      button.innerHTML = originalText;
+      button.disabled = false;
+    }, 500);
+  };
+
+  window.loadMoreArrivals = function() {
+    const button = page.querySelector('#load-more-arrivals');
+    const newArrivalsGrid = page.querySelector('#new-arrivals-grid');
+    
+    if (!allNewArrivals || !newArrivalsGrid) return;
+    
+    const originalText = button.innerHTML;
+    button.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-2"></i>Loading...';
+    button.disabled = true;
+    
+    setTimeout(() => {
+      const nextProducts = allNewArrivals.slice(displayedArrivalsCount, displayedArrivalsCount + LOAD_MORE_INCREMENT);
+      renderProductsInGrid(nextProducts, newArrivalsGrid);
+      displayedArrivalsCount += nextProducts.length;
+      
+      // Update button
+      updateLoadMoreButton('load-more-arrivals', 'arrivals-count', displayedArrivalsCount, allNewArrivals.length);
+      button.innerHTML = originalText;
+      button.disabled = false;
+    }, 500);
+  };
+
+  window.loadMoreTrending = function() {
+    const button = page.querySelector('#load-more-trending');
+    const trendingGrid = page.querySelector('#trending-products-grid');
+    
+    if (!allTrendingProducts || !trendingGrid) return;
+    
+    const originalText = button.innerHTML;
+    button.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-2"></i>Loading...';
+    button.disabled = true;
+    
+    setTimeout(() => {
+      const nextProducts = allTrendingProducts.slice(displayedTrendingCount, displayedTrendingCount + LOAD_MORE_INCREMENT);
+      renderProductsInGrid(nextProducts, trendingGrid);
+      displayedTrendingCount += nextProducts.length;
+      
+      // Update button
+      updateLoadMoreButton('load-more-trending', 'trending-count', displayedTrendingCount, allTrendingProducts.length);
+      button.innerHTML = originalText;
+      button.disabled = false;
+    }, 500);
+  };
 
   return page;
 }

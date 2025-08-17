@@ -8,7 +8,7 @@ from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 from django.utils import timezone
 from django.core.cache import cache
-from ai_models.services import RecommendationService
+from .services import recommendation_service
 from .serializers import (
     RecommendationRequestSerializer,
     RecommendationResponseSerializer,
@@ -32,59 +32,35 @@ def general_recommendations(request):
         if not serializer.is_valid():
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         
-        # Check cache first
-        cache_key = f"general_recommendations_{serializer.validated_data.get('limit', 10)}"
-        cached_result = cache.get(cache_key)
+        # Check cache first (disabled for now)
+        # cache_key = f"general_recommendations_{serializer.validated_data.get('limit', 10)}"
+        # cached_result = cache.get(cache_key)
+        # 
+        # if cached_result:
+        #     return Response(cached_result, status=status.HTTP_200_OK)
         
-        if cached_result:
-            return Response(cached_result, status=status.HTTP_200_OK)
-        
-        # Generate recommendations
-        recommendation_service = RecommendationService()
-        recommendations = recommendation_service.get_general_recommendations(
+        # Generate general recommendations
+        result = recommendation_service.get_personalized_recommendations(
+            user=None,
+            session_id=serializer.validated_data.get('session_id'),
             limit=serializer.validated_data.get('limit', 10),
             category_id=serializer.validated_data.get('category_id'),
-            exclude_products=serializer.validated_data.get('exclude_products', [])
+            request=request
         )
         
-        # Create session for tracking
-        session = RecommendationSession.objects.create(
-            user=request.user if request.user.is_authenticated else None,
-            session_id=serializer.validated_data.get('session_id'),
-            recommendation_type='general'
-        )
+        # Cache for 15 minutes (disabled for now)
+        # cache.set(cache_key, result, 900)
         
-        # Store results
-        for idx, rec in enumerate(recommendations):
-            RecommendationResult.objects.create(
-                session=session,
-                product_id=rec['product_id'],
-                score=rec['score'],
-                position=idx + 1,
-                algorithm_used=rec['algorithm']
-            )
-        
-        response_data = {
-            'session_id': session.id,
-            'recommendations': recommendations,
-            'total_count': len(recommendations),
-            'algorithm_info': {
-                'type': 'general',
-                'description': 'Trending and popular products'
-            }
-        }
-        
-        # Cache for 15 minutes
-        cache.set(cache_key, response_data, 900)
-        
-        return Response(response_data, status=status.HTTP_200_OK)
+        return Response(result, status=status.HTTP_200_OK)
         
     except Exception as e:
         logger.error(f"Error generating general recommendations: {str(e)}")
-        return Response(
-            {'error': 'Failed to generate recommendations'},
-            status=status.HTTP_500_INTERNAL_SERVER_ERROR
-        )
+        return Response({
+            'recommendations': [],
+            'message': 'عذراً، حدث خطأ في جلب التوصيات. يرجى المحاولة مرة أخرى.',
+            'total_count': 0,
+            'session_id': None
+        }, status=status.HTTP_200_OK)
 
 
 @api_view(['GET'])
@@ -98,106 +74,138 @@ def personalized_recommendations(request):
         if not serializer.is_valid():
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-        # Check cache for this user (or anonymous)
-        user_id = request.user.id if request.user.is_authenticated else 'anonymous'
-        cache_key = f"personalized_recommendations_{user_id}_{serializer.validated_data.get('limit', 10)}"
-        cached_result = cache.get(cache_key)
-        if cached_result:
-            return Response(cached_result, status=status.HTTP_200_OK)
+        # Check cache for this user (or anonymous) - disabled for now
+        # user_id = request.user.id if request.user.is_authenticated else 'anonymous'
+        # cache_key = f"personalized_recommendations_{user_id}_{serializer.validated_data.get('limit', 10)}"
+        # cached_result = cache.get(cache_key)
+        # if cached_result:
+        #     return Response(cached_result, status=status.HTTP_200_OK)
 
-        # Generate personalized recommendations (or general for anonymous users)
-        recommendation_service = RecommendationService()
-        if request.user.is_authenticated:
-            recommendations = recommendation_service.get_personalized_recommendations(
-                user=request.user,
-                limit=serializer.validated_data.get('limit', 10),
-                category_id=serializer.validated_data.get('category_id'),
-                exclude_products=serializer.validated_data.get('exclude_products', [])
-            )
-        else:
-            # For anonymous users, use general recommendations
-            recommendations = recommendation_service.get_general_recommendations(
-                limit=serializer.validated_data.get('limit', 10),
-                category_id=serializer.validated_data.get('category_id'),
-                exclude_products=serializer.validated_data.get('exclude_products', [])
-            )
-
-        # إذا لم توجد توصيات شخصية، جرب التوصيات العامة
-        if not recommendations:
-            general_recs = recommendation_service.get_general_recommendations(
-                limit=serializer.validated_data.get('limit', 10),
-                category_id=serializer.validated_data.get('category_id'),
-                exclude_products=serializer.validated_data.get('exclude_products', [])
-            )
-            if not general_recs:
-                return Response({
-                    'recommendations': [],
-                    'message': 'لا توجد بيانات كافية لتوليد توصيات مخصصة أو عامة.'
-                }, status=status.HTTP_200_OK)
-            recommendations = general_recs
-
-        # Create session for tracking
-        session = RecommendationSession.objects.create(
+        # Generate personalized recommendations
+        result = recommendation_service.get_personalized_recommendations(
             user=request.user if request.user.is_authenticated else None,
             session_id=serializer.validated_data.get('session_id'),
-            recommendation_type='personalized' if request.user.is_authenticated else 'general'
+            limit=serializer.validated_data.get('limit', 10),
+            category_id=serializer.validated_data.get('category_id'),
+            request=request
         )
+        recommendations = result.get('recommendations', [])
 
-        # Store results
-        for idx, rec in enumerate(recommendations):
-            RecommendationResult.objects.create(
-                session=session,
-                product_id=rec['product_id'],
-                score=rec['score'],
-                position=idx + 1,
-                algorithm_used=rec['algorithm']
-            )
-
-        # جلب بيانات المنتجات الكاملة بنفس تنسيق ProductListView
-        from products.models import Product
-        from products.serializers import ProductSerializer
-        product_ids = [rec['product_id'] for rec in recommendations]
-        # Filter only active and complete products
-        products_qs = Product.objects.filter(id__in=product_ids, is_active=True)
-        products_map = {p.id: p for p in products_qs}
-        serialized_products = []
-        for rec in recommendations:
-            product_obj = products_map.get(rec['product_id'])
-            if product_obj and product_obj.slug and product_obj.image_urls:
-                product_data = ProductSerializer(product_obj, context={'request': request}).data
-                # Force id to be correct and not overwritten
-                product_data['id'] = getattr(product_obj, 'id', None)
-                product_data['score'] = rec.get('score')
-                product_data['algorithm'] = rec.get('algorithm')
-                serialized_products.append(product_data)
-        response_data = {
-            'count': len(serialized_products),
-            'results': serialized_products,
-            'recommendations': serialized_products,  # Add for frontend compatibility
-        }
-
-        # Cache for 5 minutes (shorter for personalized)
-        cache.set(cache_key, response_data, 300)
-
-        return Response(response_data, status=status.HTTP_200_OK)
+        # Cache for 5 minutes (shorter for personalized) - disabled for now
+        # cache.set(cache_key, result, 300)
+        
+        # Return the complete result from service
+        return Response(result, status=status.HTTP_200_OK)
 
     except Exception as e:
         user_info = f"user {request.user.id}" if request.user.is_authenticated else "anonymous user"
         logger.error(f"Error generating personalized recommendations for {user_info}: {str(e)}")
-        # جرب fallback للتوصيات العامة إذا حدث خطأ
+        # Fallback to general recommendations
         try:
-            recommendation_service = RecommendationService()
-            general_recs = recommendation_service.get_general_recommendations(limit=10)
-            return Response({
-                'recommendations': general_recs,
-                'message': 'تم عرض توصيات عامة لحدوث خطأ في التوصيات الشخصية.'
-            }, status=status.HTTP_200_OK)
+            fallback_result = recommendation_service.get_personalized_recommendations(
+                user=None,
+                session_id=None,
+                limit=10,
+                request=request
+            )
+            return Response(fallback_result, status=status.HTTP_200_OK)
         except Exception as e2:
             logger.error(f"Error fallback to general recommendations: {str(e2)}")
             return Response(
-                {'error': 'Failed to generate personalized or general recommendations'},
+                {'error': 'Failed to generate recommendations'},
                 status=status.HTTP_500_INTERNAL_SERVER_ERROR
             )
+
+
+@api_view(['GET'])
+@permission_classes([AllowAny])
+def similar_products(request, product_id):
+    """
+    Get products similar to a specific product.
+    """
+    try:
+        limit = int(request.GET.get('limit', 10))
+        
+        result = recommendation_service.get_similar_products(
+            product_id=product_id,
+            limit=limit,
+            user=request.user if request.user.is_authenticated else None
+        )
+        
+        return Response(result, status=status.HTTP_200_OK)
+        
+    except Exception as e:
+        logger.error(f"Error getting similar products for {product_id}: {str(e)}")
+        return Response(
+            {'error': 'Failed to get similar products'},
+            status=status.HTTP_500_INTERNAL_SERVER_ERROR
+        )
+
+
+@api_view(['GET'])
+@permission_classes([AllowAny])
+def trending_products(request):
+    """
+    Get currently trending products.
+    """
+    try:
+        limit = int(request.GET.get('limit', 20))
+        
+        result = recommendation_service.get_trending_products(limit=limit)
+        
+        return Response(result, status=status.HTTP_200_OK)
+        
+    except Exception as e:
+        logger.error(f"Error getting trending products: {str(e)}")
+        return Response(
+            {'error': 'Failed to get trending products'},
+            status=status.HTTP_500_INTERNAL_SERVER_ERROR
+        )
+
+
+@api_view(['POST'])
+@permission_classes([AllowAny])
+def track_user_behavior(request):
+    """
+    Track user behavior for recommendation learning.
+    """
+    try:
+        behavior_type = request.data.get('behavior_type')
+        product_id = request.data.get('product_id')
+        
+        if not behavior_type or not product_id:
+            return Response(
+                {'error': 'behavior_type and product_id are required'},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+        
+        # Log the behavior
+        success = recommendation_service.log_user_interaction(
+            behavior_type=behavior_type,
+            product_id=product_id,
+            user=request.user if request.user.is_authenticated else None,
+            session_id=request.data.get('session_id'),
+            request=request,
+            duration_seconds=request.data.get('duration_seconds'),
+            rating=request.data.get('rating'),
+            review_sentiment=request.data.get('review_sentiment'),
+            search_query=request.data.get('search_query')
+        )
+        
+        if success:
+            return Response({'status': 'success'}, status=status.HTTP_200_OK)
+        else:
+            return Response(
+                {'error': 'Failed to log behavior'},
+                status=status.HTTP_500_INTERNAL_SERVER_ERROR
+            )
+            
+    except Exception as e:
+        logger.error(f"Error tracking user behavior: {str(e)}")
+        return Response(
+            {'error': 'Failed to track behavior'},
+            status=status.HTTP_500_INTERNAL_SERVER_ERROR
+        )
 
 
 @api_view(['POST'])
