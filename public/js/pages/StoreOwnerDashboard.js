@@ -567,38 +567,152 @@ async function loadAIInsights(page, storeId) {
       return
     }
 
-    // Display AI insights
+    // Separate insights by priority
+    const highPriorityInsights = insights.insights.filter(i => i.priority === 'high') || [];
+    const mediumPriorityInsights = insights.insights.filter(i => i.priority === 'medium') || [];
+    const lowPriorityInsights = insights.insights.filter(i => i.priority === 'low') || [];
+
+    // Display AI insights with enhanced UI
     insightsContainer.innerHTML = `
-      <div class="space-y-4">
-        ${insights.insights.map(insight => `
-          <div class="p-4 border-l-4 border-secondary bg-blue-50">
-            <div class="flex items-start gap-3">
-              <div class="text-secondary text-xl">
-                <i class="fa-solid fa-lightbulb"></i>
-              </div>
-              <div class="flex-1">
-                <h4 class="font-semibold mb-1">${insight.title}</h4>
-                <p class="text-sm text-muted mb-2">${insight.description}</p>
-                ${insight.action ? `
-                  <button class="btn btn-sm btn-outline">
-                    ${insight.action}
-                  </button>
-                ` : ''}
-              </div>
-            </div>
+      <!-- Performance Score Card -->
+      <div class="mb-6 p-6 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg border">
+        <div class="flex items-center justify-between mb-4">
+          <h4 class="text-lg font-bold text-gray-800">
+            <i class="fa-solid fa-chart-line text-secondary mr-2"></i>
+            Store Performance Score
+          </h4>
+          <span class="text-2xl font-bold text-secondary">${insights.performance_score || 0}%</span>
+        </div>
+        <div class="flex items-center gap-4 mb-3">
+          <div class="flex-1 bg-gray-200 rounded-full h-3">
+            <div class="bg-gradient-to-r from-secondary to-primary h-3 rounded-full transition-all duration-500" 
+                 style="width: ${insights.performance_score || 0}%"></div>
           </div>
-        `).join('')}
+        </div>
+        <p class="text-sm text-gray-600">${insights.performance_summary || 'Analyzing your store performance...'}</p>
+        <div class="mt-3 text-xs text-gray-500">
+          <i class="fa-solid fa-info-circle mr-1"></i>
+          Analyzed ${insights.analysis_period || '30 days'} • ${insights.total_insights || 0} recommendations
+        </div>
       </div>
 
-      <div class="mt-6 p-4 bg-gray-50 rounded">
-        <h4 class="font-semibold mb-2">Performance Score</h4>
-        <div class="flex items-center gap-4">
-          <div class="flex-1 bg-gray-200 rounded-full h-2">
-            <div class="bg-secondary h-2 rounded-full" style="width: ${insights.performance_score || 0}%"></div>
+      <!-- High Priority Insights -->
+      ${highPriorityInsights.length > 0 ? `
+        <div class="mb-6">
+          <h5 class="text-md font-bold text-red-600 mb-3">
+            <i class="fa-solid fa-exclamation-triangle mr-2"></i>
+            High Priority Recommendations (${highPriorityInsights.length})
+          </h5>
+          <div class="space-y-3">
+            ${highPriorityInsights.map(insight => `
+              <div class="p-4 border-l-4 border-red-500 bg-red-50 rounded-r-lg">
+                <div class="flex items-start gap-3">
+                  <div class="text-red-500 text-lg mt-1">
+                    <i class="fa-solid ${insight.icon || 'fa-exclamation-triangle'}"></i>
+                  </div>
+                  <div class="flex-1">
+                    <h6 class="font-semibold text-red-800 mb-1">${insight.title}</h6>
+                    <p class="text-sm text-red-700 mb-2">${insight.description}</p>
+                    ${insight.impact ? `
+                      <div class="text-xs text-red-600 mb-2">
+                        <i class="fa-solid fa-arrow-up mr-1"></i>
+                        Expected Impact: ${insight.impact}
+                      </div>
+                    ` : ''}
+                    ${insight.action ? `
+                      <button class="btn btn-sm bg-red-600 text-white hover:bg-red-700 transition-colors">
+                        <i class="fa-solid fa-play mr-1"></i>
+                        ${insight.action}
+                      </button>
+                    ` : ''}
+                  </div>
+                </div>
+              </div>
+            `).join('')}
           </div>
-          <span class="font-medium">${insights.performance_score || 0}%</span>
         </div>
-        <p class="text-sm text-muted mt-2">${insights.performance_summary || 'Your store performance is being analyzed.'}</p>
+      ` : ''}
+
+      <!-- Medium Priority Insights -->
+      ${mediumPriorityInsights.length > 0 ? `
+        <div class="mb-6">
+          <h5 class="text-md font-bold text-orange-600 mb-3">
+            <i class="fa-solid fa-lightbulb mr-2"></i>
+            Medium Priority Recommendations (${mediumPriorityInsights.length})
+          </h5>
+          <div class="space-y-3">
+            ${mediumPriorityInsights.map(insight => `
+              <div class="p-4 border-l-4 border-orange-400 bg-orange-50 rounded-r-lg">
+                <div class="flex items-start gap-3">
+                  <div class="text-orange-500 text-lg mt-1">
+                    <i class="fa-solid ${insight.icon || 'fa-lightbulb'}"></i>
+                  </div>
+                  <div class="flex-1">
+                    <h6 class="font-semibold text-orange-800 mb-1">${insight.title}</h6>
+                    <p class="text-sm text-orange-700 mb-2">${insight.description}</p>
+                    ${insight.impact ? `
+                      <div class="text-xs text-orange-600 mb-2">
+                        <i class="fa-solid fa-arrow-up mr-1"></i>
+                        Expected Impact: ${insight.impact}
+                      </div>
+                    ` : ''}
+                    ${insight.action ? `
+                      <button class="btn btn-sm bg-orange-500 text-white hover:bg-orange-600 transition-colors">
+                        <i class="fa-solid fa-play mr-1"></i>
+                        ${insight.action}
+                      </button>
+                    ` : ''}
+                  </div>
+                </div>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+      ` : ''}
+
+      <!-- Low Priority Insights -->
+      ${lowPriorityInsights.length > 0 ? `
+        <div class="mb-6">
+          <h5 class="text-md font-bold text-green-600 mb-3">
+            <i class="fa-solid fa-thumbs-up mr-2"></i>
+            Tips & Improvements (${lowPriorityInsights.length})
+          </h5>
+          <div class="space-y-3">
+            ${lowPriorityInsights.map(insight => `
+              <div class="p-4 border-l-4 border-green-400 bg-green-50 rounded-r-lg">
+                <div class="flex items-start gap-3">
+                  <div class="text-green-500 text-lg mt-1">
+                    <i class="fa-solid ${insight.icon || 'fa-thumbs-up'}"></i>
+                  </div>
+                  <div class="flex-1">
+                    <h6 class="font-semibold text-green-800 mb-1">${insight.title}</h6>
+                    <p class="text-sm text-green-700 mb-2">${insight.description}</p>
+                    ${insight.impact ? `
+                      <div class="text-xs text-green-600 mb-2">
+                        <i class="fa-solid fa-arrow-up mr-1"></i>
+                        التأثير المتوقع: ${insight.impact}
+                      </div>
+                    ` : ''}
+                    ${insight.action ? `
+                      <button class="btn btn-sm bg-green-500 text-white hover:bg-green-600 transition-colors">
+                        <i class="fa-solid fa-play mr-1"></i>
+                        ${insight.action}
+                      </button>
+                    ` : ''}
+                  </div>
+                </div>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+      ` : ''}
+
+      <!-- Refresh Button -->
+      <div class="text-center mt-6">
+        <button class="btn btn-outline" onclick="location.reload()">
+          <i class="fa-solid fa-refresh mr-2"></i>
+          Refresh Recommendations
+        </button>
       </div>
     `
 

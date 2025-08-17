@@ -7431,3 +7431,47 @@ INFO 2025-08-17 06:57:38,441 services 13372 3016 Logged view for product 489
 INFO 2025-08-17 06:57:38,484 services 13372 3016 Logged view for product 507
 INFO 2025-08-17 06:57:38,527 services 13372 3016 Logged view for product 454
 INFO 2025-08-17 06:57:38,559 services 13372 3016 Logged view for product 509
+INFO 2025-08-17 06:59:13,690 views 13372 7328 User logged in: Ahmedo
+INFO 2025-08-17 06:59:25,342 views 13372 15120 User logged in: Ahmedo
+INFO 2025-08-17 07:03:34,834 autoreload 13372 13344 C:\Users\maaab\OneDrive\Documents\GitHub\binc_main\bestinclickbackend\dashboard\views.py changed, reloading.
+INFO 2025-08-17 07:03:47,579 autoreload 8672 6252 Watching for file changes with StatReloader
+WARNING 2025-08-17 07:04:30,884 log 8672 9792 Unauthorized: /api/dashboard/stores/141/ai-insights/
+WARNING 2025-08-17 07:07:19,654 log 8672 17816 Unauthorized: /api/auth/profile/
+WARNING 2025-08-17 07:07:20,329 log 8672 12460 Unauthorized: /api/dashboard/stores/141/performance/
+WARNING 2025-08-17 07:07:20,332 log 8672 11416 Unauthorized: /api/dashboard/stores/141/products/
+WARNING 2025-08-17 07:07:20,505 log 8672 17816 Unauthorized: /api/dashboard/stores/141/analytics/
+INFO 2025-08-17 07:07:28,276 views 8672 5124 User logged in: Ahmedo
+ERROR 2025-08-17 07:07:28,808 views 8672 16720 Error generating AI insights: No module named 'users'
+ERROR 2025-08-17 07:07:28,810 log 8672 16720 Internal Server Error: /api/dashboard/stores/141/ai-insights/
+WARNING 2025-08-17 07:07:34,556 log 8672 16720 Unauthorized: /api/auth/profile/
+WARNING 2025-08-17 07:07:34,741 log 8672 12564 Unauthorized: /api/dashboard/stores/141/analytics/
+WARNING 2025-08-17 07:07:34,743 log 8672 5124 Unauthorized: /api/dashboard/stores/141/performance/
+WARNING 2025-08-17 07:07:34,749 log 8672 10832 Unauthorized: /api/dashboard/stores/141/products/
+WARNING 2025-08-17 07:07:34,754 log 8672 6272 Unauthorized: /api/dashboard/stores/141/ai-insights/
+WARNING 2025-08-17 07:08:21,668 log 8672 6444 Unauthorized: /api/dashboard/my-store/
+WARNING 2025-08-17 07:08:21,682 log 8672 15772 Unauthorized: /api/auth/profile/
+INFO 2025-08-17 07:08:42,108 autoreload 8672 6252 C:\Users\maaab\OneDrive\Documents\GitHub\binc_main\bestinclickbackend\dashboard\views.py changed, reloading.
+INFO 2025-08-17 07:09:15,476 autoreload 6852 18036 Watching for file changes with StatReloader
+INFO 2025-08-17 07:09:47,557 views 6852 952 User logged in: Ahmedo
+ERROR 2025-08-17 07:09:47,958 views 6852 952 Error generating AI insights: name '_generate_comprehensive_insights' is not defined
+ERROR 2025-08-17 07:09:47,959 log 6852 952 Internal Server Error: /api/dashboard/stores/141/ai-insights/
+INFO 2025-08-17 07:09:54,558 autoreload 6852 18036 C:\Users\maaab\OneDrive\Documents\GitHub\binc_main\bestinclickbackend\dashboard\views.py changed, reloading.
+INFO 2025-08-17 07:10:00,391 autoreload 14652 11540 Watching for file changes with StatReloader
+INFO 2025-08-17 07:10:51,129 autoreload 9768 19068 Watching for file changes with StatReloader
+WARNING 2025-08-17 07:11:23,126 log 14652 10496 Unauthorized: /api/dashboard/stores/141/ai-insights/
+WARNING 2025-08-17 07:11:47,887 log 14652 8524 Unauthorized: /api/auth/profile/
+WARNING 2025-08-17 07:11:48,674 log 14652 8524 Unauthorized: /api/auth/token/refresh/
+WARNING 2025-08-17 07:11:48,757 log 14652 8524 Unauthorized: /api/dashboard/stores/141/analytics/
+WARNING 2025-08-17 07:11:49,043 log 14652 16576 Unauthorized: /api/dashboard/stores/141/performance/
+WARNING 2025-08-17 07:11:49,052 log 14652 8524 Unauthorized: /api/dashboard/stores/141/products/
+WARNING 2025-08-17 07:11:49,357 log 14652 12128 Unauthorized: /api/dashboard/stores/141/ai-insights/
+WARNING 2025-08-17 07:11:49,693 log 14652 13704 Unauthorized: /api/dashboard/stores/141/analytics/
+INFO 2025-08-17 07:12:39,037 views 14652 13148 User logged in: Ahmedo
+INFO 2025-08-17 07:13:49,191 autoreload 14652 11540 C:\Users\maaab\OneDrive\Documents\GitHub\binc_main\bestinclickbackend\dashboard\views.py changed, reloading.
+INFO 2025-08-17 07:13:58,897 autoreload 9980 5952 Watching for file changes with StatReloader
+INFO 2025-08-17 07:14:46,204 views 9980 5176 User logged in: alio
+INFO 2025-08-17 07:14:53,060 autoreload 9980 5952 C:\Users\maaab\OneDrive\Documents\GitHub\binc_main\bestinclickbackend\dashboard\views.py changed, reloading.
+INFO 2025-08-17 07:14:59,585 autoreload 10984 7612 Watching for file changes with StatReloader
+INFO 2025-08-17 07:15:59,484 autoreload 10984 7612 C:\Users\maaab\OneDrive\Documents\GitHub\binc_main\bestinclickbackend\dashboard\views.py changed, reloading.
+INFO 2025-08-17 07:16:06,366 autoreload 1900 2396 Watching for file changes with StatReloader
+INFO 2025-08-17 07:17:30,275 views 1900 13204 User logged in: alio

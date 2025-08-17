@@ -315,35 +315,311 @@ def store_ai_insights(request, store_id):
     try:
         store = get_object_or_404(Store, id=store_id, owner=request.user)
         
-        # Analyze store performance
-        products = store.products.filter(is_active=True)
-        total_products = products.count()
-        avg_rating = products.aggregate(avg_rating=Avg('average_rating'))['avg_rating'] or 0
+        # Get analysis period from query params (default 30 days)
+        days = int(request.GET.get('days', 30))
         
-        # Get recent behavior data
-        recent_behavior = UserBehaviorLog.objects.filter(
-            product__store=store,
-            timestamp__gte=timezone.now() - timedelta(days=30)
-        )
-        
-        total_interactions = recent_behavior.count()
-        
-        # Generate AI insights
-        insights = {
-            'store_health_score': _calculate_store_health_score(store, avg_rating, total_interactions),
-            'recommendations': _generate_store_recommendations(store, products, recent_behavior),
-            'trending_categories': _get_trending_categories_for_store(store),
-            'optimization_tips': _get_optimization_tips(store, avg_rating, total_interactions)
-        }
+        # Generate comprehensive AI insights using simplified analysis
+        insights = _generate_comprehensive_insights(store, days)
         
         return Response(insights, status=status.HTTP_200_OK)
         
     except Exception as e:
         logger.error(f"Error generating AI insights: {str(e)}")
         return Response(
-            {'error': 'Failed to generate insights'},
+            {'error': 'Failed to generate insights', 'details': str(e)},
             status=status.HTTP_500_INTERNAL_SERVER_ERROR
         )
+
+
+def _generate_comprehensive_insights(store, days=30):
+    """
+    Generate comprehensive AI insights for store improvement
+    """
+    try:
+        # Collect store data
+        products = store.products.filter(is_active=True)
+        total_products = products.count()
+        
+        if total_products == 0:
+            return {
+                'store_id': store.id,
+                'store_name': store.name,
+                'analysis_period': f'{days} days',
+                'generated_at': timezone.now().isoformat(),
+                'insights': [{
+                    'type': 'setup',
+                    'priority': 'high',
+                    'title': 'Start Adding Products',
+                    'description': 'Your store is empty! You need to add products to start selling and attract customers.',
+                    'action': 'Add New Product',
+                    'impact': 'Begin your e-commerce journey',
+                    'icon': 'fa-plus'
+                }],
+                'performance_score': 10,
+                'performance_summary': 'Your store needs initial setup. Start by adding products!',
+                'total_insights': 1
+            }
+        
+        insights = []
+        score = 50  # Base score
+        
+        # Product Analysis
+        out_of_stock = products.filter(in_stock=False).count()
+        no_image_products = products.filter(image_urls__isnull=True).count() + products.filter(image_urls__exact='[]').count()
+        low_view_products = products.filter(view_count__lt=10).count()
+        high_rated_products = products.filter(average_rating__gte=4.5).count()
+        avg_rating = products.aggregate(avg_rating=Avg('average_rating'))['avg_rating'] or 0
+        total_views = sum(p.view_count or 0 for p in products)
+        total_reviews = sum(p.total_reviews or 0 for p in products)
+        
+        # 1. Inventory Management Insights
+        if out_of_stock > 0:
+            out_of_stock_rate = (out_of_stock / total_products) * 100
+            if out_of_stock_rate > 20:
+                insights.append({
+                    'type': 'inventory',
+                    'priority': 'high',
+                    'title': 'Critical Inventory Issue',
+                    'description': f'{out_of_stock_rate:.0f}% of your products are out of stock ({out_of_stock} products). This is causing you to lose potential sales.',
+                    'action': 'Restock Immediately',
+                    'impact': 'Prevent losing 30-50% of potential sales',
+                    'icon': 'fa-boxes'
+                })
+                score -= 20
+            elif out_of_stock_rate > 10:
+                insights.append({
+                    'type': 'inventory',
+                    'priority': 'medium',
+                    'title': 'Low Stock Warning',
+                    'description': f'{out_of_stock} products are out of stock. Monitor inventory levels regularly.',
+                    'action': 'Set Up Stock Alerts',
+                    'impact': 'Avoid sudden stockouts',
+                    'icon': 'fa-exclamation-triangle'
+                })
+                score -= 10
+        else:
+            insights.append({
+                'type': 'inventory',
+                'priority': 'low',
+                'title': 'Excellent Inventory Management',
+                'description': 'All your products are in stock! Keep up this great performance.',
+                'action': 'Maintain Continuous Monitoring',
+                'impact': 'Customer satisfaction and continuous sales',
+                'icon': 'fa-check-circle'
+            })
+            score += 15
+        
+        # 2. Product Images Insights
+        if no_image_products > 0:
+            no_image_rate = (no_image_products / total_products) * 100
+            insights.append({
+                'type': 'product_images',
+                'priority': 'high',
+                'title': 'Products Missing Images',
+                'description': f'{no_image_products} products ({no_image_rate:.0f}%) have no images. Products with images get 5x more views!',
+                'action': 'Add High-Quality Images',
+                'impact': 'Increase views by 400%',
+                'icon': 'fa-image'
+            })
+            score -= 15
+        
+        # 3. Product Performance Insights
+        if low_view_products > 0:
+            low_view_rate = (low_view_products / total_products) * 100
+            if low_view_rate > 50:
+                insights.append({
+                    'type': 'product_performance',
+                    'priority': 'high',
+                    'title': 'Low-Performing Products',
+                    'description': f'{low_view_rate:.0f}% of your products have low views. You need to improve titles and descriptions.',
+                    'action': 'Optimize Product Descriptions & Keywords',
+                    'impact': 'Increase search visibility by 60%',
+                    'icon': 'fa-eye'
+                })
+                score -= 15
+            elif low_view_rate > 25:
+                insights.append({
+                    'type': 'product_performance',
+                    'priority': 'medium',
+                    'title': 'Visibility Improvement Opportunity',
+                    'description': f'{low_view_products} products need better visibility. Consider improving titles.',
+                    'action': 'Review Product Titles',
+                    'impact': 'Increase views by 30%',
+                    'icon': 'fa-search'
+                })
+                score -= 8
+        
+        # 4. Customer Satisfaction Insights
+        if total_reviews > 0:
+            review_rate = (total_reviews / max(total_views, 1)) * 100
+            if avg_rating >= 4.5:
+                insights.append({
+                    'type': 'customer_satisfaction',
+                    'priority': 'low',
+                    'title': 'Extremely Happy Customers!',
+                    'description': f'Your excellent rating of {avg_rating:.1f}/5 shows customer satisfaction. Use this in marketing!',
+                    'action': 'Feature Reviews in Advertisements',
+                    'impact': 'Increase trust and sales by 25%',
+                    'icon': 'fa-star'
+                })
+                score += 20
+            elif avg_rating >= 4.0:
+                insights.append({
+                    'type': 'customer_satisfaction',
+                    'priority': 'low',
+                    'title': 'Good Customer Reviews',
+                    'description': f'Your rating of {avg_rating:.1f}/5 is good. It can be improved by focusing on quality details.',
+                    'action': 'Improve Product Quality & Service',
+                    'impact': 'Reach 4.5+ star rating',
+                    'icon': 'fa-thumbs-up'
+                })
+                score += 10
+            elif avg_rating < 3.5:
+                insights.append({
+                    'type': 'customer_satisfaction',
+                    'priority': 'high',
+                    'title': 'Customer Satisfaction Needs Improvement',
+                    'description': f'Your rating of {avg_rating:.1f}/5 is low. You must review product quality and service immediately.',
+                    'action': 'Comprehensive Quality & Service Review',
+                    'impact': 'Improve reputation and increase sales',
+                    'icon': 'fa-exclamation-triangle'
+                })
+                score -= 25
+            
+            if review_rate < 2:
+                insights.append({
+                    'type': 'customer_engagement',
+                    'priority': 'medium',
+                    'title': 'Low Customer Engagement',
+                    'description': f'Review rate is only {review_rate:.1f}%. Encourage customers to leave reviews.',
+                    'action': 'Create Review Encouragement Campaign',
+                    'impact': 'Increase trust and credibility',
+                    'icon': 'fa-comments'
+                })
+        else:
+            insights.append({
+                'type': 'customer_engagement',
+                'priority': 'medium',
+                'title': 'No Reviews Yet',
+                'description': 'Your store needs customer reviews to build trust. Encourage your first customers to review.',
+                'action': 'Request Reviews from Early Customers',
+                'impact': 'Build trust for new customers',
+                'icon': 'fa-star-half-alt'
+            })
+        
+        # 5. High-performing products opportunity
+        if high_rated_products > 0:
+            insights.append({
+                'type': 'marketing_opportunity',
+                'priority': 'medium',
+                'title': 'Star Products for Promotion',
+                'description': f'You have {high_rated_products} products with excellent ratings (4.5+ stars). Promote them more!',
+                'action': 'Create Promotional Campaign for Top Products',
+                'impact': 'Increase sales by 40%',
+                'icon': 'fa-rocket'
+            })
+            score += 10
+        
+        # 6. Pricing Strategy Insights
+        discounted_products = products.filter(discount_percentage__gt=0).count()
+        if total_products > 0:
+            discount_rate = (discounted_products / total_products) * 100
+            if discount_rate < 10:
+                insights.append({
+                    'type': 'pricing_strategy',
+                    'priority': 'medium',
+                    'title': 'Opportunity for Attractive Offers',
+                    'description': 'Few of your products have discounts. Offers increase attractiveness and encourage purchases.',
+                    'action': 'Create Seasonal Offers or Limited Discounts',
+                    'impact': 'Increase conversion rate by 35%',
+                    'icon': 'fa-percent'
+                })
+            elif discount_rate > 60:
+                insights.append({
+                    'type': 'pricing_strategy',
+                    'priority': 'medium',
+                    'title': 'Review Discount Strategy',
+                    'description': f'{discount_rate:.0f}% of your products have discounts. Ensure you maintain profitability.',
+                    'action': 'Review Profit Margins and Pricing',
+                    'impact': 'Improve profitability while maintaining sales',
+                    'icon': 'fa-chart-line'
+                })
+        
+        # 7. SEO and Marketing Insights
+        products_without_description = products.filter(
+            Q(description__isnull=True) | Q(description__exact='') | Q(description__icontains='description')
+        ).count()
+        
+        if products_without_description > 0:
+            insights.append({
+                'type': 'seo_marketing',
+                'priority': 'medium',
+                'title': 'Search Engine Optimization (SEO)',
+                'description': f'{products_without_description} products lack detailed descriptions. Good descriptions improve your search visibility.',
+                'action': 'Write Detailed and Attractive Descriptions',
+                'impact': 'Increase traffic from search engines',
+                'icon': 'fa-search'
+            })
+        
+        # 8. Store Verification Insight
+        if not store.is_verified:
+            insights.append({
+                'type': 'store_credibility',
+                'priority': 'high',
+                'title': 'Store Verification Required',
+                'description': 'Your store is not verified. Verified stores gain more customer trust.',
+                'action': 'Complete Store Verification Process',
+                'impact': 'Increase trust and sales by 50%',
+                'icon': 'fa-shield-alt'
+            })
+            score -= 15
+        
+        # 9. Social Media Marketing Opportunity
+        if total_views > 100:
+            insights.append({
+                'type': 'social_media',
+                'priority': 'low',
+                'title': 'Social Media Marketing Opportunity',
+                'description': f'Your products get {total_views} views. Share them on social media to double your reach!',
+                'action': 'Share Products on Facebook and Instagram',
+                'impact': 'Double potential visitor count',
+                'icon': 'fa-share-alt'
+            })
+        
+        # Calculate final performance score
+        performance_score = min(100, max(0, score))
+        
+        # Generate performance summary
+        high_priority_count = len([i for i in insights if i.get('priority') == 'high'])
+        if performance_score >= 80:
+            performance_summary = f"Excellent performance! Your store operates with high efficiency. You have {high_priority_count} points that need attention."
+        elif performance_score >= 60:
+            performance_summary = f"Good performance with room for improvement. Focus on {high_priority_count} important points to enhance performance."
+        elif performance_score >= 40:
+            performance_summary = f"Average performance. Your store needs improvements in {high_priority_count} important areas."
+        else:
+            performance_summary = f"Your store needs fundamental improvements. Start with {high_priority_count} high-priority points."
+        
+        return {
+            'store_id': store.id,
+            'store_name': store.name,
+            'analysis_period': f'{days} days',
+            'generated_at': timezone.now().isoformat(),
+            'insights': insights,
+            'performance_score': round(performance_score, 1),
+            'performance_summary': performance_summary,
+            'total_insights': len(insights),
+            'priority_insights': [i for i in insights if i.get('priority') == 'high']
+        }
+        
+    except Exception as e:
+        logger.error(f"Error generating comprehensive insights: {str(e)}")
+        return {
+            'error': 'Failed to generate insights',
+            'insights': [],
+            'performance_score': 0,
+            'performance_summary': 'Unable to analyze store performance at this time.'
+        }
 
 
 def _generate_sample_analytics(store, start_date, end_date):
