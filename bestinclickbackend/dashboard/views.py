@@ -100,8 +100,14 @@ def store_analytics(request, store_id):
         
         # Calculate summary metrics
         total_views = sum(a.total_views for a in analytics_data)
+        unique_visitors = sum(a.unique_visitors for a in analytics_data)
+        product_views = sum(a.product_views for a in analytics_data)
+        total_clicks = sum(a.total_clicks for a in analytics_data)
+        add_to_cart_count = sum(a.add_to_cart_count for a in analytics_data)
+        total_orders = sum(a.total_orders for a in analytics_data)
         total_revenue = sum(a.total_revenue for a in analytics_data)
         avg_conversion_rate = sum(a.conversion_rate for a in analytics_data) / len(analytics_data) if analytics_data else 0
+        avg_order_value = sum(a.average_order_value for a in analytics_data) / len(analytics_data) if analytics_data else 0
         
         # Get top performing products
         top_products = Product.objects.filter(
@@ -118,8 +124,14 @@ def store_analytics(request, store_id):
             },
             'summary_metrics': {
                 'total_views': total_views,
+                'unique_visitors': unique_visitors,
+                'product_views': product_views,
+                'total_clicks': total_clicks,
+                'add_to_cart_count': add_to_cart_count,
+                'total_orders': total_orders,
                 'total_revenue': float(total_revenue),
                 'avg_conversion_rate': round(avg_conversion_rate, 2),
+                'average_order_value': float(avg_order_value),
                 'date_range': f"{start_date} to {end_date}"
             },
             'daily_analytics': StoreAnalyticsSerializer(analytics_data, many=True).data,

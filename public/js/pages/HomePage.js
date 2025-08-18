@@ -9,6 +9,10 @@ import { behaviorTracker } from "../services/behaviorTracker.js"
  * @returns {HTMLElement} The page element.
  */
 export default function HomePage() {
+  // Check user authentication status
+  const { isAuthenticated, user } = store.getState()
+  const isStoreOwner = user && user.role === 'store_owner'
+  
   // Variables for Load More functionality
   let allRecommendations = [];
   let allNewArrivals = [];
@@ -18,6 +22,10 @@ export default function HomePage() {
   let displayedTrendingCount = 0;
   const INITIAL_LOAD = 20;
   const LOAD_MORE_INCREMENT = 10;
+  
+  // Flags to prevent duplicate API calls
+  let isLoadingRecommendations = false;
+  let isLoadingTrending = false;
 
   const page = createElementFromHTML(`
         <div class="animate-fade-in">
@@ -26,8 +34,13 @@ export default function HomePage() {
                     <h1 class="text-5xl font-extrabold text-primary mb-4">Limited Time Discount 40%</h1>
                     <p class="text-3xl text-muted font-medium mb-8">$385.00</p>
                     <div>
-                        <a href="#/products" class="btn btn-primary mr-4">Buy Now</a>
-                        <a href="#/compare" class="btn btn-outline">Compare Smartly</a>
+                        ${isStoreOwner ? `
+                            <a href="#/products-management" class="btn btn-primary mr-4">Manage Products</a>
+                            <a href="#/store-dashboard" class="btn btn-outline">Store Dashboard</a>
+                        ` : `
+                            <a href="#/products" class="btn btn-primary mr-4">Buy Now</a>
+                            <a href="#/compare" class="btn btn-outline">Compare Smartly</a>
+                        `}
                     </div>
                 </div>
             </section>
@@ -89,55 +102,97 @@ export default function HomePage() {
                     </div>
 
                     <div class="text-center mt-8">
-                        <button onclick="location.hash='/products'" class="btn btn-outline group">
-                            <span>View All Products</span>
-                            <i class="fa-solid fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform duration-300"></i>
-                        </button>
+                        ${isStoreOwner ? `
+                            <button onclick="location.hash='/products-management'" class="btn btn-outline group">
+                                <span>Manage Your Products</span>
+                                <i class="fa-solid fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform duration-300"></i>
+                            </button>
+                        ` : `
+                            <button onclick="location.hash='/products'" class="btn btn-outline group">
+                                <span>View All Products</span>
+                                <i class="fa-solid fa-arrow-right ml-2 group-hover:translate-x-1 transition-transform duration-300"></i>
+                            </button>
+                        `}
                     </div>
                 </div>
             </section>
 
-            <section class="bg-light-gray py-16">
-                <div class="container mx-auto px-4">
-                    <div class="flex justify-between items-center mb-8">
-                        <h2 class="text-2xl font-bold">New Arrivals</h2>
-                        <a href="#/products" class="text-secondary font-bold">View All &rarr;</a>
-                    </div>
-                    <div id="new-arrivals-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8">
-                        <div class="loader"></div>
-                    </div>
-                    <div class="text-center mt-6">
-                        <button id="load-more-arrivals" class="btn btn-outline hidden hover:bg-secondary hover:text-white transition-all duration-300" onclick="loadMoreArrivals()">
-                            <i class="fa-solid fa-plus mr-2"></i>
-                            Load More Products
-                            <span id="arrivals-count" class="ml-2 text-xs bg-secondary text-white px-2 py-1 rounded-full"></span>
-                        </button>
-                        <div id="arrivals-complete" class="hidden text-center text-gray-600 mt-4">
-                            <i class="fa-solid fa-check-circle text-green-500 mr-2"></i>
-                            All products loaded!
+            ${!isStoreOwner ? `
+                <section class="bg-light-gray py-16">
+                    <div class="container mx-auto px-4">
+                        <div class="flex justify-between items-center mb-8">
+                            <h2 class="text-2xl font-bold">New Arrivals</h2>
+                            <a href="#/products" class="text-secondary font-bold">View All &rarr;</a>
+                        </div>
+                        <div id="new-arrivals-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8">
+                            <div class="loader"></div>
+                        </div>
+                        <div class="text-center mt-6">
+                            <button id="load-more-arrivals" class="btn btn-outline hidden hover:bg-secondary hover:text-white transition-all duration-300" onclick="loadMoreArrivals()">
+                                <i class="fa-solid fa-plus mr-2"></i>
+                                Load More Products
+                                <span id="arrivals-count" class="ml-2 text-xs bg-secondary text-white px-2 py-1 rounded-full"></span>
+                            </button>
+                            <div id="arrivals-complete" class="hidden text-center text-gray-600 mt-4">
+                                <i class="fa-solid fa-check-circle text-green-500 mr-2"></i>
+                                All products loaded!
+                            </div>
                         </div>
                     </div>
-                </div>
-            </section> 
+                </section> 
 
-            <div id="personalized-recommendations-section"></div>
-            
-            <div id="trending-products-section"></div>
+                <div id="personalized-recommendations-section"></div>
+                
+                <div id="trending-products-section"></div>
+            ` : `
+                <section class="bg-light-gray py-16">
+                    <div class="container mx-auto px-4 text-center">
+                        <h2 class="text-3xl font-bold text-primary mb-6">Welcome to Your Store Dashboard</h2>
+                        <p class="text-lg text-muted mb-8">Manage your products, view analytics, and grow your business</p>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+                            <div class="bg-white rounded-lg p-6 shadow-sm border">
+                                <i class="fa-solid fa-box text-3xl text-secondary mb-4"></i>
+                                <h3 class="text-xl font-semibold mb-2">Manage Products</h3>
+                                <p class="text-gray-600 mb-4">Add, edit, and organize your product catalog</p>
+                                <a href="#/products-management" class="btn btn-primary">Go to Products</a>
+                            </div>
+                            <div class="bg-white rounded-lg p-6 shadow-sm border">
+                                <i class="fa-solid fa-chart-line text-3xl text-secondary mb-4"></i>
+                                <h3 class="text-xl font-semibold mb-2">View Analytics</h3>
+                                <p class="text-gray-600 mb-4">Track your store performance and sales</p>
+                                <a href="#/store-dashboard" class="btn btn-primary">View Dashboard</a>
+                            </div>
+                            <div class="bg-white rounded-lg p-6 shadow-sm border">
+                                <i class="fa-solid fa-plus text-3xl text-secondary mb-4"></i>
+                                <h3 class="text-xl font-semibold mb-2">Add New Product</h3>
+                                <p class="text-gray-600 mb-4">Expand your catalog with new products</p>
+                                <a href="#/products/add" class="btn btn-primary">Add Product</a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            `}
 
             </div>
     `);
 
-  // Handle Personalized Recommendations Section
+  // Handle Personalized Recommendations Section (only for non-store owners)
   const personalizedRecsContainer = page.querySelector("#personalized-recommendations-section");
 
-  // Always show recommendations section (for all users)
-  if (personalizedRecsContainer) {
+  // Only show recommendations section for non-store owners
+  if (personalizedRecsContainer && !isStoreOwner) {
     const recSectionHtml = `
             <section class="py-16">
                 <div class="container mx-auto px-4">
                     <div class="flex justify-between items-center mb-8">
                         <h2 class="text-2xl font-bold">Personalized Recommendations</h2>
-                        <a href="#/products" class="text-secondary font-bold">View All &rarr;</a>
+                        <div class="flex items-center gap-4">
+                            <button id="refresh-recommendations" class="btn btn-outline text-sm" onclick="refreshRecommendations()">
+                                <i class="fa-solid fa-refresh mr-2"></i>
+                                Refresh Recommendations
+                            </button>
+                            <a href="#/products" class="text-secondary font-bold">View All &rarr;</a>
+                        </div>
                     </div>
                     <div id="personalized-recommendations-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8">
                         <div class="loader"></div>
@@ -163,8 +218,10 @@ export default function HomePage() {
 
     const personalizedRecommendationsGrid = personalizedRecsContainer.querySelector("#personalized-recommendations-grid");
 
-    // Fetch personalized recommendations using recommendationService
-    recommendationService.getPersonalizedRecs()
+    // Fetch personalized recommendations using recommendationService (with duplicate prevention)
+    if (!isLoadingRecommendations) {
+      isLoadingRecommendations = true;
+      recommendationService.getPersonalizedRecs()
       .then(data => {
         // Check different possible data structures
         let recommendations = null;
@@ -224,15 +281,19 @@ export default function HomePage() {
         // Hide load more button on error
         const loadMoreButton = page.querySelector('#load-more-recommendations');
         if (loadMoreButton) loadMoreButton.classList.add('hidden');
+      })
+      .finally(() => {
+        isLoadingRecommendations = false;
       });
+    }
   } else {
     console.warn('Personalized recommendations container not found in DOM');
   }
 
-  // Handle Trending Products Section
+  // Handle Trending Products Section (only for non-store owners)
   const trendingProductsContainer = page.querySelector("#trending-products-section");
   
-  if (trendingProductsContainer) {
+  if (trendingProductsContainer && !isStoreOwner) {
     const trendingSectionHtml = `
             <section class="py-16 bg-gray-50">
                 <div class="container mx-auto px-4">
@@ -264,8 +325,10 @@ export default function HomePage() {
 
     const trendingProductsGrid = trendingProductsContainer.querySelector("#trending-products-grid");
 
-    // Fetch trending products using recommendationService
-    recommendationService.getTrendingProducts(20)
+    // Fetch trending products using recommendationService (with duplicate prevention)
+    if (!isLoadingTrending) {
+      isLoadingTrending = true;
+      recommendationService.getTrendingProducts(20)
       .then(data => {
         // Check different possible data structures
         let trendingProducts = null;
@@ -325,16 +388,21 @@ export default function HomePage() {
         // Hide load more button on error
         const loadMoreButton = page.querySelector('#load-more-trending');
         if (loadMoreButton) loadMoreButton.classList.add('hidden');
+      })
+      .finally(() => {
+        isLoadingTrending = false;
       });
+    }
   } else {
     console.warn('Trending products container not found in DOM');
   }
 
-  // Fetch and render products for New Arrivals
+  // Fetch and render products for New Arrivals (only for non-store owners)
   const newArrivalsGrid = page.querySelector("#new-arrivals-grid");
-  productService
-    .getProducts() // Fetch all products
-    .then((data) => {
+  if (newArrivalsGrid && !isStoreOwner) {
+    productService
+      .getProducts() // Fetch all products
+      .then((data) => {
       // Store all new arrivals
       allNewArrivals = data.results.map(product => {
         // Patch product data for legacy compatibility
@@ -362,12 +430,14 @@ export default function HomePage() {
       newArrivalsGrid.innerHTML = `<p class="text-danger col-span-full text-center">Could not load new arrivals.</p>`;
       console.error('Error loading new arrivals:', err);
     });
+  }
 
   const categoryGrid = page.querySelector("#category-grid");
 
-  // Fetch all products to generate dynamic categories
+  // Fetch all products to generate dynamic categories (only for non-store owners)
   // Load categories with better error handling and loading states
   async function loadCategories() {
+    if (isStoreOwner) return; // Skip loading categories for store owners
     try {
       const data = await productService.getProducts(); // Fetches all products to derive categories
       const products = data.results || data;
@@ -764,6 +834,94 @@ export default function HomePage() {
       button.innerHTML = originalText;
       button.disabled = false;
     }, 500);
+  };
+
+  // Global function to refresh recommendations
+  window.refreshRecommendations = function() {
+    const button = page.querySelector('#refresh-recommendations');
+    const recommendationsGrid = page.querySelector('#personalized-recommendations-grid');
+    
+    if (!button || !recommendationsGrid) return;
+    
+    const originalText = button.innerHTML;
+    button.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-2"></i>Refreshing...';
+    button.disabled = true;
+    
+    // Show loading state
+    recommendationsGrid.innerHTML = `
+      <div class="loader"></div>
+      <div class="loader"></div>
+      <div class="loader"></div>
+      <p class="text-gray-500 col-span-full text-center">جاري تحديث التوصيات المخصصة...</p>
+    `;
+    
+    // Fetch fresh recommendations
+    recommendationService.getPersonalizedRecs()
+      .then(data => {
+        // Check different possible data structures
+        let recommendations = null;
+        if (data && data.recommendations && Array.isArray(data.recommendations)) {
+          recommendations = data.recommendations;
+        } else if (data && Array.isArray(data.results)) {
+          recommendations = data.results;
+        } else if (data && Array.isArray(data)) {
+          recommendations = data;
+        }
+        
+        if (recommendations && recommendations.length > 0) {
+          // Store all recommendations
+          allRecommendations = recommendations.map(product => {
+            // Fix backend data structure - map product_id to id
+            if (product.product_id && !product.id) {
+              product.id = product.product_id;
+            }
+            
+            // Create slug from name if missing
+            if (!product.slug && product.name) {
+              product.slug = product.name.toLowerCase()
+                .replace(/[^a-zA-Z0-9\u0600-\u06FF\s]/g, '') // Keep Arabic and English letters
+                .replace(/\s+/g, '-')
+                .substring(0, 50);
+            }
+            
+            return product;
+          }).filter(product => product.name && product.id); // Filter out invalid products
+          
+          recommendationsGrid.innerHTML = '';
+          
+          // Display initial recommendations
+          const initialRecommendations = allRecommendations.slice(0, INITIAL_LOAD);
+          renderProductsInGrid(initialRecommendations, recommendationsGrid);
+          displayedRecommendationsCount = initialRecommendations.length;
+          
+          // Make data available globally for ProductCard helper functions
+          window.allRecommendations = allRecommendations;
+          
+          // Update load more button
+          updateLoadMoreButton('load-more-recommendations', 'recommendations-count', displayedRecommendationsCount, allRecommendations.length);
+        } else {
+          // Display message from backend or default no recommendations message
+          const message = (data && data.message) || 'لا توجد توصيات مخصصة حاليا.';
+          recommendationsGrid.innerHTML = `<p class="text-gray-500 col-span-full text-center">${message}</p>`;
+          
+          // Hide load more button
+          const loadMoreButton = page.querySelector('#load-more-recommendations');
+          if (loadMoreButton) loadMoreButton.classList.add('hidden');
+        }
+      })
+      .catch((err) => {
+        console.error('Error refreshing personalized recommendations:', err);
+        recommendationsGrid.innerHTML = `<p class="text-danger col-span-full text-center">تعذر تحديث التوصيات المخصصة.</p>`;
+        
+        // Hide load more button on error
+        const loadMoreButton = page.querySelector('#load-more-recommendations');
+        if (loadMoreButton) loadMoreButton.classList.add('hidden');
+      })
+      .finally(() => {
+        // Restore button state
+        button.innerHTML = originalText;
+        button.disabled = false;
+      });
   };
 
   return page;

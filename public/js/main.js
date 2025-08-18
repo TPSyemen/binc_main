@@ -11,9 +11,17 @@ import "./components/Auth.js"
  * Main application entry point.
  * This function initializes the entire application.
  */
-function main() {
+async function main() {
   // Initialize the application state from localStorage
   store.initState()
+
+  // Make dashboardService available globally for components that need it
+  window.dashboardService = dashboardService
+
+  // Wait for auth initialization if needed
+  if (window.auth && typeof window.auth.initAuth === 'function') {
+    await window.auth.initAuth()
+  }
 
   // Render static components like Navbar and Footer
   const navbarContainer = document.getElementById("navbar-container")
@@ -30,9 +38,6 @@ function main() {
 
   // Initialize the user behavior tracker
   initBehaviorTracker()
-
-  // Make dashboardService available globally for components that need it
-  window.dashboardService = dashboardService
 
   // Load test fixes in development
   if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {

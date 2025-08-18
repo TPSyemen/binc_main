@@ -7475,3 +7475,191 @@ INFO 2025-08-17 07:14:59,585 autoreload 10984 7612 Watching for file changes wit
 INFO 2025-08-17 07:15:59,484 autoreload 10984 7612 C:\Users\maaab\OneDrive\Documents\GitHub\binc_main\bestinclickbackend\dashboard\views.py changed, reloading.
 INFO 2025-08-17 07:16:06,366 autoreload 1900 2396 Watching for file changes with StatReloader
 INFO 2025-08-17 07:17:30,275 views 1900 13204 User logged in: alio
+INFO 2025-08-17 07:26:43,505 autoreload 1900 2396 C:\Users\maaab\OneDrive\Documents\GitHub\binc_main\bestinclickbackend\dashboard\views.py changed, reloading.
+INFO 2025-08-17 07:26:54,571 autoreload 7060 19372 Watching for file changes with StatReloader
+WARNING 2025-08-17 07:27:35,810 log 7060 13724 Unauthorized: /api/auth/profile/
+INFO 2025-08-17 07:27:44,331 views 7060 14520 User logged in: alio
+INFO 2025-08-17 07:28:10,671 views 7060 17956 User logged in: Ahmedo
+WARNING 2025-08-17 07:29:23,126 log 7060 7388 Unauthorized: /api/auth/profile/
+INFO 2025-08-17 07:29:30,142 views 7060 17956 User logged in: Ahmedo
+WARNING 2025-08-17 07:30:15,117 log 7060 11204 Unauthorized: /api/auth/profile/
+WARNING 2025-08-17 07:30:15,282 log 7060 16252 Unauthorized: /api/dashboard/my-store/
+WARNING 2025-08-17 07:30:15,285 log 7060 3088 Unauthorized: /api/dashboard/stores/141/analytics/
+WARNING 2025-08-17 07:30:15,290 log 7060 11204 Unauthorized: /api/dashboard/stores/141/performance/
+WARNING 2025-08-17 07:30:15,310 log 7060 16252 Unauthorized: /api/dashboard/stores/141/products/
+WARNING 2025-08-17 07:30:15,331 log 7060 3088 Unauthorized: /api/dashboard/stores/141/ai-insights/
+INFO 2025-08-17 07:30:19,883 views 7060 2248 User logged in: Ahmedo
+WARNING 2025-08-17 07:30:27,516 log 7060 16904 Unauthorized: /api/auth/profile/
+WARNING 2025-08-17 07:30:27,725 log 7060 8576 Unauthorized: /api/dashboard/my-store/
+WARNING 2025-08-17 07:30:27,727 log 7060 15684 Unauthorized: /api/dashboard/stores/141/analytics/
+WARNING 2025-08-17 07:30:27,729 log 7060 16904 Unauthorized: /api/dashboard/stores/141/performance/
+WARNING 2025-08-17 07:30:27,798 log 7060 8576 Unauthorized: /api/dashboard/stores/141/ai-insights/
+WARNING 2025-08-17 07:30:27,826 log 7060 14452 Unauthorized: /api/dashboard/stores/141/products/
+WARNING 2025-08-17 07:30:27,832 log 7060 15684 Unauthorized: /api/dashboard/stores/141/analytics/
+INFO 2025-08-17 07:30:32,943 views 7060 8756 User logged in: Ahmedo
+WARNING 2025-08-17 07:31:30,505 log 7060 10924 Unauthorized: /api/auth/profile/
+INFO 2025-08-17 07:31:36,116 views 7060 15220 User logged in: Ahmedo
+WARNING 2025-08-17 07:34:23,122 log 7060 12960 Unauthorized: /api/auth/profile/
+INFO 2025-08-17 07:34:30,841 views 7060 12960 User logged in: Ahmedo
+WARNING 2025-08-17 07:35:15,605 log 7060 12584 Unauthorized: /api/auth/profile/
+WARNING 2025-08-17 07:35:15,795 log 7060 12584 Unauthorized: /api/dashboard/stores/141/products/
+WARNING 2025-08-17 07:35:15,827 log 7060 10292 Unauthorized: /api/dashboard/stores/141/ai-insights/
+INFO 2025-08-17 07:35:21,546 views 7060 16784 User logged in: Ahmedo
+INFO 2025-08-17 07:35:38,432 views 7060 16784 User logged in: alio
+WARNING 2025-08-17 07:41:11,687 log 7060 11988 Bad Request: /api/products/create/
+WARNING 2025-08-17 07:42:12,242 log 7060 14976 Not Found: /favicon.ico
+WARNING 2025-08-17 07:42:45,861 log 7060 11988 Bad Request: /api/auth/login/
+WARNING 2025-08-17 07:42:53,137 log 7060 11988 Bad Request: /api/auth/login/
+INFO 2025-08-18 06:18:51,495 autoreload 2684 8928 Watching for file changes with StatReloader
+INFO 2025-08-18 06:21:48,919 services 2684 14828 Logged view for product 507
+INFO 2025-08-18 06:21:48,969 services 2684 14828 Logged view for product 505
+INFO 2025-08-18 06:21:49,017 services 2684 14828 Logged view for product 504
+INFO 2025-08-18 06:21:49,065 services 2684 14828 Logged view for product 509
+INFO 2025-08-18 06:21:49,110 services 2684 14828 Logged view for product 506
+INFO 2025-08-18 06:21:49,160 services 2684 14828 Logged view for product 509
+INFO 2025-08-18 06:21:49,258 services 2684 14828 Logged view for product 511
+INFO 2025-08-18 06:21:49,511 services 2684 14828 Logged view for product 508
+INFO 2025-08-18 06:21:49,582 services 2684 14828 Logged view for product 510
+INFO 2025-08-18 06:21:49,627 services 2684 20060 Logged view for product 506
+INFO 2025-08-18 06:21:49,702 services 2684 14828 Logged view for product 507
+INFO 2025-08-18 06:21:49,745 services 2684 20060 Logged view for product 502
+INFO 2025-08-18 06:21:49,800 services 2684 20060 Logged view for product 503
+INFO 2025-08-18 06:21:49,867 services 2684 20060 Logged view for product 504
+INFO 2025-08-18 06:21:49,925 services 2684 20060 Logged view for product 505
+INFO 2025-08-18 06:21:49,977 services 2684 20060 Logged view for product 498
+INFO 2025-08-18 06:21:50,044 services 2684 20060 Logged view for product 497
+INFO 2025-08-18 06:21:50,109 services 2684 20060 Logged view for product 500
+INFO 2025-08-18 06:21:50,159 services 2684 20060 Logged view for product 501
+INFO 2025-08-18 06:21:50,220 services 2684 20060 Logged view for product 499
+INFO 2025-08-18 06:21:53,970 services 2684 20500 Logged view for product 492
+INFO 2025-08-18 06:21:54,009 services 2684 20500 Logged view for product 496
+INFO 2025-08-18 06:21:54,039 services 2684 20500 Logged view for product 495
+INFO 2025-08-18 06:21:54,070 services 2684 20500 Logged view for product 494
+INFO 2025-08-18 06:21:54,108 services 2684 20500 Logged view for product 493
+INFO 2025-08-18 06:22:04,786 views 2684 4704 User logged in: alio
+INFO 2025-08-18 06:23:31,188 views 2684 9208 User logged in: mugahed
+INFO 2025-08-18 06:23:45,474 services 2684 4704 Logged view for product 509
+INFO 2025-08-18 06:23:45,593 services 2684 4704 Logged view for product 510
+INFO 2025-08-18 06:23:45,661 services 2684 4704 Logged view for product 507
+INFO 2025-08-18 06:23:45,711 services 2684 4704 Logged view for product 511
+INFO 2025-08-18 06:23:45,766 services 2684 4704 Logged view for product 508
+INFO 2025-08-18 06:23:45,813 services 2684 4704 Logged view for product 505
+INFO 2025-08-18 06:23:45,868 services 2684 4704 Logged view for product 502
+INFO 2025-08-18 06:23:45,908 services 2684 4704 Logged view for product 503
+INFO 2025-08-18 06:23:45,951 services 2684 4704 Logged view for product 506
+INFO 2025-08-18 06:23:46,001 services 2684 4704 Logged view for product 504
+INFO 2025-08-18 06:23:51,139 services 2684 9208 Logged view for product 503
+INFO 2025-08-18 06:23:51,213 services 2684 9208 Logged view for product 508
+INFO 2025-08-18 06:23:51,312 services 2684 9208 Logged view for product 507
+INFO 2025-08-18 06:23:51,401 services 2684 9208 Logged view for product 506
+INFO 2025-08-18 06:23:51,440 services 2684 9208 Logged view for product 492
+INFO 2025-08-18 06:23:51,528 services 2684 9208 Logged view for product 505
+INFO 2025-08-18 06:23:51,611 services 2684 9208 Logged view for product 509
+INFO 2025-08-18 06:23:51,719 services 2684 9208 Logged view for product 510
+INFO 2025-08-18 06:23:51,992 services 2684 9208 Logged view for product 502
+INFO 2025-08-18 06:23:52,083 services 2684 9208 Logged view for product 504
+INFO 2025-08-18 06:23:52,509 services 2684 4704 Logged view for product 509
+INFO 2025-08-18 06:23:52,559 services 2684 4704 Logged view for product 408
+INFO 2025-08-18 06:23:52,629 services 2684 4704 Logged view for product 504
+INFO 2025-08-18 06:23:52,682 services 2684 4704 Logged view for product 507
+INFO 2025-08-18 06:23:52,744 services 2684 4704 Logged view for product 505
+INFO 2025-08-18 06:23:52,818 services 2684 4704 Logged view for product 510
+INFO 2025-08-18 06:23:52,888 services 2684 4704 Logged view for product 506
+INFO 2025-08-18 06:23:52,931 services 2684 4704 Logged view for product 434
+INFO 2025-08-18 06:23:52,986 services 2684 4704 Logged view for product 488
+INFO 2025-08-18 06:23:53,024 services 2684 4704 Logged view for product 410
+INFO 2025-08-18 06:23:53,978 services 2684 4704 Logged view for product 492
+INFO 2025-08-18 06:23:54,026 services 2684 4704 Logged view for product 493
+INFO 2025-08-18 06:23:54,064 services 2684 4704 Logged view for product 494
+INFO 2025-08-18 06:23:54,128 services 2684 4704 Logged view for product 496
+INFO 2025-08-18 06:23:54,175 services 2684 4704 Logged view for product 495
+INFO 2025-08-18 06:24:01,236 services 2684 4704 Logged view for product 496
+INFO 2025-08-18 06:24:01,272 services 2684 4704 Logged view for product 493
+INFO 2025-08-18 06:24:01,323 services 2684 4704 Logged view for product 495
+INFO 2025-08-18 06:24:01,368 services 2684 4704 Logged view for product 494
+INFO 2025-08-18 06:24:01,406 services 2684 4704 Logged view for product 497
+INFO 2025-08-18 06:24:01,446 services 2684 4704 Logged view for product 499
+INFO 2025-08-18 06:24:01,487 services 2684 4704 Logged view for product 434
+INFO 2025-08-18 06:24:01,526 services 2684 4704 Logged view for product 500
+INFO 2025-08-18 06:24:01,569 services 2684 4704 Logged view for product 498
+INFO 2025-08-18 06:24:01,610 services 2684 4704 Logged view for product 491
+INFO 2025-08-18 06:24:06,369 services 2684 4704 Logged view for product 501
+INFO 2025-08-18 06:24:06,406 services 2684 4704 Logged view for product 499
+INFO 2025-08-18 06:24:06,447 services 2684 4704 Logged view for product 500
+INFO 2025-08-18 06:24:06,488 services 2684 4704 Logged view for product 497
+INFO 2025-08-18 06:24:06,524 services 2684 4704 Logged view for product 498
+INFO 2025-08-18 06:24:06,560 services 2684 4704 Logged view for product 505
+INFO 2025-08-18 06:24:06,614 services 2684 4704 Logged view for product 502
+INFO 2025-08-18 06:24:06,658 services 2684 4704 Logged view for product 504
+INFO 2025-08-18 06:24:06,697 services 2684 4704 Logged view for product 506
+INFO 2025-08-18 06:24:06,742 services 2684 4704 Logged view for product 503
+INFO 2025-08-18 06:24:09,002 services 2684 4704 Logged view for product 508
+INFO 2025-08-18 06:24:09,040 services 2684 4704 Logged view for product 510
+INFO 2025-08-18 06:24:09,086 services 2684 4704 Logged view for product 511
+INFO 2025-08-18 06:24:09,124 services 2684 4704 Logged view for product 507
+INFO 2025-08-18 06:24:09,171 services 2684 4704 Logged view for product 509
+INFO 2025-08-18 06:26:17,653 views 2684 20116 User logged in: alio
+WARNING 2025-08-18 06:27:35,858 log 2684 22104 Unauthorized: /api/auth/profile/
+INFO 2025-08-18 06:27:41,821 views 2684 12592 User logged in: mugahed
+WARNING 2025-08-18 06:29:15,269 log 2684 12592 Bad Request: /api/auth/register/
+INFO 2025-08-18 06:29:21,846 views 2684 12592 New user registered: Batahan
+WARNING 2025-08-18 06:29:55,737 log 2684 12592 Unauthorized: /api/auth/profile/
+INFO 2025-08-18 06:30:12,075 views 2684 15960 User logged in: Batahan
+WARNING 2025-08-18 06:30:16,092 log 2684 6004 Unauthorized: /api/auth/profile/
+WARNING 2025-08-18 06:30:47,489 log 2684 15960 Bad Request: /api/auth/login/
+WARNING 2025-08-18 06:30:54,920 log 2684 15960 Bad Request: /api/auth/login/
+WARNING 2025-08-18 06:31:11,843 log 2684 15960 Bad Request: /api/auth/login/
+INFO 2025-08-18 06:31:34,833 views 2684 15960 User logged in: Batahan
+WARNING 2025-08-18 06:33:35,578 log 2684 15960 Unauthorized: /api/auth/profile/
+WARNING 2025-08-18 06:33:45,485 log 2684 15960 Bad Request: /api/auth/login/
+INFO 2025-08-18 06:33:54,872 views 2684 15960 User logged in: Batahan
+WARNING 2025-08-18 06:34:21,825 log 2684 12592 Unauthorized: /api/auth/profile/
+WARNING 2025-08-18 06:34:22,073 log 2684 6004 Unauthorized: /api/dashboard/my-store/
+WARNING 2025-08-18 06:34:22,076 log 2684 22104 Unauthorized: /api/dashboard/stores/142/products/
+WARNING 2025-08-18 06:34:22,078 log 2684 12592 Unauthorized: /api/dashboard/stores/142/ai-insights/
+INFO 2025-08-18 06:34:30,450 views 2684 776 User logged in: Batahan
+WARNING 2025-08-18 06:36:17,178 log 2684 15960 Unauthorized: /api/auth/profile/
+WARNING 2025-08-18 06:36:17,446 log 2684 15960 Unauthorized: /api/dashboard/stores/142/products/
+WARNING 2025-08-18 06:36:17,450 log 2684 9400 Unauthorized: /api/dashboard/stores/142/ai-insights/
+WARNING 2025-08-18 06:36:17,541 log 2684 15960 Unauthorized: /api/dashboard/stores/142/products/
+INFO 2025-08-18 06:36:36,647 views 2684 7904 User logged in: alio
+WARNING 2025-08-18 06:38:17,254 log 2684 9776 Unauthorized: /api/auth/profile/
+WARNING 2025-08-18 06:38:17,435 log 2684 12536 Unauthorized: /api/dashboard/stores/140/products/
+WARNING 2025-08-18 06:38:17,437 log 2684 7904 Unauthorized: /api/dashboard/stores/140/ai-insights/
+WARNING 2025-08-18 06:38:17,467 log 2684 9776 Unauthorized: /api/dashboard/my-store/
+WARNING 2025-08-18 06:38:17,500 log 2684 12536 Unauthorized: /api/dashboard/stores/140/products/
+INFO 2025-08-18 06:38:25,721 views 2684 12536 User logged in: alio
+WARNING 2025-08-18 06:38:30,239 log 2684 9776 Unauthorized: /api/auth/profile/
+INFO 2025-08-18 06:40:02,382 views 2684 12536 User logged in: alio
+WARNING 2025-08-18 06:40:05,577 log 2684 9776 Unauthorized: /api/auth/profile/
+WARNING 2025-08-18 06:40:05,702 log 2684 9776 Unauthorized: /api/dashboard/my-store/
+INFO 2025-08-18 06:40:19,717 views 2684 9776 User logged in: alio
+WARNING 2025-08-18 06:40:25,857 log 2684 7904 Unauthorized: /api/auth/profile/
+WARNING 2025-08-18 06:40:25,996 log 2684 7904 Unauthorized: /api/dashboard/my-store/
+WARNING 2025-08-18 06:44:43,069 log 2684 20756 Unauthorized: /api/auth/profile/
+WARNING 2025-08-18 06:44:43,119 log 2684 20756 Unauthorized: /api/dashboard/my-store/
+INFO 2025-08-18 06:44:49,857 views 2684 19420 User logged in: alio
+WARNING 2025-08-18 06:44:53,052 log 2684 5560 Unauthorized: /api/auth/profile/
+WARNING 2025-08-18 06:44:53,209 log 2684 5560 Unauthorized: /api/dashboard/my-store/
+INFO 2025-08-18 06:46:12,503 views 2684 14760 User logged in: alio
+WARNING 2025-08-18 06:46:17,382 log 2684 17196 Unauthorized: /api/auth/profile/
+WARNING 2025-08-18 06:46:17,496 log 2684 17196 Unauthorized: /api/dashboard/my-store/
+WARNING 2025-08-18 06:48:29,700 log 2684 18364 Unauthorized: /api/auth/profile/
+INFO 2025-08-18 06:48:35,201 views 2684 9288 User logged in: alio
+WARNING 2025-08-18 06:48:38,072 log 2684 9288 Unauthorized: /api/auth/profile/
+WARNING 2025-08-18 06:48:38,220 log 2684 9288 Unauthorized: /api/dashboard/my-store/
+INFO 2025-08-18 06:51:11,246 views 2684 2248 User logged in: alio
+ERROR 2025-08-18 06:58:15,708 views 2684 12440 Error in report generation: {'report_type': [ErrorDetail(string='"comprehensive_analysis" is not a valid choice.', code='invalid_choice')]}
+Traceback:
+Traceback (most recent call last):
+  File "C:\Users\maaab\OneDrive\Documents\GitHub\binc_main\bestinclickbackend\reports\views.py", line 52, in create
+    serializer.is_valid(raise_exception=True)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\rest_framework\serializers.py", line 231, in is_valid
+    raise ValidationError(self.errors)
+rest_framework.exceptions.ValidationError: {'report_type': [ErrorDetail(string='"comprehensive_analysis" is not a valid choice.', code='invalid_choice')]}
+
+ERROR 2025-08-18 06:58:15,711 log 2684 12440 Internal Server Error: /api/reports/generate/
+INFO 2025-08-18 07:12:48,123 autoreload 2684 8928 C:\Users\maaab\OneDrive\Documents\GitHub\binc_main\bestinclickbackend\reports\services.py changed, reloading.
+INFO 2025-08-18 07:12:57,719 autoreload 9912 21224 Watching for file changes with StatReloader
+INFO 2025-08-18 07:21:00,087 autoreload 14872 19764 Watching for file changes with StatReloader

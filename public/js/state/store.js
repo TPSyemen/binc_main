@@ -16,22 +16,50 @@ const store = {
    * This allows the user's session to persist across page reloads.
    */
   initState() {
-    // Check for new token structure first
-    const accessToken = localStorage.getItem("access_token")
-    const refreshToken = localStorage.getItem("refresh_token")
-    const user = localStorage.getItem("user")
+    try {
+      // Check for new token structure first
+      const accessToken = localStorage.getItem("access_token")
+      const refreshToken = localStorage.getItem("refresh_token")
+      const user = localStorage.getItem("user")
 
-    if (accessToken && user) {
-      this.state.isAuthenticated = true
-      this.state.token = accessToken
-      this.state.user = JSON.parse(user)
-    } else {
-      // Fallback to old token structure for backward compatibility
-      const oldToken = localStorage.getItem("token")
-      if (oldToken && user) {
-        this.state.isAuthenticated = true
-        this.state.token = oldToken
-        this.state.user = JSON.parse(user)
+      if (accessToken && user) {
+        try {
+          const parsedUser = JSON.parse(user)
+          this.state.isAuthenticated = true
+          this.state.token = accessToken
+          this.state.user = parsedUser
+        } catch (parseError) {
+          console.error('Failed to parse user data:', parseError)
+          // Clear corrupted data
+          localStorage.removeItem("user")
+          localStorage.removeItem("access_token")
+          localStorage.removeItem("refresh_token")
+        }
+      } else {
+        // Fallback to old token structure for backward compatibility
+        const oldToken = localStorage.getItem("token")
+        if (oldToken && user) {
+          try {
+            const parsedUser = JSON.parse(user)
+            this.state.isAuthenticated = true
+            this.state.token = oldToken
+            this.state.user = parsedUser
+          } catch (parseError) {
+            console.error('Failed to parse user data:', parseError)
+            // Clear corrupted data
+            localStorage.removeItem("user")
+            localStorage.removeItem("token")
+          }
+        }
+      }
+    } catch (error) {
+      console.error('Error initializing state:', error)
+      // Reset to default state if there's any error
+      this.state = {
+        isAuthenticated: false,
+        user: null,
+        token: null,
+        cart: [],
       }
     }
     this.notifyObservers()

@@ -8,6 +8,12 @@ import store from "../state/store.js";
 export function renderNavbar(container) {
   if (!container) return;
 
+  // Cache for store info to avoid repeated API calls (shared across renders)
+  if (!window.navbarStoreInfoCache) {
+    window.navbarStoreInfoCache = null;
+    window.navbarStoreInfoFetching = false;
+  }
+
   async function render() {
     const { isAuthenticated, user } = store.getState();
     
@@ -15,17 +21,42 @@ export function renderNavbar(container) {
     let storeInfo = null;
     if (user && user.role === 'store_owner') {
       // First check if store info is already in user object
-      if (user.store_name) {
+      if (user.store_name && user.store_name !== 'undefined' && user.store_name !== null) {
         storeInfo = {
           name: user.store_name,
           id: user.store_id
         };
-      } else if (window.dashboardService) {
-        // If not in user object, fetch from API
+      } else if (window.navbarStoreInfoCache) {
+        // Use cached store info
+        storeInfo = window.navbarStoreInfoCache;
+      } else if (window.dashboardService && !window.navbarStoreInfoFetching) {
+        // If not in user object and not already fetching, fetch from API
+        window.navbarStoreInfoFetching = true;
         try {
-          storeInfo = await window.dashboardService.getMyStore(); // eslint-disable-line no-undef
+          const fetchedStore = await window.dashboardService.getMyStore(); // eslint-disable-line no-undef
+          if (fetchedStore && fetchedStore.name && fetchedStore.name !== 'undefined' && fetchedStore.name !== null) {
+            storeInfo = fetchedStore;
+            window.navbarStoreInfoCache = fetchedStore; // Cache the result
+            
+            // Update user data in store state with fetched store info
+            const currentState = store.getState();
+            if (currentState.user && currentState.user.role === 'store_owner') {
+              const updatedUser = {
+                ...currentState.user,
+                store_name: fetchedStore.name,
+                store_id: fetchedStore.id
+              };
+              store.setState({
+                ...currentState,
+                user: updatedUser
+              });
+            }
+          }
         } catch (error) {
           console.warn('Failed to fetch store info for navbar:', error);
+          // Don't show error to user, just use fallback display
+        } finally {
+          window.navbarStoreInfoFetching = false;
         }
       }
     }
@@ -36,7 +67,7 @@ export function renderNavbar(container) {
                 <div class="relative group">
                     <button class="flex items-center gap-2 hover:text-blue-600 transition-colors">
                         <i class="fa-solid fa-store text-xl"></i> 
-                        <span>${storeInfo ? storeInfo.name : 'Store'}</span>
+                        <span>${storeInfo && storeInfo.name ? storeInfo.name : 'My Store'}</span>
                         <i class="fa-solid fa-chevron-down text-xs"></i>
                     </button>
                     <div class="absolute right-0 top-full mt-2 w-48 bg-white rounded-lg shadow-xl border border-gray-200 z-50 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
@@ -99,7 +130,7 @@ export function renderNavbar(container) {
                     </a>
                     <div class="hidden lg:flex items-center gap-6 text-muted font-bold">
                         <a href="#/" class="hover:text-secondary transition-colors">Home</a>
-                        <a href="#/products" class="hover:text-secondary transition-colors">Products</a>
+                        ${user && user.role === 'store_owner' ? '' : '<a href="#/products" class="hover:text-secondary transition-colors">Products</a>'}
                         <a href="#/about" class="hover:text-secondary transition-colors">About</a>
                         <a href="#/contact" class="hover:text-secondary transition-colors">Contact</a>
                     </div>
@@ -132,7 +163,7 @@ export function renderNavbar(container) {
                 <div class="container mx-auto px-4 py-4">
                     <div class="flex flex-col space-y-4">
                         <a href="#/" class="text-muted hover:text-secondary transition-colors font-bold">Home</a>
-                        <a href="#/products" class="text-muted hover:text-secondary transition-colors font-bold">Products</a>
+                        ${user && user.role === 'store_owner' ? '' : '<a href="#/products" class="text-muted hover:text-secondary transition-colors font-bold">Products</a>'}
                         <a href="#/about" class="text-muted hover:text-secondary transition-colors font-bold">About</a>
                         <a href="#/contact" class="text-muted hover:text-secondary transition-colors font-bold">Contact</a>
                         <div class="border-t pt-4">
@@ -175,6 +206,12 @@ export function renderNavbar(container) {
           localStorage.removeItem('access_token');
           localStorage.removeItem('refresh_token');
           store.setState({ isAuthenticated: false, user: null, token: null });
+          
+          // Clear navbar cache
+          if (window.clearNavbarCache) {
+            window.clearNavbarCache();
+          }
+          
           location.hash = "/";
         }
       });
@@ -237,4 +274,37 @@ export function renderNavbar(container) {
 
   // Subscribe to state changes
   store.addObserver(render);
+
+  // Global function to refresh navbar when store is created/updated
+  window.refreshNavbar = function() {
+    render();
+  };
+
+  // Global function to update store info in navbar
+  window.updateNavbarStoreInfo = function(storeData) {
+    // Update cache
+    window.navbarStoreInfoCache = storeData;
+    
+    // Update user data in store state
+    const currentState = store.getState();
+    if (currentState.user && currentState.user.role === 'store_owner') {
+      const updatedUser = {
+        ...currentState.user,
+        store_name: storeData.name,
+        store_id: storeData.id
+      };
+      store.setState({
+        ...currentState,
+        user: updatedUser
+      });
+    }
+    // Refresh navbar to show updated store name
+    render();
+  };
+
+  // Global function to clear navbar cache (called on logout)
+  window.clearNavbarCache = function() {
+    window.navbarStoreInfoCache = null;
+    window.navbarStoreInfoFetching = false;
+  };
 }

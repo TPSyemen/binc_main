@@ -23,7 +23,7 @@ export default function StoreOwnerDashboard() {
     <div class="container mx-auto py-8 px-4">
       <div class="mb-8">
         <h1 class="text-4xl font-extrabold mb-2">Store Owner Dashboard</h1>
-        <p class="text-muted">Manage your store, products, and analytics</p>
+        <p class="text-muted">Manage your store, products</p>
       </div>
 
       <!-- Loading State -->
@@ -112,17 +112,6 @@ export default function StoreOwnerDashboard() {
           </div>
         </div>
 
-        <!-- Analytics Chart -->
-        <div class="card mb-8">
-          <h3 class="text-xl font-bold mb-4">Sales Analytics (Last 30 Days)</h3>
-          <div id="analytics-chart">
-            <div class="text-center py-8">
-              <div class="inline-block animate-spin rounded-full h-6 w-6 border-b-2 border-secondary"></div>
-              <p class="mt-2 text-sm text-muted">Loading analytics...</p>
-            </div>
-          </div>
-        </div>
-
         <!-- AI Insights -->
         <div class="card">
           <h3 class="text-xl font-bold mb-4">AI Insights & Recommendations</h3>
@@ -171,7 +160,6 @@ async function initializeDashboard(page, storeId) {
       loadStoreInfo(page, storeId),
       loadDashboardStats(page, storeId),
       loadRecentProducts(page, storeId),
-      loadAnalytics(page, storeId),
       loadAIInsights(page, storeId)
     ])
 
@@ -285,13 +273,6 @@ async function loadDashboardStats(page, storeId) {
   try {
     console.log('Loading dashboard stats for store:', storeId)
 
-    // Load store analytics and performance
-    const [analytics, performance] = await Promise.all([
-      dashboardService.getStoreAnalytics(storeId),
-      dashboardService.getStorePerformance(storeId)
-    ])
-
-    // console.log('Analytics data:', analytics)
     console.log('Performance data:', performance)
 
     // Get products list for rating calculation
@@ -308,7 +289,6 @@ async function loadDashboardStats(page, storeId) {
     page.querySelector('#total-products').textContent = totalProducts;
 
     // Total orders
-    // const totalOrders = analytics.orders_count ?? performance.orders_count ?? analytics.total_orders ?? performance.total_orders ?? 0;
     // page.querySelector('#total-orders').textContent = totalOrders;
 
     // Total reviews (not available yet)
@@ -326,7 +306,6 @@ async function loadDashboardStats(page, storeId) {
     page.querySelector('#avg-rating').textContent = avgRating.toFixed(1);
 
     // // Total revenue
-    // const totalRevenue = analytics.total_revenue ?? performance.total_revenue ?? 0;
     // page.querySelector('#total-revenue').textContent = `$${Number(totalRevenue).toLocaleString()}`;
 
   } catch (error) {
@@ -478,70 +457,6 @@ window.toggleStock = async function(productId) {
   }
 }
 
-/**
- * Load analytics data
- */
-async function loadAnalytics(page, storeId) {
-  try {
-    console.log('Loading analytics for store:', storeId)
-
-    const analytics = await dashboardService.getStoreAnalytics(storeId, 30)
-    console.log('Analytics data:', analytics)
-
-    const chartContainer = page.querySelector('#analytics-chart')
-
-    // Safely get analytics values from backend
-    const totalViews = analytics.total_views ?? analytics.views ?? 0;
-    const uniqueVisitors = analytics.unique_visitors ?? analytics.visitors ?? 0;
-    const conversionRate = analytics.conversion_rate ?? 0;
-    const productViews = analytics.product_views ?? 0;
-    const addToCart = analytics.add_to_cart_count ?? analytics.add_to_cart ?? 0;
-    const avgOrderValue = analytics.average_order_value ?? 0;
-    const totalClicks = analytics.total_clicks ?? analytics.clicks ?? 0;
-
-    chartContainer.innerHTML = `
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div class="text-center">
-          <div class="text-2xl font-bold text-secondary mb-2">${totalViews}</div>
-          <p class="text-sm text-muted">Total Views</p>
-        </div>
-        <div class="text-center">
-          <div class="text-2xl font-bold text-primary mb-2">${uniqueVisitors}</div>
-          <p class="text-sm text-muted">Unique Visitors</p>
-        </div>
-        <div class="text-center">
-          <div class="text-2xl font-bold text-success mb-2">${Number(conversionRate).toFixed(2)}%</div>
-          <p class="text-sm text-muted">Conversion Rate</p>
-        </div>
-      </div>
-      <div class="mt-6 p-4 bg-gray-50 rounded">
-        <h4 class="font-semibold mb-2">Performance Summary</h4>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
-          <div>
-            <p class="text-muted">Product Views: <span class="font-medium">${productViews}</span></p>
-            <p class="text-muted">Add to Cart: <span class="font-medium">${addToCart}</span></p>
-          </div>
-          <div>
-            <p class="text-muted">Average Order Value: <span class="font-medium">$${Number(avgOrderValue).toFixed(2)}</span></p>
-            <p class="text-muted">Total Clicks: <span class="font-medium">${totalClicks}</span></p>
-          </div>
-        </div>
-      </div>
-    `;
-
-  } catch (error) {
-    console.error('Error loading analytics:', error)
-    page.querySelector('#analytics-chart').innerHTML = `
-      <div class="text-center py-8">
-        <p class="text-danger">Failed to load analytics data</p>
-        <button class="btn btn-outline mt-2" onclick="location.reload()">
-          <i class="fa-solid fa-refresh mr-2"></i>
-          Retry
-        </button>
-      </div>
-    `
-  }
-}
 
 /**
  * Load AI insights
@@ -743,8 +658,7 @@ function setupEventListeners(page, storeId) {
   //   location.hash = '#/inventory'
   // })
 
-  // page.querySelector('#view-analytics-btn').addEventListener('click', () => {
-  //   location.hash = '#/analytics'
+  
   // })
 
   page.querySelector('#generate-report-btn').addEventListener('click', () => {

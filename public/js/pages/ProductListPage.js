@@ -1,8 +1,17 @@
 import { createElementFromHTML, showToast } from "../utils/helpers.js"
 import { productService } from "../services/api.js"
 import { ProductCard } from "../components/ProductCard.js"
+import store from "../state/store.js"
 
 export default function ProductListPage() {
+  // Check if user is store owner and restrict access
+  const { user } = store.getState()
+  if (user && user.role === 'store_owner') {
+    // Store owners cannot browse other stores' products
+    location.hash = '/products-management'
+    return
+  }
+
   const page = createElementFromHTML(`
         <div class="min-h-screen bg-gray-50">
 
@@ -300,6 +309,14 @@ function initializeProductList(page) {
   // Load products
   async function loadProducts() {
     try {
+      // Check if user is store owner and restrict access
+      const { user } = store.getState()
+      if (user && user.role === 'store_owner') {
+        // Store owners can only see their own products, redirect to product management
+        location.hash = '/products-management'
+        return
+      }
+
       // Build query parameters
       const params = new URLSearchParams()
 
@@ -567,10 +584,10 @@ function initializeProductList(page) {
     const selectHtml = `
       <label class="block text-sm font-medium text-primary mb-2">اختر التصنيف</label>
       <select id="category-select" class="w-full px-3 py-2.5 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-secondary focus:border-secondary bg-white text-gray-700">
-        <option value="">جميع التصنيفات (${totalProducts})</option>
+        <option value="">جميع التصنيفات</option>
         ${categories.map(category => `
           <option value="${category.name}" ${currentFilters.category === category.name ? 'selected' : ''}>
-            ${category.name} (${category.count})
+            ${category.name}
           </option>
         `).join('')}
       </select>
@@ -588,10 +605,10 @@ function initializeProductList(page) {
     const selectHtml = `
       <label class="block text-sm font-medium text-primary mb-2">اختر المتجر</label>
       <select id="store-select" class="w-full px-3 py-2.5 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-secondary focus:border-secondary bg-white text-gray-700">
-        <option value="">جميع المتاجر (${totalProducts})</option>
+        <option value="">جميع المتاجر</option>
         ${stores.map(store => `
           <option value="${store.name}" ${currentFilters.store === store.name ? 'selected' : ''} ${!store.isActive ? 'style=\"color:#b91c1c\"' : ''}>
-            ${store.name}${!store.isActive ? ' (غير نشط)' : ''} (${store.count})
+            ${store.name}${!store.isActive ? ' (غير نشط)' : ''}
           </option>
         `).join('')}
       </select>

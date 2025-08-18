@@ -9,7 +9,7 @@ from django.db.models import Count, Avg, Sum, Q
 from django.utils import timezone
 from django.contrib.auth import get_user_model
 from products.models import Store, Product, Category
-from ai_models.models import UserBehaviorLog
+from ai_models.models import UserBehaviorLo
 from dashboard.models import StoreAnalytics
 
 User = get_user_model()

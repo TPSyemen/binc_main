@@ -14,6 +14,7 @@ window.compareProduct = function(productId, event = null) {
   location.hash = `/compare?product=${encodeURIComponent(productId)}`;
 }
 import { formatCurrency, showToast } from "../utils/helpers.js?v=2024"
+import store from "../state/store.js"
 
 /**
  * Creates a product card component.
@@ -25,6 +26,9 @@ export function ProductCard(product) {
     console.error('ProductCard: No product data provided');
     return '';
   }
+  
+  // Check user authentication status
+  const { isAuthenticated, user } = store.getState()
   
   // Handle backend data structure
   const finalPrice = product.final_price || product.price
@@ -80,30 +84,57 @@ export function ProductCard(product) {
 
         <!-- Action Buttons -->
         <div class="product-card-actions">
-          <button class="action-button ${product.is_liked ? 'wishlist-active' : ''}"
-                  onclick="event.stopPropagation(); toggleWishlist('${productSlug}', event)"
-                  title="Add to Wishlist"
-                  aria-label="Add ${product.name} to wishlist">
-            <i class="fa-solid fa-heart ${product.is_liked ? 'text-red-500' : ''}"></i>
-          </button>
-          <button class="action-button"
-                  onclick="event.stopPropagation(); addToCart('${productSlug}', event)"
-                  title="Add to Cart"
-                  aria-label="Add ${product.name} to cart">
-            <i class="fa-solid fa-shopping-cart"></i>
-          </button>
-          <button class="action-button"
-                  onclick="event.stopPropagation(); quickView('${productSlug}', event)"
-                  title="Quick View"
-                  aria-label="View ${product.name} details">
-            <i class="fa-solid fa-eye"></i>
-          </button>
-          <button class="action-button"
-                  onclick="event.stopPropagation(); compareProduct('${productId}', event)"
-                  title="Compare"
-                  aria-label="Compare ${product.name}">
-            <i class="fa-solid fa-code-compare"></i>
-          </button>
+          ${isAuthenticated ? `
+            <button class="action-button ${product.is_liked ? 'wishlist-active' : ''}"
+                    onclick="event.stopPropagation(); toggleWishlist('${productSlug}', event)"
+                    title="Add to Wishlist"
+                    aria-label="Add ${product.name} to wishlist">
+              <i class="fa-solid fa-heart ${product.is_liked ? 'text-red-500' : ''}"></i>
+            </button>
+            <button class="action-button"
+                    onclick="event.stopPropagation(); addToCart('${productSlug}', event)"
+                    title="Add to Cart"
+                    aria-label="Add ${product.name} to cart">
+              <i class="fa-solid fa-shopping-cart"></i>
+            </button>
+            <button class="action-button"
+                    onclick="event.stopPropagation(); quickView('${productSlug}', event)"
+                    title="Quick View"
+                    aria-label="View ${product.name} details">
+              <i class="fa-solid fa-eye"></i>
+            </button>
+            <button class="action-button"
+                    onclick="event.stopPropagation(); compareProduct('${productId}', event)"
+                    title="Compare"
+                    aria-label="Compare ${product.name}">
+              <i class="fa-solid fa-code-compare"></i>
+            </button>
+          ` : `
+            <button class="action-button opacity-50 cursor-not-allowed"
+                    onclick="event.stopPropagation(); requireLogin('wishlist')"
+                    title="Login required"
+                    aria-label="Login required to add to wishlist">
+              <i class="fa-solid fa-heart"></i>
+            </button>
+            <button class="action-button opacity-50 cursor-not-allowed"
+                    onclick="event.stopPropagation(); requireLogin('cart')"
+                    title="Login required"
+                    aria-label="Login required to add to cart">
+              <i class="fa-solid fa-shopping-cart"></i>
+            </button>
+            <button class="action-button opacity-50 cursor-not-allowed"
+                    onclick="event.stopPropagation(); requireLogin('view')"
+                    title="Login required"
+                    aria-label="Login required for quick view">
+              <i class="fa-solid fa-eye"></i>
+            </button>
+            <button class="action-button opacity-50 cursor-not-allowed"
+                    onclick="event.stopPropagation(); requireLogin('compare')"
+                    title="Login required"
+                    aria-label="Login required to compare">
+              <i class="fa-solid fa-code-compare"></i>
+            </button>
+          `}
         </div>
       </div>
 
@@ -421,4 +452,31 @@ window.quickView = function(productSlug, event = null) {
     console.error('Failed to navigate to product:', error)
     showToast('Failed to open product details', 'error')
   }
+}
+
+// Function to handle login requirement for guests
+window.requireLogin = function(action) {
+  let message = 'Please login to continue'
+  
+  switch(action) {
+    case 'wishlist':
+      message = 'Please login to add items to your wishlist'
+      break
+    case 'cart':
+      message = 'Please login to add items to your cart'
+      break
+    case 'view':
+      message = 'Please login to view product details'
+      break
+    case 'compare':
+      message = 'Please login to compare products'
+      break
+  }
+  
+  showToast(message, 'warning')
+  
+  // Redirect to login page after a short delay
+  setTimeout(() => {
+    location.hash = '/login'
+  }, 1500)
 }

@@ -15,6 +15,10 @@ const API_BASE_URL = "http://localhost:8000/api"
 // Flag to use mock API when backend is not available
 let USE_MOCK_API = false
 
+// Token refresh state to prevent multiple simultaneous refresh attempts
+let isRefreshingToken = false
+let refreshPromise = null
+
 /**
  * A wrapper around the native fetch API.
  * - Automatically adds the Authorization header for authenticated requests.
@@ -60,50 +64,90 @@ async function apiFetch(endpoint, options = {}) {
         // Try to refresh token if we have a refresh token and this isn't already a refresh request
         if (refreshToken && !endpoint.includes('/auth/token/refresh/')) {
           try {
-            const refreshResponse = await fetch(`${API_BASE_URL}/auth/token/refresh/`, {
-              method: 'POST',
-              headers: {
-                'Content-Type': 'application/json',
-              },
-              body: JSON.stringify({ refresh: refreshToken }),
-            })
+            // If already refreshing, wait for the existing refresh to complete
+            if (isRefreshingToken && refreshPromise) {
+              await refreshPromise
+              // Retry with the new token
+              const newToken = localStorage.getItem('access_token')
+              if (newToken && newToken !== token) {
+                const retryHeaders = {
+                  ...headers,
+                  Authorization: `Bearer ${newToken}`
+                }
 
-            if (refreshResponse.ok) {
-              const tokenData = await refreshResponse.json()
-              localStorage.setItem('access_token', tokenData.access)
-              if (tokenData.refresh) {
-                localStorage.setItem('refresh_token', tokenData.refresh)
+                const retryResponse = await fetch(`${API_BASE_URL}${endpoint}`, {
+                  ...options,
+                  headers: retryHeaders,
+                })
+
+                if (retryResponse.ok) {
+                  return retryResponse.status === 204 ? null : await retryResponse.json()
+                }
               }
-
-              // Update store with new token
-              store.setState({ token: tokenData.access })
-
-              // Retry the original request with new token
-              const retryHeaders = {
-                ...headers,
-                Authorization: `Bearer ${tokenData.access}`
-              }
-
-              const retryResponse = await fetch(`${API_BASE_URL}${endpoint}`, {
-                ...options,
-                headers: retryHeaders,
+            } else if (!isRefreshingToken) {
+              // Start token refresh
+              isRefreshingToken = true
+              refreshPromise = fetch(`${API_BASE_URL}/auth/token/refresh/`, {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ refresh: refreshToken }),
               })
 
-              if (retryResponse.ok) {
-                return retryResponse.status === 204 ? null : await retryResponse.json()
+              const refreshResponse = await refreshPromise
+
+              if (refreshResponse.ok) {
+                const tokenData = await refreshResponse.json()
+                localStorage.setItem('access_token', tokenData.access)
+                if (tokenData.refresh) {
+                  localStorage.setItem('refresh_token', tokenData.refresh)
+                }
+
+                // Update store with new token
+                store.setState({ token: tokenData.access })
+
+                // Retry the original request with new token
+                const retryHeaders = {
+                  ...headers,
+                  Authorization: `Bearer ${tokenData.access}`
+                }
+
+                const retryResponse = await fetch(`${API_BASE_URL}${endpoint}`, {
+                  ...options,
+                  headers: retryHeaders,
+                })
+
+                if (retryResponse.ok) {
+                  return retryResponse.status === 204 ? null : await retryResponse.json()
+                }
               }
             }
           } catch (refreshError) {
             console.error('Token refresh failed:', refreshError)
+          } finally {
+            isRefreshingToken = false
+            refreshPromise = null
           }
         }
 
         // If refresh failed or no refresh token, logout user
-        showToast("Session expired. Please log in again.", "error")
-        localStorage.removeItem('access_token')
-        localStorage.removeItem('refresh_token')
-        store.setState({ isAuthenticated: false, user: null, token: null })
-        location.hash = "/login"
+        // But only if this is not a background request (to avoid disrupting user experience)
+        const isBackgroundRequest = endpoint.includes('/recommendations/') || endpoint.includes('/dashboard/my-store/');
+        
+        if (!isBackgroundRequest) {
+          showToast("Session expired. Please log in again.", "error")
+          localStorage.removeItem('access_token')
+          localStorage.removeItem('refresh_token')
+          store.setState({ isAuthenticated: false, user: null, token: null })
+          location.hash = "/login"
+        } else {
+          // For background requests, just clear auth state without redirecting
+          console.warn(`Authentication failed for ${endpoint}, clearing auth state`)
+          localStorage.removeItem('access_token')
+          localStorage.removeItem('refresh_token')
+          store.setState({ isAuthenticated: false, user: null, token: null })
+        }
       }
 
       throw new Error(errorData.detail || errorData.message || JSON.stringify(errorData))
@@ -429,20 +473,44 @@ export const dashboardService = {
    * جلب بيانات المتجر الخاص بالمستخدم الحالي
    * يفترض وجود endpoint: /dashboard/my-store/
    */
-  getMyStore: () => apiFetch('/dashboard/my-store/'),
+  getMyStore: async () => {
+    try {
+      return await apiFetch('/dashboard/my-store/');
+    } catch (error) {
+      console.warn('Failed to fetch store info:', error.message);
+      // Return null instead of throwing error to avoid disrupting navbar
+      return null;
+    }
+  },
 }
 
 export const reportsService = {
-  // Report Generation
+  // Enhanced Report Generation
   generateReport: (reportData) =>
     apiFetch("/reports/generate/", {
       method: "POST",
       body: JSON.stringify(reportData),
     }),
+  
+  // Report Management
   getReports: () => apiFetch("/reports/"),
   getReportDetails: (reportId) => apiFetch(`/reports/${reportId}/`),
   getReportStatus: (reportId) => apiFetch(`/reports/${reportId}/status/`),
   downloadReport: (reportId) => apiFetch(`/reports/${reportId}/download/`),
+  deleteReport: (reportId) => apiFetch(`/reports/${reportId}/`, {
+    method: "DELETE"
+  }),
+
+  // Report Templates
+  getReportTemplates: () => apiFetch("/reports/templates/"),
+  createReportFromTemplate: (templateId, parameters) =>
+    apiFetch("/reports/templates/generate/", {
+      method: "POST",
+      body: JSON.stringify({
+        template_id: templateId,
+        parameters: parameters
+      }),
+    }),
 
   // Report Schedules
   getReportSchedules: () => apiFetch("/reports/schedules/"),
@@ -451,6 +519,38 @@ export const reportsService = {
       method: "POST",
       body: JSON.stringify(scheduleData),
     }),
+  updateReportSchedule: (scheduleId, scheduleData) =>
+    apiFetch(`/reports/schedules/${scheduleId}/`, {
+      method: "PATCH",
+      body: JSON.stringify(scheduleData),
+    }),
+  deleteReportSchedule: (scheduleId) =>
+    apiFetch(`/reports/schedules/${scheduleId}/`, {
+      method: "DELETE"
+    }),
+
+  // Analytics & Insights
+  getReportAnalytics: () => apiFetch("/reports/analytics/"),
+  getCustomerInsights: (dateFrom, dateTo) =>
+    apiFetch(`/reports/customer-insights/?date_from=${dateFrom}&date_to=${dateTo}`),
+  getProductAnalytics: (dateFrom, dateTo) =>
+    apiFetch(`/reports/product-analytics/?date_from=${dateFrom}&date_to=${dateTo}`),
+  
+  // Export Functions
+  exportReportToPDF: (reportId) =>
+    apiFetch(`/reports/${reportId}/export/pdf/`),
+  exportReportToExcel: (reportId) =>
+    apiFetch(`/reports/${reportId}/export/excel/`),
+  exportReportToCSV: (reportId) =>
+    apiFetch(`/reports/${reportId}/export/csv/`),
+
+  // Report Sharing
+  shareReport: (reportId, shareData) =>
+    apiFetch(`/reports/${reportId}/share/`, {
+      method: "POST",
+      body: JSON.stringify(shareData),
+    }),
+  getSharedReports: () => apiFetch("/reports/shared/"),
 }
 
 export const promotionsService = {
@@ -496,11 +596,12 @@ export const recommendationService = {
       const response = await apiFetch(`/recommendations/personalized/?${params}`);
       return response;
     } catch (error) {
-      console.warn("Backend unavailable, using mock data:", error.message);
-      if (USE_MOCK_API || error.message === "BACKEND_UNAVAILABLE") {
+      console.warn("Failed to get personalized recommendations:", error.message);
+      if (USE_MOCK_API || error.message === "BACKEND_UNAVAILABLE" || error.message.includes("401")) {
         return await mockRecommendationService.getPersonalizedRecs();
       }
-      throw error;
+      // Return empty recommendations instead of throwing error to avoid disrupting user experience
+      return { recommendations: [], message: "Unable to load personalized recommendations at this time." };
     }
   },
 

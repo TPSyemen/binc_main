@@ -88,10 +88,32 @@ export const router = () => {
       params.query = queryString;
     }
 
-    // Protect dashboard route
-    if (path.startsWith("/dashboard") && !store.getState().isAuthenticated) {
-      location.hash = "/login";
-      return;
+    // Check if this is a protected route
+    const protectedRoutes = ["/dashboard", "/store-dashboard", "/products-management", "/products/add", "/products/edit", "/create-store", "/reports"];
+    const isProtectedRoute = protectedRoutes.some(route => path.startsWith(route));
+    
+    // For protected routes, check authentication with a small delay to allow state initialization
+    if (isProtectedRoute) {
+      // Check if we have tokens in localStorage (quick check)
+      const hasTokens = localStorage.getItem('access_token') || localStorage.getItem('token');
+      
+      if (!hasTokens) {
+        // No tokens at all, redirect to login
+        location.hash = "/login";
+        return;
+      }
+      
+      // If we have tokens but store state isn't ready yet, wait a bit
+      if (!store.getState().isAuthenticated) {
+        // Give the auth system time to initialize
+        await new Promise(resolve => setTimeout(resolve, 100));
+        
+        // Check again after waiting
+        if (!store.getState().isAuthenticated) {
+          location.hash = "/login";
+          return;
+        }
+      }
     }
 
     // Render the page

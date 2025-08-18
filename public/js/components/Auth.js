@@ -32,9 +32,20 @@ export class Auth {
     
     if (accessToken && user) {
       try {
-        // Verify token is still valid by fetching profile
+        // Parse stored user data first
+        const parsedUser = JSON.parse(user)
+        
+        // Set initial state with stored data
+        store.setState({
+          isAuthenticated: true,
+          user: parsedUser,
+          token: accessToken
+        })
+        
+        // Verify token is still valid by fetching profile (in background)
         const profile = await this.getProfile()
         if (profile) {
+          // Update with fresh profile data
           store.setState({
             isAuthenticated: true,
             user: profile,
@@ -43,7 +54,8 @@ export class Auth {
         }
       } catch (error) {
         console.error('Token validation failed:', error)
-        this.logout()
+        // Clear invalid tokens without redirecting
+        this.clearAuthState()
       }
     }
   }
@@ -140,6 +152,20 @@ export class Auth {
   }
 
   /**
+   * Clear authentication state without API call or redirect
+   */
+  clearAuthState() {
+    localStorage.removeItem('access_token')
+    localStorage.removeItem('refresh_token')
+    localStorage.removeItem('user')
+    store.setState({
+      isAuthenticated: false,
+      user: null,
+      token: null
+    })
+  }
+
+  /**
    * User logout
    */
   async logout() {
@@ -156,13 +182,7 @@ export class Auth {
     } catch (error) {
       console.error('Logout error:', error)
       // Even if logout API fails, clear local state
-      localStorage.removeItem('access_token')
-      localStorage.removeItem('refresh_token')
-      store.setState({
-        isAuthenticated: false,
-        user: null,
-        token: null
-      })
+      this.clearAuthState()
     } finally {
       this.isLoading = false
     }
@@ -173,9 +193,15 @@ export class Auth {
    */
   async getProfile() {
     try {
+      // Check if we have a valid token first
+      const token = localStorage.getItem('access_token')
+      if (!token) {
+        throw new Error('No access token available')
+      }
+      
       const response = await authService.getProfile()
       
-      // If user is a store owner, fetch store information
+      // If user is a store owner, fetch store information (but don't fail if it doesn't work)
       if (response.role === 'store_owner') {
         try {
           const { dashboardService } = await import('../services/api.js')
@@ -186,6 +212,7 @@ export class Auth {
           }
         } catch (storeError) {
           console.warn('Failed to fetch store information:', storeError)
+          // Don't fail the whole profile fetch if store info fails
         }
       }
       

@@ -60,6 +60,9 @@ async function loadProductDetails(page, productId) {
 }
 
 function renderProductDetails(page, product) {
+  // Check user authentication status
+  const { isAuthenticated, user } = store.getState()
+  
   // Handle backend data structure
   const finalPrice = product.final_price || product.price
   const originalPrice = product.price
@@ -102,20 +105,33 @@ function renderProductDetails(page, product) {
         <i class="fa-solid fa-comments text-secondary mr-2"></i>
         Reviews
       </h2>
-      <form id="add-review-form" class="mb-6">
-        <div class="flex gap-4 mb-3">
-          <select id="review-rating" class="form-select w-32">
-            <option value="5">★★★★★</option>
-            <option value="4">★★★★</option>
-            <option value="3">★★★</option>
-            <option value="2">★★</option>
-            <option value="1">★</option>
-          </select>
-          <input id="review-comment" type="text" class="form-input flex-1" placeholder="Write your review..." required>
+      ${isAuthenticated ? `
+        <form id="add-review-form" class="mb-6">
+          <div class="flex gap-4 mb-3">
+            <select id="review-rating" class="form-select w-32">
+              <option value="5">★★★★★</option>
+              <option value="4">★★★★</option>
+              <option value="3">★★★</option>
+              <option value="2">★★</option>
+              <option value="1">★</option>
+            </select>
+            <input id="review-comment" type="text" class="form-input flex-1" placeholder="Write your review..." required>
+          </div>
+          <div id="sentiment-result" class="text-xs text-gray-500 mb-2"></div>
+          <button type="submit" class="btn btn-primary">Submit Review</button>
+        </form>
+      ` : `
+        <div class="mb-6 p-4 bg-gray-50 rounded-lg border">
+          <p class="text-gray-600 mb-3">
+            <i class="fa-solid fa-info-circle text-secondary mr-2"></i>
+            Please login to write a review
+          </p>
+          <button class="btn btn-primary" onclick="requireLogin('review')">
+            <i class="fa-solid fa-sign-in-alt mr-2"></i>
+            Login to Review
+          </button>
         </div>
-        <div id="sentiment-result" class="text-xs text-gray-500 mb-2"></div>
-        <button type="submit" class="btn btn-primary">Submit Review</button>
-      </form>
+      `}
       <div id="reviews-list">
         <div id="reviews-skeleton" class="animate-pulse">
           <div class="bg-gray-100 rounded-lg p-4 border mb-3">
@@ -178,9 +194,15 @@ function renderProductDetails(page, product) {
           </div>
           <div class="mb-4 text-gray-700">${product.description || ''}</div>
           <div class="flex items-center gap-4 mb-4">
-            <button class="btn btn-primary" onclick="addToCart('${product.slug}')"><i class="fa-solid fa-shopping-cart mr-2"></i> Add to Cart</button>
-            <button class="btn btn-outline" onclick="addToWishlist('${product.slug}')"><i class="fa-solid fa-heart mr-2"></i> Add to Wishlist</button>
-            <button class="btn btn-outline" onclick="shareProduct()"><i class="fa-solid fa-share-nodes mr-2"></i> Share</button>
+            ${isAuthenticated ? `
+              <button class="btn btn-primary" onclick="addToCart('${product.slug}')"><i class="fa-solid fa-shopping-cart mr-2"></i> Add to Cart</button>
+              <button class="btn btn-outline" onclick="addToWishlist('${product.slug}')"><i class="fa-solid fa-heart mr-2"></i> Add to Wishlist</button>
+              <button class="btn btn-outline" onclick="shareProduct()"><i class="fa-solid fa-share-nodes mr-2"></i> Share</button>
+            ` : `
+              <button class="btn btn-primary opacity-50 cursor-not-allowed" onclick="requireLogin('cart')"><i class="fa-solid fa-shopping-cart mr-2"></i> Login to Add to Cart</button>
+              <button class="btn btn-outline opacity-50 cursor-not-allowed" onclick="requireLogin('wishlist')"><i class="fa-solid fa-heart mr-2"></i> Login to Add to Wishlist</button>
+              <button class="btn btn-outline" onclick="shareProduct()"><i class="fa-solid fa-share-nodes mr-2"></i> Share</button>
+            `}
           </div>
           <div class="flex items-center gap-2 mb-2">
             <span class="mb-4 text-gray-700">Brand:</span>
@@ -623,6 +645,33 @@ function trackRecommendationDisplay(sourceProductId, recommendations) {
 // Generate session ID for tracking
 function generateSessionId() {
   return 'session_' + Date.now() + '_' + Math.random().toString(36).substring(2, 11)
+}
+
+// Function to handle login requirement for guests
+window.requireLogin = function(action) {
+  let message = 'Please login to continue'
+  
+  switch(action) {
+    case 'wishlist':
+      message = 'Please login to add items to your wishlist'
+      break
+    case 'cart':
+      message = 'Please login to add items to your cart'
+      break
+    case 'review':
+      message = 'Please login to write a review'
+      break
+    case 'compare':
+      message = 'Please login to compare products'
+      break
+  }
+  
+  showToast(message, 'warning')
+  
+  // Redirect to login page after a short delay
+  setTimeout(() => {
+    location.hash = '/login'
+  }, 1500)
 }
 
 // Image Gallery Functionality
