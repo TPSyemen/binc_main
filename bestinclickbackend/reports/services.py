@@ -9,7 +9,7 @@ from django.db.models import Count, Avg, Sum, Q
 from django.utils import timezone
 from django.contrib.auth import get_user_model
 from products.models import Store, Product, Category
-from ai_models.models import UserBehaviorLo
+from ai_models.models import UserBehaviorLog
 from dashboard.models import StoreAnalytics
 
 User = get_user_model()
@@ -49,6 +49,38 @@ class ReportGenerationService:
             logger.error(f"Error generating {report_type} report: {str(e)}")
             raise
     
+    def _calculate_smart_revenue_estimate(self, product: Product, store: Store) -> float:
+        """
+        Calculate a smart revenue estimate for a product based on views and store performance.
+        
+        Args:
+            product: The product to estimate revenue for
+            store: The store the product belongs to
+            
+        Returns:
+            Estimated revenue as a float
+        """
+        # Simple estimation based on view count and average conversion rate
+        # This is a placeholder implementation
+        view_count = product.view_count or 0
+        price = product.get_final_price() or 0
+        
+        # Assume a base conversion rate of 2%
+        base_conversion_rate = 0.02
+        
+        # Adjust based on product rating (higher rating = higher conversion)
+        rating_factor = 1.0
+        if product.average_rating:
+            rating_factor = 0.8 + (product.average_rating / 5) * 0.4
+            
+        # Calculate estimated purchases
+        estimated_purchases = view_count * base_conversion_rate * rating_factor
+        
+        # Calculate estimated revenue
+        estimated_revenue = estimated_purchases * price
+        
+        return estimated_revenue
+    
     def _generate_store_performance_report(self, store_id: int, date_from: datetime,
                                          date_to: datetime, parameters: Dict) -> Dict[str, Any]:
         """
@@ -64,7 +96,7 @@ class ReportGenerationService:
         
         # Calculate metrics
         total_views = sum(a.total_views for a in analytics)
-        total_revenue = sum(a.total_revenue for a in analytics)
+        # Removed total_revenue calculation as requested
         avg_conversion_rate = sum(a.conversion_rate for a in analytics) / len(analytics) if analytics else 0
         
         # Get product performance
@@ -90,7 +122,7 @@ class ReportGenerationService:
             },
             'performance_metrics': {
                 'total_views': total_views,
-                'total_revenue': float(total_revenue),
+                # Remove price information as requested
                 'avg_conversion_rate': round(avg_conversion_rate, 2),
                 'period': f"{date_from} to {date_to}"
             },
@@ -99,7 +131,7 @@ class ReportGenerationService:
                     'name': p.name,
                     'views': p.view_count,
                     'rating': p.average_rating,
-                    'revenue_estimate': float(p.get_final_price() * 10)  # Simplified
+                    # Remove revenue estimate as requested
                 }
                 for p in top_products
             ],
@@ -108,7 +140,7 @@ class ReportGenerationService:
                 {
                     'date': str(a.date),
                     'views': a.total_views,
-                    'revenue': float(a.total_revenue),
+                    # Remove revenue information as requested
                     'conversion_rate': a.conversion_rate
                 }
                 for a in analytics
@@ -144,16 +176,21 @@ class ReportGenerationService:
             clicks = behavior.filter(action_type='click').count()
             cart_adds = behavior.filter(action_type='add_to_cart').count()
             
+            # We still calculate revenue estimate for internal use but won't display it
+            revenue_estimate = self._calculate_smart_revenue_estimate(product, store)
+            
             product_data.append({
                 'id': product.id,
                 'name': product.name,
                 'category': product.category.name,
-                'price': float(product.get_final_price()),
+                # Remove price information as requested
                 'rating': product.average_rating,
                 'views': views,
                 'clicks': clicks,
                 'cart_adds': cart_adds,
-                'conversion_rate': (cart_adds / views * 100) if views > 0 else 0
+                'conversion_rate': (cart_adds / views * 100) if views > 0 else 0,
+                # Remove revenue estimate as requested
+                'engagement_score': self._calculate_engagement_score(views, clicks, cart_adds)
             })
         
         # Sort by performance
@@ -165,7 +202,7 @@ class ReportGenerationService:
             'total_products': len(product_data),
             'products': product_data,
             'category_performance': self._analyze_category_performance(product_data),
-            'price_analysis': self._analyze_price_performance(product_data)
+            # Remove price analysis as requested
         }
         
         ai_summary = self._generate_product_analysis_summary(raw_data)
@@ -337,9 +374,7 @@ class ReportGenerationService:
             date__range=[date_from, date_to]
         )
         
-        total_revenue = sum(a.total_revenue for a in analytics)
         total_orders = sum(a.total_orders for a in analytics)
-        avg_order_value = sum(a.average_order_value for a in analytics) / len(analytics) if analytics else 0
         
         # Monthly breakdown
         monthly_data = {}
@@ -347,11 +382,9 @@ class ReportGenerationService:
             month_key = analytics_item.date.strftime('%Y-%m')
             if month_key not in monthly_data:
                 monthly_data[month_key] = {
-                    'revenue': 0,
                     'orders': 0,
                     'days': 0
                 }
-            monthly_data[month_key]['revenue'] += analytics_item.total_revenue
             monthly_data[month_key]['orders'] += analytics_item.total_orders
             monthly_data[month_key]['days'] += 1
         
@@ -359,14 +392,13 @@ class ReportGenerationService:
             'store_name': store.name,
             'period': f"{date_from} to {date_to}",
             'summary': {
-                'total_revenue': float(total_revenue),
+                # Remove revenue information as requested
                 'total_orders': total_orders,
-                'average_order_value': round(avg_order_value, 2),
-                'revenue_per_day': float(total_revenue) / len(analytics) if analytics else 0
+                # Remove price information as requested
             },
             'monthly_breakdown': monthly_data,
-            'top_revenue_products': self._get_top_revenue_products(store),
-            'financial_insights': self._generate_financial_insights(total_revenue, total_orders, avg_order_value)
+            # Remove revenue products as requested
+            'order_insights': self._generate_order_insights(total_orders)
         }
         
         ai_summary = self._generate_financial_summary(raw_data)
@@ -376,6 +408,19 @@ class ReportGenerationService:
             'ai_summary': ai_summary,
             'visualizations': self._generate_financial_visualizations(raw_data)
         }
+        
+    def _generate_order_insights(self, orders: int) -> List[str]:
+        """Generate order insights without price information."""
+        insights = []
+        
+        if orders > 50:
+            insights.append("Healthy order volume shows good customer acquisition")
+        elif orders > 20:
+            insights.append("Moderate order volume indicates growing customer base")
+        else:
+            insights.append("Low order volume suggests need for improved marketing")
+        
+        return insights
     
     # Helper methods for generating AI summaries and insights
     
@@ -385,8 +430,7 @@ class ReportGenerationService:
         store_name = data['store_info']['name']
         
         summary = f"Store Performance Analysis for {store_name}\n\n"
-        summary += f"During the analysis period, {store_name} received {metrics['total_views']} total views "
-        summary += f"and generated ${metrics['total_revenue']:.2f} in revenue. "
+        summary += f"During the analysis period, {store_name} received {metrics['total_views']} total views. "
         summary += f"The average conversion rate was {metrics['avg_conversion_rate']:.2f}%.\n\n"
         
         if data['top_products']:
@@ -396,7 +440,7 @@ class ReportGenerationService:
         
         # Add recommendations
         if metrics['avg_conversion_rate'] < 3:
-            summary += "Recommendation: Focus on improving product descriptions and pricing to increase conversion rates."
+            summary += "Recommendation: Focus on improving product descriptions to increase conversion rates."
         elif metrics['avg_conversion_rate'] > 7:
             summary += "Excellent performance! Consider expanding successful product lines."
         
@@ -489,16 +533,16 @@ class ReportGenerationService:
         summary_data = data['summary']
         store_name = data['store_name']
         
-        summary = f"Financial Summary for {store_name}\n\n"
-        summary += f"Total Revenue: ${summary_data['total_revenue']:.2f}\n"
-        summary += f"Total Orders: {summary_data['total_orders']}\n"
-        summary += f"Average Order Value: ${summary_data['average_order_value']:.2f}\n"
-        summary += f"Daily Revenue Average: ${summary_data['revenue_per_day']:.2f}\n\n"
+        summary = f"Order Summary for {store_name}\n\n"
+        summary += f"Total Orders: {summary_data['total_orders']}\n\n"
         
-        if summary_data['average_order_value'] > 100:
-            summary += "Strong average order value indicates effective upselling strategies."
-        elif summary_data['average_order_value'] < 50:
-            summary += "Consider implementing strategies to increase average order value."
+        # Add insights based on order volume
+        if summary_data['total_orders'] > 100:
+            summary += "Strong order volume indicates effective marketing and customer satisfaction."
+        elif summary_data['total_orders'] > 50:
+            summary += "Good order volume shows steady customer engagement."
+        else:
+            summary += "Consider implementing strategies to increase order volume."
         
         return summary
     
@@ -636,23 +680,54 @@ class ReportGenerationService:
     
     def _generate_performance_visualizations(self, data: Dict) -> Dict:
         """Generate visualization data for performance report."""
+        # Create a version of daily analytics without price information
+        daily_analytics_for_viz = []
+        for day in data.get('daily_analytics', []):
+            day_viz = {
+                'date': day['date'],
+                'views': day['views'],
+                'conversion_rate': day['conversion_rate']
+            }
+            daily_analytics_for_viz.append(day_viz)
+            
+        # Create a version of top products without price information
+        top_products_for_viz = []
+        for product in data.get('top_products', []):
+            product_viz = {
+                'name': product['name'],
+                'views': product['views'],
+                'rating': product['rating']
+            }
+            top_products_for_viz.append(product_viz)
+            
         return {
-            'revenue_chart': {
+            'views_chart': {
                 'type': 'line',
-                'data': data.get('daily_analytics', [])
+                'data': daily_analytics_for_viz
             },
             'product_performance': {
                 'type': 'bar',
-                'data': data.get('top_products', [])
+                'data': top_products_for_viz
             }
         }
     
     def _generate_product_visualizations(self, data: Dict) -> Dict:
         """Generate visualization data for product analysis."""
+        # Create a version of products data without price information
+        products_for_viz = []
+        for product in data.get('products', [])[:10]:
+            product_viz = {
+                'name': product['name'],
+                'views': product['views'],
+                'conversion_rate': product['conversion_rate'],
+                'engagement_score': product['engagement_score']
+            }
+            products_for_viz.append(product_viz)
+            
         return {
             'conversion_rates': {
                 'type': 'bar',
-                'data': data.get('products', [])[:10]
+                'data': products_for_viz
             },
             'category_performance': {
                 'type': 'pie',
@@ -698,12 +773,41 @@ class ReportGenerationService:
     def _generate_financial_visualizations(self, data: Dict) -> Dict:
         """Generate visualization data for financial report."""
         return {
-            'monthly_revenue': {
+            'monthly_orders': {
                 'type': 'bar',
                 'data': data.get('monthly_breakdown', {})
             },
-            'revenue_sources': {
-                'type': 'pie',
-                'data': data.get('top_revenue_products', [])
+            'order_insights': {
+                'type': 'text',
+                'data': data.get('order_insights', [])
             }
         }
+        
+    def _calculate_engagement_score(self, views: int, clicks: int, cart_adds: int) -> float:
+        """
+        Calculate an engagement score based on user interactions.
+        
+        Args:
+            views: Number of product views
+            clicks: Number of product clicks
+            cart_adds: Number of times product was added to cart
+            
+        Returns:
+            Engagement score as a float
+        """
+        # Simple weighted scoring
+        # Views are worth 1 point, clicks 3 points, cart adds 10 points
+        if views == 0:
+            return 0
+            
+        base_score = views + (clicks * 3) + (cart_adds * 10)
+        
+        # Normalize by views to get a per-view engagement score
+        normalized_score = base_score / views
+        
+        # Scale to a 0-100 range for easier interpretation
+        # Assuming a "perfect" score would be if every view resulted in a cart add
+        # which would give a normalized score of 11 (1 + 0 + 10)
+        scaled_score = min(100, normalized_score * 9)
+        
+        return round(scaled_score, 2)

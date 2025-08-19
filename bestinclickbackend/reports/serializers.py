@@ -61,7 +61,7 @@ class GeneratedReportSerializer(serializers.ModelSerializer):
         model = GeneratedReport
         fields = [
             'id', 'report_type', 'report_type_display', 'store', 'store_name',
-            'date_from', 'date_to', 'parameters', 'ai_summary_text',
+            'date_from', 'date_to', 'parameters', 'ai_summary_text', 'detailed_report_text',
             'visualizations', 'status', 'generated_at', 'completed_at',
             'download_count', 'last_accessed'
         ]

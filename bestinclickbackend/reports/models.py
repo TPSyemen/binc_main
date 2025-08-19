@@ -47,6 +47,10 @@ class GeneratedReport(models.Model):
     ai_summary_text = models.TextField(
         help_text="AI-generated narrative summary of key insights and trends"
     )
+    detailed_report_text = models.TextField(
+        null=True, blank=True,
+        help_text="Detailed narrative report with comprehensive analysis"
+    )
     visualizations = models.JSONField(
         null=True,
         blank=True,

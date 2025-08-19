@@ -24,6 +24,36 @@ export default function ReportsPage() {
         <h1 class="text-4xl font-extrabold mb-2">📊 Reports Center</h1>
         <p class="text-muted">Generate comprehensive reports with detailed analysis and customer insights</p>
       </div>
+
+      <!-- Report Templates Tab -->
+      <div id="templates-tab" class="tab-content">
+        <div class="card p-6">
+          <h2 class="text-xl font-bold mb-4">📄 Report Templates</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="border rounded-lg p-4 hover:shadow-md transition-shadow">
+              <h3 class="font-bold mb-2">📈 Weekly Performance</h3>
+              <p class="text-sm text-muted mb-4">Comprehensive weekly analysis with customer insights</p>
+              <button class="btn btn-outline btn-sm w-full" onclick="useTemplate('weekly_performance')">
+                Use Template
+              </button>
+            </div>
+            <div class="border rounded-lg p-4 hover:shadow-md transition-shadow">
+              <h3 class="font-bold mb-2">📊 Monthly Summary</h3>
+              <p class="text-sm text-muted mb-4">Monthly business summary with trends analysis</p>
+              <button class="btn btn-outline btn-sm w-full" onclick="useTemplate('monthly_summary')">
+                Use Template
+              </button>
+            </div>
+            <div class="border rounded-lg p-4 hover:shadow-md transition-shadow">
+              <h3 class="font-bold mb-2">👥 Customer Analysis</h3>
+              <p class="text-sm text-muted mb-4">Deep dive into customer behavior and preferences</p>
+              <button class="btn btn-outline btn-sm w-full" onclick="useTemplate('customer_analysis')">
+                Use Template
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
       
       <!-- Navigation Tabs -->
       <div class="mb-8">
@@ -123,36 +153,6 @@ export default function ReportsPage() {
             <div class="text-center py-8">
               <div class="loader"></div>
               <p class="text-muted mt-2">Loading report history...</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Report Templates Tab -->
-      <div id="templates-tab" class="tab-content">
-        <div class="card p-6">
-          <h2 class="text-xl font-bold mb-4">📄 Report Templates</h2>
-          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <div class="border rounded-lg p-4 hover:shadow-md transition-shadow">
-              <h3 class="font-bold mb-2">📈 Weekly Performance</h3>
-              <p class="text-sm text-muted mb-4">Comprehensive weekly analysis with customer insights</p>
-              <button class="btn btn-outline btn-sm w-full" onclick="useTemplate('weekly_performance')">
-                Use Template
-              </button>
-            </div>
-            <div class="border rounded-lg p-4 hover:shadow-md transition-shadow">
-              <h3 class="font-bold mb-2">📊 Monthly Summary</h3>
-              <p class="text-sm text-muted mb-4">Monthly business summary with trends analysis</p>
-              <button class="btn btn-outline btn-sm w-full" onclick="useTemplate('monthly_summary')">
-                Use Template
-              </button>
-            </div>
-            <div class="border rounded-lg p-4 hover:shadow-md transition-shadow">
-              <h3 class="font-bold mb-2">👥 Customer Analysis</h3>
-              <p class="text-sm text-muted mb-4">Deep dive into customer behavior and preferences</p>
-              <button class="btn btn-outline btn-sm w-full" onclick="useTemplate('customer_analysis')">
-                Use Template
-              </button>
             </div>
           </div>
         </div>
@@ -293,12 +293,19 @@ function renderDetailedReport(report) {
 
   // Executive Summary
   if (report.ai_summary_text) {
+    // Format the summary text with better styling
+    const formattedSummary = report.ai_summary_text
+      .replace(/\n\n/g, '</p><p class="my-2">')
+      .replace(/\n/g, '<br>');
+      
     html += `
       <div class="card p-6">
-        <h3 class="text-xl font-bold mb-4">📋 Executive Summary</h3>
+        <h3 class="text-xl font-bold mb-4 flex items-center">
+          <span class="text-indigo-600 mr-2">📋</span> Executive Summary
+        </h3>
         <div class="prose max-w-none">
-          <div class="bg-blue-50 border-l-4 border-blue-400 p-4 rounded">
-            ${report.ai_summary_text.replace(/\n/g, '<br>')}
+          <div class="bg-gradient-to-r from-indigo-50 to-blue-50 border-l-4 border-indigo-500 p-5 rounded-lg shadow-sm">
+            <p class="text-gray-800 leading-relaxed">${formattedSummary}</p>
           </div>
         </div>
       </div>
@@ -306,12 +313,30 @@ function renderDetailedReport(report) {
   }
 
   // Detailed Text Analysis
-  if (report.detailed_analysis) {
+  if (report.detailed_report_text) {
+    // Process markdown-like formatting
+    let formattedText = report.detailed_report_text
+      // Format headings
+      .replace(/^# (.*?)$/gm, '<h1 class="text-2xl font-bold mt-4 mb-2 text-blue-800">$1</h1>')
+      .replace(/^## (.*?)$/gm, '<h2 class="text-xl font-bold mt-4 mb-2 text-blue-700">$1</h2>')
+      .replace(/^### (.*?)$/gm, '<h3 class="text-lg font-bold mt-3 mb-2 text-blue-600">$1</h3>')
+      // Format lists
+      .replace(/^- (.*?)$/gm, '<li class="ml-6 list-disc">$1</li>')
+      .replace(/^\d+\. (.*?)$/gm, '<li class="ml-6 list-decimal">$1</li>')
+      // Format indented text (usually details under list items)
+      .replace(/^   (.*?)$/gm, '<p class="ml-8 text-gray-700">$1</p>')
+      // Add paragraph breaks
+      .replace(/\n\n/g, '</p><p class="my-2">')
+      // Convert remaining newlines to breaks
+      .replace(/\n/g, '<br>');
+    
     html += `
-      <div class="card p-6">
-        <h3 class="text-xl font-bold mb-4">📄 Detailed Analysis</h3>
-        <div class="prose max-w-none">
-          ${report.detailed_analysis.replace(/\n/g, '<br>')}
+      <div class="card p-6 mt-6">
+        <h3 class="text-xl font-bold mb-4 flex items-center">
+          <span class="text-blue-600 mr-2">📄</span> Detailed Analysis
+        </h3>
+        <div class="prose max-w-none bg-white p-4 rounded-lg shadow-inner">
+          ${formattedText}
         </div>
       </div>
     `;

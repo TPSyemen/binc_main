@@ -7663,3 +7663,78 @@ ERROR 2025-08-18 06:58:15,711 log 2684 12440 Internal Server Error: /api/reports
 INFO 2025-08-18 07:12:48,123 autoreload 2684 8928 C:\Users\maaab\OneDrive\Documents\GitHub\binc_main\bestinclickbackend\reports\services.py changed, reloading.
 INFO 2025-08-18 07:12:57,719 autoreload 9912 21224 Watching for file changes with StatReloader
 INFO 2025-08-18 07:21:00,087 autoreload 14872 19764 Watching for file changes with StatReloader
+INFO 2025-08-18 07:22:11,080 autoreload 14872 19764 C:\Users\maaab\OneDrive\Documents\GitHub\binc_main\bestinclickbackend\reports\services.py changed, reloading.
+INFO 2025-08-18 07:22:15,896 autoreload 18448 19840 Watching for file changes with StatReloader
+INFO 2025-08-19 08:28:39,396 autoreload 9100 18276 Watching for file changes with StatReloader
+INFO 2025-08-19 08:31:37,939 views 9100 5792 User logged in: alio
+ERROR 2025-08-19 08:31:50,011 services 9100 16824 Error generating store_performance report: 'ReportGenerationService' object has no attribute '_calculate_smart_revenue_estimate'
+ERROR 2025-08-19 08:31:50,044 views 9100 16824 Error generating report: 'ReportGenerationService' object has no attribute '_calculate_smart_revenue_estimate'
+Traceback:
+Traceback (most recent call last):
+  File "C:\Users\maaab\OneDrive\Documents\GitHub\binc_main\bestinclickbackend\reports\views.py", line 89, in create
+    report_data = report_service.generate_report(
+        report_type=report.report_type,
+    ...<4 lines>...
+        parameters=report.parameters
+    )
+  File "C:\Users\maaab\OneDrive\Documents\GitHub\binc_main\bestinclickbackend\reports\services.py", line 34, in generate_report
+    return self._generate_store_performance_report(store_id, date_from, date_to, parameters)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\maaab\OneDrive\Documents\GitHub\binc_main\bestinclickbackend\reports\services.py", line 102, in _generate_store_performance_report
+    'revenue_estimate': float(self._calculate_smart_revenue_estimate(p, store))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'ReportGenerationService' object has no attribute '_calculate_smart_revenue_estimate'
+
+ERROR 2025-08-19 08:31:50,073 log 9100 16824 Internal Server Error: /api/reports/generate/
+INFO 2025-08-19 08:35:43,211 autoreload 9100 18276 C:\Users\maaab\OneDrive\Documents\GitHub\binc_main\bestinclickbackend\reports\services.py changed, reloading.
+INFO 2025-08-19 08:35:50,566 autoreload 18048 17092 Watching for file changes with StatReloader
+ERROR 2025-08-19 08:36:33,356 services 18048 19396 Error generating store_performance report: 'total_revenue'
+ERROR 2025-08-19 08:36:33,360 views 18048 19396 Error generating report: 'total_revenue'
+Traceback:
+Traceback (most recent call last):
+  File "C:\Users\maaab\OneDrive\Documents\GitHub\binc_main\bestinclickbackend\reports\views.py", line 89, in create
+    report_data = report_service.generate_report(
+        report_type=report.report_type,
+    ...<4 lines>...
+        parameters=report.parameters
+    )
+  File "C:\Users\maaab\OneDrive\Documents\GitHub\binc_main\bestinclickbackend\reports\services.py", line 34, in generate_report
+    return self._generate_store_performance_report(store_id, date_from, date_to, parameters)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\maaab\OneDrive\Documents\GitHub\binc_main\bestinclickbackend\reports\services.py", line 151, in _generate_store_performance_report
+    ai_summary = self._generate_store_performance_summary(raw_data)
+  File "C:\Users\maaab\OneDrive\Documents\GitHub\binc_main\bestinclickbackend\reports\services.py", line 426, in _generate_store_performance_summary
+    summary += f"and generated ${metrics['total_revenue']:.2f} in revenue. "
+                                 ~~~~~~~^^^^^^^^^^^^^^^^^
+KeyError: 'total_revenue'
+
+ERROR 2025-08-19 08:36:33,388 log 18048 19396 Internal Server Error: /api/reports/generate/
+INFO 2025-08-19 08:37:04,847 autoreload 18048 17092 C:\Users\maaab\OneDrive\Documents\GitHub\binc_main\bestinclickbackend\reports\services.py changed, reloading.
+INFO 2025-08-19 08:37:11,149 autoreload 22224 4496 Watching for file changes with StatReloader
+INFO 2025-08-19 08:37:51,793 autoreload 22224 4496 C:\Users\maaab\OneDrive\Documents\GitHub\binc_main\bestinclickbackend\reports\services.py changed, reloading.
+INFO 2025-08-19 08:37:57,178 autoreload 19636 18488 Watching for file changes with StatReloader
+INFO 2025-08-19 08:38:42,990 autoreload 19636 18488 C:\Users\maaab\OneDrive\Documents\GitHub\binc_main\bestinclickbackend\reports\services.py changed, reloading.
+INFO 2025-08-19 08:38:51,661 autoreload 19652 22352 Watching for file changes with StatReloader
+INFO 2025-08-19 08:40:30,212 autoreload 15528 9412 Watching for file changes with StatReloader
+INFO 2025-08-19 08:40:47,869 views 19652 18500 User logged out: alio
+INFO 2025-08-19 08:40:57,789 views 19652 15052 User logged in: alio
+INFO 2025-08-19 08:43:00,719 autoreload 19652 22352 C:\Users\maaab\OneDrive\Documents\GitHub\binc_main\bestinclickbackend\reports\models.py changed, reloading.
+INFO 2025-08-19 08:43:02,175 autoreload 15528 9412 C:\Users\maaab\OneDrive\Documents\GitHub\binc_main\bestinclickbackend\reports\models.py changed, reloading.
+INFO 2025-08-19 08:43:07,022 autoreload 14616 9100 Watching for file changes with StatReloader
+INFO 2025-08-19 08:43:08,019 autoreload 12560 12060 Watching for file changes with StatReloader
+INFO 2025-08-19 08:44:19,210 autoreload 14616 9100 C:\Users\maaab\OneDrive\Documents\GitHub\binc_main\bestinclickbackend\reports\views.py changed, reloading.
+INFO 2025-08-19 08:44:21,597 autoreload 12560 12060 C:\Users\maaab\OneDrive\Documents\GitHub\binc_main\bestinclickbackend\reports\views.py changed, reloading.
+INFO 2025-08-19 08:44:32,693 autoreload 18960 15348 Watching for file changes with StatReloader
+INFO 2025-08-19 08:44:32,696 autoreload 21216 14060 Watching for file changes with StatReloader
+INFO 2025-08-19 08:47:44,634 autoreload 21216 14060 C:\Users\maaab\OneDrive\Documents\GitHub\binc_main\bestinclickbackend\reports\views.py changed, reloading.
+INFO 2025-08-19 08:47:46,094 autoreload 18960 15348 C:\Users\maaab\OneDrive\Documents\GitHub\binc_main\bestinclickbackend\reports\views.py changed, reloading.
+INFO 2025-08-19 08:47:50,490 autoreload 20296 18232 Watching for file changes with StatReloader
+INFO 2025-08-19 08:47:51,432 autoreload 15340 16644 Watching for file changes with StatReloader
+INFO 2025-08-19 08:48:57,104 autoreload 18924 8576 Watching for file changes with StatReloader
+INFO 2025-08-19 08:49:37,204 autoreload 17160 21168 Watching for file changes with StatReloader
+INFO 2025-08-19 08:52:49,181 autoreload 17160 21168 C:\Users\maaab\OneDrive\Documents\GitHub\binc_main\bestinclickbackend\reports\services.py changed, reloading.
+INFO 2025-08-19 08:52:56,492 autoreload 10412 4584 Watching for file changes with StatReloader
+INFO 2025-08-19 08:57:58,430 autoreload 22148 17576 Watching for file changes with StatReloader
+INFO 2025-08-19 09:00:15,794 autoreload 10412 4584 C:\Users\maaab\OneDrive\Documents\GitHub\binc_main\bestinclickbackend\reports\views.py changed, reloading.
+INFO 2025-08-19 09:00:20,472 autoreload 8 12208 Watching for file changes with StatReloader
+INFO 2025-08-19 09:00:54,832 autoreload 7780 14828 Watching for file changes with StatReloader
