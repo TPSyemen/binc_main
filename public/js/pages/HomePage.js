@@ -12,7 +12,13 @@ export default function HomePage() {
   // Check user authentication status
   const { isAuthenticated, user } = store.getState()
   const isStoreOwner = user && user.role === 'store_owner'
-  
+
+  // Redirect store owners away from Home
+  if (isStoreOwner) {
+    location.hash = '/store-dashboard';
+    return document.createElement('div');
+  }
+
   // Variables for Load More functionality
   let allRecommendations = [];
   let allNewArrivals = [];

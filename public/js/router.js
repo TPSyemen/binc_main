@@ -88,6 +88,20 @@ export const router = () => {
       params.query = queryString;
     }
 
+    // Restrict store owners from accessing the home page
+    if (path === "/") {
+      try {
+        const state = store.getState();
+        const userRole = state && state.user && state.user.role;
+        if (userRole === "store_owner") {
+          location.hash = "/store-dashboard";
+          return;
+        }
+      } catch (e) {
+        console.error("router: role check failed", e);
+      }
+    }
+
     // Check if this is a protected route
     const protectedRoutes = ["/dashboard", "/store-dashboard", "/products-management", "/products/add", "/products/edit", "/create-store", "/reports"];
     const isProtectedRoute = protectedRoutes.some(route => path.startsWith(route));
