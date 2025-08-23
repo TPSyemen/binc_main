@@ -462,6 +462,10 @@ export const dashboardService = {
       method: "PATCH",
       body: JSON.stringify(productData),
     }),
+  deleteProduct: (slug) =>
+    apiFetch(`/products/${slug}/update/`, {
+      method: "DELETE",
+    }),
   toggleProductStock: (productId) =>
     apiFetch(`/dashboard/products/${productId}/toggle-stock/`, {
       method: "POST",

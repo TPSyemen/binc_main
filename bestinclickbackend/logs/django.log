@@ -7738,3 +7738,206 @@ INFO 2025-08-19 08:57:58,430 autoreload 22148 17576 Watching for file changes wi
 INFO 2025-08-19 09:00:15,794 autoreload 10412 4584 C:\Users\maaab\OneDrive\Documents\GitHub\binc_main\bestinclickbackend\reports\views.py changed, reloading.
 INFO 2025-08-19 09:00:20,472 autoreload 8 12208 Watching for file changes with StatReloader
 INFO 2025-08-19 09:00:54,832 autoreload 7780 14828 Watching for file changes with StatReloader
+INFO 2025-08-21 10:23:27,416 autoreload 7828 2856 Watching for file changes with StatReloader
+WARNING 2025-08-21 10:26:54,108 log 7828 4692 Unauthorized: /api/auth/profile/
+WARNING 2025-08-21 10:26:54,124 log 7828 4692 Unauthorized: /api/auth/profile/
+INFO 2025-08-21 10:27:03,493 views 7828 4692 User logged in: alio
+INFO 2025-08-21 10:31:24,376 views 7828 9556 User logged in: mugahed
+INFO 2025-08-21 10:41:10,292 services 7828 16608 Logged view for product 511
+INFO 2025-08-21 10:41:10,418 services 7828 16608 Logged view for product 509
+INFO 2025-08-21 10:41:10,549 services 7828 13404 Logged view for product 510
+INFO 2025-08-21 10:41:10,647 services 7828 13404 Logged view for product 508
+INFO 2025-08-21 10:41:10,717 services 7828 13404 Logged view for product 512
+INFO 2025-08-21 10:41:20,309 services 7828 17124 Logged view for product 511
+INFO 2025-08-21 10:41:20,365 services 7828 17124 Logged view for product 512
+INFO 2025-08-21 10:41:20,515 services 7828 17124 Logged view for product 509
+INFO 2025-08-21 10:41:20,650 services 7828 17124 Logged view for product 510
+INFO 2025-08-21 10:41:20,762 services 7828 17124 Logged view for product 508
+INFO 2025-08-21 10:41:39,555 services 7828 10752 Logged view for product 506
+INFO 2025-08-21 10:41:39,583 services 7828 10752 Logged view for product 505
+INFO 2025-08-21 10:41:39,617 services 7828 10752 Logged view for product 504
+INFO 2025-08-21 10:41:39,663 services 7828 10752 Logged view for product 507
+INFO 2025-08-21 10:41:39,689 services 7828 10752 Logged view for product 503
+INFO 2025-08-21 10:41:39,717 services 7828 10752 Logged view for product 501
+INFO 2025-08-21 10:41:39,749 services 7828 10752 Logged view for product 502
+INFO 2025-08-21 10:41:39,777 services 7828 10752 Logged view for product 498
+INFO 2025-08-21 10:41:39,804 services 7828 10752 Logged view for product 500
+INFO 2025-08-21 10:41:39,831 services 7828 10752 Logged view for product 499
+INFO 2025-08-21 10:41:40,254 services 7828 10752 Logged view for product 496
+INFO 2025-08-21 10:41:40,281 services 7828 10752 Logged view for product 494
+INFO 2025-08-21 10:41:40,307 services 7828 10752 Logged view for product 497
+INFO 2025-08-21 10:41:40,336 services 7828 10752 Logged view for product 495
+INFO 2025-08-21 10:41:40,363 services 7828 10752 Logged view for product 493
+INFO 2025-08-21 10:41:43,290 services 7828 19048 Logged view for product 417
+INFO 2025-08-21 10:41:43,326 services 7828 19048 Logged view for product 415
+INFO 2025-08-21 10:41:43,366 services 7828 19048 Logged view for product 507
+INFO 2025-08-21 10:41:43,402 services 7828 19048 Logged view for product 506
+INFO 2025-08-21 10:41:43,434 services 7828 19048 Logged view for product 509
+INFO 2025-08-21 10:41:43,469 services 7828 19048 Logged view for product 505
+INFO 2025-08-21 10:41:43,501 services 7828 19048 Logged view for product 488
+INFO 2025-08-21 10:41:43,532 services 7828 19048 Logged view for product 510
+INFO 2025-08-21 10:41:43,564 services 7828 19048 Logged view for product 434
+INFO 2025-08-21 10:41:43,604 services 7828 19048 Logged view for product 504
+INFO 2025-08-21 10:41:43,915 services 7828 19048 Logged view for product 507
+INFO 2025-08-21 10:41:43,948 services 7828 19048 Logged view for product 509
+INFO 2025-08-21 10:41:43,988 services 7828 19048 Logged view for product 505
+INFO 2025-08-21 10:41:44,046 services 7828 19048 Logged view for product 504
+INFO 2025-08-21 10:41:44,080 services 7828 19048 Logged view for product 506
+INFO 2025-08-21 10:41:44,119 services 7828 19048 Logged view for product 508
+INFO 2025-08-21 10:41:44,158 services 7828 19048 Logged view for product 502
+INFO 2025-08-21 10:41:44,189 services 7828 19048 Logged view for product 503
+INFO 2025-08-21 10:41:44,225 services 7828 19048 Logged view for product 510
+INFO 2025-08-21 10:41:44,256 services 7828 19048 Logged view for product 492
+INFO 2025-08-21 10:41:44,944 services 7828 19048 Logged view for product 495
+INFO 2025-08-21 10:41:44,971 services 7828 19048 Logged view for product 494
+INFO 2025-08-21 10:41:45,000 services 7828 19048 Logged view for product 496
+INFO 2025-08-21 10:41:45,033 services 7828 19048 Logged view for product 493
+INFO 2025-08-21 10:41:45,063 services 7828 19048 Logged view for product 497
+INFO 2025-08-21 10:41:45,090 services 7828 19048 Logged view for product 434
+INFO 2025-08-21 10:41:45,124 services 7828 19048 Logged view for product 500
+INFO 2025-08-21 10:41:45,152 services 7828 19048 Logged view for product 491
+INFO 2025-08-21 10:41:45,180 services 7828 19048 Logged view for product 498
+INFO 2025-08-21 10:41:45,210 services 7828 19048 Logged view for product 499
+INFO 2025-08-21 10:43:50,256 services 7828 17252 Logged view for product 509
+INFO 2025-08-21 10:43:50,291 services 7828 17252 Logged view for product 512
+INFO 2025-08-21 10:43:50,322 services 7828 17252 Logged view for product 510
+INFO 2025-08-21 10:43:50,352 services 7828 17252 Logged view for product 511
+INFO 2025-08-21 10:43:50,382 services 7828 17252 Logged view for product 508
+INFO 2025-08-21 10:43:55,676 services 7828 12884 Logged view for product 506
+INFO 2025-08-21 10:43:55,791 services 7828 12884 Logged view for product 503
+INFO 2025-08-21 10:43:56,211 services 7828 17572 Logged view for product 499
+INFO 2025-08-21 10:43:56,244 services 7828 12884 Logged view for product 507
+INFO 2025-08-21 10:43:56,361 services 7828 17572 Logged view for product 501
+INFO 2025-08-21 10:43:56,406 services 7828 12884 Logged view for product 505
+INFO 2025-08-21 10:43:56,506 services 7828 17572 Logged view for product 500
+INFO 2025-08-21 10:43:56,563 services 7828 12884 Logged view for product 504
+INFO 2025-08-21 10:43:56,619 services 7828 17572 Logged view for product 502
+INFO 2025-08-21 10:43:56,673 services 7828 17572 Logged view for product 498
+INFO 2025-08-21 10:43:56,721 services 7828 17572 Logged view for product 497
+INFO 2025-08-21 10:43:56,772 services 7828 17572 Logged view for product 494
+INFO 2025-08-21 10:43:56,824 services 7828 17572 Logged view for product 493
+INFO 2025-08-21 10:43:56,865 services 7828 17572 Logged view for product 496
+INFO 2025-08-21 10:43:56,914 services 7828 17572 Logged view for product 495
+INFO 2025-08-21 10:44:00,268 services 7828 17572 Logged view for product 507
+INFO 2025-08-21 10:44:00,299 services 7828 17572 Logged view for product 452
+INFO 2025-08-21 10:44:00,327 services 7828 17572 Logged view for product 443
+INFO 2025-08-21 10:44:00,360 services 7828 17572 Logged view for product 506
+INFO 2025-08-21 10:44:00,393 services 7828 17572 Logged view for product 509
+INFO 2025-08-21 10:45:02,711 autoreload 7828 2856 C:\Users\maaab\OneDrive\Documents\GitHub\binc_main\bestinclickbackend\products\views.py changed, reloading.
+INFO 2025-08-21 10:45:09,433 autoreload 9956 15692 Watching for file changes with StatReloader
+INFO 2025-08-21 10:46:17,916 views 9956 15420 User logged in: alio
+INFO 2025-08-21 11:03:29,108 services 9956 18192 Logged view for product 507
+INFO 2025-08-21 11:03:34,045 services 9956 18192 Logged view for product 507
+INFO 2025-08-21 11:03:38,971 services 9956 18192 Logged view for product 507
+INFO 2025-08-21 11:03:54,330 services 9956 16344 Logged view for product 508
+INFO 2025-08-21 11:04:51,844 services 9956 15856 Logged view for product 508
+INFO 2025-08-21 11:07:46,206 services 9956 12268 Logged view for product 511
+INFO 2025-08-21 11:08:39,758 views 9956 7904 User logged in: alio
+INFO 2025-08-21 11:09:37,214 views 9956 1172 User logged in: mugahed
+INFO 2025-08-21 11:09:41,965 services 9956 9892 Enhanced search: 'lg c4 oled tv (65-inch)' -> 'lg c4 oled tv (65-inch)'
+INFO 2025-08-21 11:10:06,495 services 9956 18324 Enhanced search: 'lg c4 oled tv (65-inch)' -> 'lg c4 oled tv (65-inch)'
+INFO 2025-08-21 11:10:40,332 views 9956 10492 User logged in: Ahmedo
+INFO 2025-08-21 11:10:42,788 views 9956 10492 User logged in: Ahmedo
+WARNING 2025-08-21 11:19:30,681 log 9956 11796 Not Found: /api/products/509/update/
+WARNING 2025-08-21 11:19:36,102 log 9956 11796 Not Found: /api/products/509/update/
+INFO 2025-08-21 11:21:21,175 autoreload 9956 15692 C:\Users\maaab\OneDrive\Documents\GitHub\binc_main\bestinclickbackend\products\views.py changed, reloading.
+INFO 2025-08-21 11:21:33,158 autoreload 20136 15912 Watching for file changes with StatReloader
+ERROR 2025-08-21 11:22:18,795 log 20136 6604 Internal Server Error: /api/products/510/update/
+Traceback (most recent call last):
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\views\generic\base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\rest_framework\generics.py", line 295, in delete
+    return self.destroy(request, *args, **kwargs)
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\rest_framework\mixins.py", line 95, in destroy
+    instance = self.get_object()
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\rest_framework\generics.py", line 92, in get_object
+    assert lookup_url_kwarg in self.kwargs, (
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Expected view ProductUpdateDeleteView to be called with a URL keyword argument named "pk". Fix your URL conf, or set the `.lookup_field` attribute on the view correctly.
+INFO 2025-08-21 11:23:01,963 autoreload 20136 15912 C:\Users\maaab\OneDrive\Documents\GitHub\binc_main\bestinclickbackend\products\views.py changed, reloading.
+INFO 2025-08-21 11:23:08,767 autoreload 6700 10120 Watching for file changes with StatReloader
+INFO 2025-08-21 11:23:30,673 autoreload 6700 10120 C:\Users\maaab\OneDrive\Documents\GitHub\binc_main\bestinclickbackend\products\views.py changed, reloading.
+INFO 2025-08-21 11:23:35,024 autoreload 16764 18288 Watching for file changes with StatReloader
+ERROR 2025-08-21 11:24:24,120 log 16764 15976 Internal Server Error: /api/products/509/update/
+Traceback (most recent call last):
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\views\generic\base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\rest_framework\generics.py", line 295, in delete
+    return self.destroy(request, *args, **kwargs)
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\rest_framework\mixins.py", line 95, in destroy
+    instance = self.get_object()
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\rest_framework\generics.py", line 92, in get_object
+    assert lookup_url_kwarg in self.kwargs, (
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Expected view ProductUpdateDeleteView to be called with a URL keyword argument named "pk". Fix your URL conf, or set the `.lookup_field` attribute on the view correctly.
+ERROR 2025-08-21 11:25:30,290 log 16764 1236 Internal Server Error: /api/products/509/update/
+Traceback (most recent call last):
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\views\generic\base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\rest_framework\generics.py", line 295, in delete
+    return self.destroy(request, *args, **kwargs)
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\rest_framework\mixins.py", line 95, in destroy
+    instance = self.get_object()
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\rest_framework\generics.py", line 92, in get_object
+    assert lookup_url_kwarg in self.kwargs, (
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Expected view ProductUpdateDeleteView to be called with a URL keyword argument named "pk". Fix your URL conf, or set the `.lookup_field` attribute on the view correctly.
+INFO 2025-08-21 11:25:34,743 autoreload 16764 18288 C:\Users\maaab\OneDrive\Documents\GitHub\binc_main\bestinclickbackend\products\views.py changed, reloading.
+INFO 2025-08-21 11:25:40,644 autoreload 7832 17452 Watching for file changes with StatReloader
+WARNING 2025-08-21 11:26:07,079 log 7832 12204 Not Found: /api/products/510/update/
+WARNING 2025-08-21 11:28:41,125 log 7832 8644 Not Found: /api/products/510/update/
+INFO 2025-08-23 05:06:10,936 views 7832 9968 User logged in: alio
+WARNING 2025-08-23 05:06:23,261 log 7832 10836 Not Found: /api/dashboard/stores/undefined/products/
+WARNING 2025-08-23 05:06:41,440 log 7832 17556 Not Found: /api/dashboard/stores/undefined/products/
+INFO 2025-08-23 05:12:53,071 views 7832 4144 User logged in: alio

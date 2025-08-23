@@ -261,9 +261,9 @@ class ProductCreateView(generics.CreateAPIView):
         serializer.save(store=store)
 
 
-class ProductUpdateView(generics.UpdateAPIView):
+class ProductUpdateDeleteView(generics.RetrieveUpdateDestroyAPIView):
     """
-    Update product (store owners only, own products).
+    Retrieve, update, or delete product (store owners only - own products).
     """
     serializer_class = ProductCreateUpdateSerializer
     permission_classes = [IsAuthenticated, IsStoreOwnerOrReadOnly]

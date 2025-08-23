@@ -25,7 +25,7 @@ urlpatterns = [
     path('', views.ProductListView.as_view(), name='product_list'),
     path('create/', views.ProductCreateView.as_view(), name='product_create'),
     path('<slug:slug>/', views.ProductDetailView.as_view(), name='product_detail'),
-    path('<slug:slug>/update/', views.ProductUpdateView.as_view(), name='product_update'),
+    path('<slug:slug>/update/', views.ProductUpdateDeleteView.as_view(), name='product_update'),
     path('<slug:slug>/similar/', views.similar_products, name='similar_products'),
     path('<slug:slug>/like/', views.toggle_product_like, name='toggle_product_like'),
     

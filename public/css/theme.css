@@ -1,0 +1,257 @@
+/* Theme CSS for Dark Mode and RTL Support */
+
+/* Dark Mode Variables */
+:root {
+  --bg-light: #fafafa;
+  --text-light: #252b42;
+  --card-light: #ffffff;
+  --border-light: #e5e7eb;
+  --muted-light: #6c757d;
+  --primary-light: #252b42;
+  --secondary-light: #23a6f0;
+  
+  /* Keep background white in dark mode as requested */
+  --bg-dark: #ffffff;
+  --text-dark: #333333;
+  --card-dark: #ffffff;
+  --border-dark: #e0e0e0;
+  --muted-dark: #6c757d;
+  --primary-dark: #252b42;
+  --secondary-dark: #23a6f0;
+}
+
+/* Light Mode (Default) */
+body {
+  --bg-color: var(--bg-light);
+  --text-color: var(--text-light);
+  --card-color: var(--card-light);
+  --border-color: var(--border-light);
+  --muted-color: var(--muted-light);
+  --primary-color: var(--primary-light);
+  --secondary-color: var(--secondary-light);
+  
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* Dark Mode */
+body.dark-mode {
+  --bg-color: var(--bg-dark);
+  --text-color: var(--text-dark);
+  --card-color: var(--card-dark);
+  --border-color: var(--border-dark);
+  --muted-color: var(--muted-dark);
+  --primary-color: var(--primary-dark);
+  --secondary-color: var(--secondary-dark);
+}
+
+/* RTL Support */
+body.rtl {
+  direction: rtl;
+  text-align: right;
+}
+
+body.rtl .ml-2 {
+  margin-left: 0;
+  margin-right: 0.5rem;
+}
+
+body.rtl .mr-2 {
+  margin-right: 0;
+  margin-left: 0.5rem;
+}
+
+body.rtl .ml-4 {
+  margin-left: 0;
+  margin-right: 1rem;
+}
+
+body.rtl .mr-4 {
+  margin-right: 0;
+  margin-left: 1rem;
+}
+
+body.rtl .ml-6 {
+  margin-left: 0;
+  margin-right: 1.5rem;
+}
+
+body.rtl .mr-6 {
+  margin-right: 0;
+  margin-left: 1.5rem;
+}
+
+body.rtl .ml-8 {
+  margin-left: 0;
+  margin-right: 2rem;
+}
+
+body.rtl .mr-8 {
+  margin-right: 0;
+  margin-left: 2rem;
+}
+
+/* Dark Mode Specific Styles */
+.dark-mode .card {
+  background-color: var(--card-color);
+  border-color: var(--border-color);
+}
+
+.dark-mode .text-muted {
+  color: var(--muted-color);
+}
+
+.dark-mode .border {
+  border-color: var(--border-color);
+}
+
+.dark-mode .bg-white {
+  background-color: var(--card-color);
+}
+
+.dark-mode .text-gray-700 {
+  color: var(--muted-color);
+}
+
+.dark-mode .text-gray-900 {
+  color: var(--text-color);
+}
+
+.dark-mode .bg-blue-50 {
+  background-color: rgba(59, 130, 246, 0.1);
+}
+
+.dark-mode .bg-gradient-to-r.from-indigo-50.to-blue-50 {
+  background: linear-gradient(to right, rgba(99, 102, 241, 0.1), rgba(59, 130, 246, 0.1));
+}
+
+.dark-mode .border-indigo-500 {
+  border-color: #6366f1;
+}
+
+.dark-mode .border-blue-400 {
+  border-color: #60a5fa;
+}
+
+/* Theme Toggle Button */
+.theme-toggle {
+  position: fixed;
+  top: 80px;
+  right: 20px;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.rtl .theme-toggle {
+  right: auto;
+  left: 20px;
+}
+
+/* Global Theme Toggle Button (for all pages) */
+.global-theme-toggle {
+  position: fixed;
+  top: 120px;
+  right: 20px;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.rtl .global-theme-toggle {
+  right: auto;
+  left: 20px;
+}
+
+/* Theme and Language Toggle Buttons */
+.theme-toggle button,
+.global-theme-toggle button {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+  color: #252b42;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.theme-toggle button:hover,
+.global-theme-toggle button:hover {
+  background-color: #f3f4f6;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.dark-mode .theme-toggle button,
+.dark-mode .global-theme-toggle button {
+  background-color: #ffffff;
+  border-color: #e0e0e0;
+  color: #252b42;
+}
+
+.dark-mode .theme-toggle button:hover,
+.dark-mode .global-theme-toggle button:hover {
+  background-color: #f3f4f6;
+}
+
+.theme-toggle button {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--card-color);
+  border: 1px solid var(--border-color);
+  color: var(--text-color);
+  cursor: pointer;
+  transition: all 0.3s;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.theme-toggle button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Language Specific Fonts */
+body.lang-ar {
+  font-family: 'Cairo', 'Montserrat', sans-serif;
+}
+
+/* Report Specific Styles */
+.dark-mode .prose h1,
+.dark-mode .prose h2,
+.dark-mode .prose h3 {
+  color: var(--secondary-color);
+}
+
+.dark-mode .prose p {
+  color: var(--text-color);
+}
+
+.dark-mode .prose .bg-white {
+  background-color: rgba(30, 30, 30, 0.7);
+}
+
+/* Tab Styles */
+.dark-mode .tab-button {
+  color: var(--muted-color);
+}
+
+.dark-mode .tab-button.active {
+  color: var(--secondary-color);
+  border-color: var(--secondary-color);
+}
+
+.dark-mode .border-b {
+  border-color: var(--border-color);
+}

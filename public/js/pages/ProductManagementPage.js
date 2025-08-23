@@ -16,7 +16,7 @@ export default async function ProductManagementPage() {
     `)
   }
 
-  // Get store information
+  // Get store information 
   let storeId = null;
   let storeName = '';
   try {
@@ -208,6 +208,11 @@ export default async function ProductManagementPage() {
       </div>
     </div>
   `);
+
+  // Save storeId for later reloads
+  page.dataset.storeId = storeId;
+  const container = document.getElementById('page-container');
+  if (container) container.dataset.storeId = storeId;
 
   // Initialize the page
   await initializeProductManagement(page, storeId);
@@ -500,7 +505,7 @@ function renderProductsTable(page, products) {
           <button class="text-primary hover:text-gray-600" onclick="viewProduct('${product.slug || product.id}')" title="View">
             <i class="fa-solid fa-eye"></i>
           </button>
-          <button class="text-danger hover:text-red-600" onclick="deleteProduct('${product.id}')" title="Delete">
+          <button class="text-danger hover:text-red-600" onclick="deleteProduct('${product.slug}')" title="Delete">
             <i class="fa-solid fa-trash"></i>
           </button>
         </div>
@@ -614,9 +619,17 @@ window.viewProduct = function(slug) {
 }
 
 window.deleteProduct = function(productId) {
-  if (confirm('Are you sure you want to delete this product?')) {
-    // TODO: Implement delete functionality
-    showToast('Delete functionality coming soon!', 'info')
+ if (confirm('Are you sure you want to delete this product?')) {
+ dashboardService.deleteProduct(productId)
+ .then(() => {
+ showToast('Product deleted successfully!', 'success')
+ // Reload products after deletion
+ const page = document.querySelector('#page-container') // Assuming #page-container is the main container for the page
+ if (page) {
+ const storeId = page.dataset.storeId // Assuming storeId is stored as a data attribute on the page container
+ loadProducts(page, storeId)
+ }
+      }).catch(error => showToast(`Error deleting product: ${error.message}`, 'error'))
   }
 }
 
