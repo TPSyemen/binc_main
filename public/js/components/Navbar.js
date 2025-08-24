@@ -124,7 +124,7 @@ export function renderNavbar(container) {
                 <div class="flex justify-between items-center py-4">
                     <a href="#/" class="text-2xl font-extrabold text-primary flex items-center gap-2 hover:text-secondary transition-colors">
                         <div class="w-8 h-8 bg-secondary rounded-full flex items-center justify-center text-white text-sm">
-                            <i class="fa-solid fa-shopping-bag"></i>
+                            <<img src="/assets/logo.png" alt="" class="w-full h-full object-cover"> 
                         </div>
                         Best in Click
                     </a>

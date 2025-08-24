@@ -68,7 +68,7 @@ export default function ContactPage() {
                                 </div>
                                 <div>
                                     <h3 class="font-bold">Phone</h3>
-                                    <p class="text-muted">(225) 555-0118</p>
+                                    <p class="text-muted">776468322</p>
                                 </div>
                             </div>
                             
@@ -78,7 +78,7 @@ export default function ContactPage() {
                                 </div>
                                 <div>
                                     <h3 class="font-bold">Email</h3>
-                                    <p class="text-muted">info@bestonclick.com</p>
+                                    <p class="text-muted">ttt.ppp.sss.77@gmail.com.com</p>
                                 </div>
                             </div>
                             
@@ -88,7 +88,7 @@ export default function ContactPage() {
                                 </div>
                                 <div>
                                     <h3 class="font-bold">Address</h3>
-                                    <p class="text-muted">123 Commerce Street<br>Business District, NY 10001</p>
+                                    <p class="text-muted">Yemen<br>Trime</p>
                                 </div>
                             </div>
                         </div>

@@ -493,12 +493,14 @@ class ComparisonService:
                 
                 # Price analysis
                 if 'price' in criteria:
-                    prices = [p.get_final_price() for p in products]
+                    # Use floats to avoid mixing Decimal with float downstream
+                    prices = [float(p.get_final_price()) for p in products]
                     min_price = min(prices)
-                    price_score = (min_price / product.get_final_price()) * 100
-                    product_analysis['scores']['price'] = round(price_score, 1)
+                    current_price = float(product.get_final_price())
+                    price_score = (min_price / current_price) * 100 if current_price > 0 else 0.0
+                    product_analysis['scores']['price'] = round(float(price_score), 1)
                     
-                    if product.get_final_price() == min_price:
+                    if current_price == min_price:
                         product_analysis['strengths'].append('Best price')
                     elif price_score < 70:
                         product_analysis['weaknesses'].append('Higher price')
@@ -530,19 +532,20 @@ class ComparisonService:
             
             # Generate summary and recommendation
             if include_recommendation:
-                best_product = max(
-                    comparison_data['analysis']['products'],
-                    key=lambda p: sum(p['scores'].values()) / len(p['scores'])
-                )
-                
-                comparison_data['analysis']['recommendation'] = {
-                    'product_id': best_product['product_id'],
-                    'reason': 'Best overall value based on selected criteria'
-                }
-                
-                comparison_data['analysis']['summary'] = self._generate_comparison_summary(
-                    comparison_data['analysis']['products']
-                )
+                # Filter out products with no scores to avoid division by zero
+                scored_products = [p for p in comparison_data['analysis']['products'] if p['scores']]
+                if scored_products:
+                    best_product = max(
+                        scored_products,
+                        key=lambda p: sum(p['scores'].values()) / len(p['scores'])
+                    ) if scored_products else None
+                    comparison_data['analysis']['recommendation'] = {
+                        'product_id': best_product['product_id'],
+                        'reason': 'Best overall value based on selected criteria'
+                    }
+                    comparison_data['analysis']['summary'] = self._generate_comparison_summary(scored_products)
+                else:
+                    comparison_data['analysis']['summary'] = 'Comparison completed, but no criteria scores were computed.'
             
             return comparison_data
             
@@ -609,11 +612,15 @@ class ComparisonService:
         Generate AI summary of product comparison.
         """
         try:
-            best_price = min(product_analyses, key=lambda p: p['scores'].get('price', 0))
-            best_rating = max(product_analyses, key=lambda p: p['scores'].get('rating', 0))
+            # Find product with best price and its store
+            best_price_product = min(product_analyses, key=lambda p: p['scores'].get('price', 0))
+            best_price_obj = Product.objects.get(id=best_price_product['product_id'])
             
-            summary = f"Among the compared products, {best_price['name']} offers the best price value, "
-            summary += f"while {best_rating['name']} has the highest customer ratings. "
+            # Find product with best rating and its store
+            best_rating_product = max(product_analyses, key=lambda p: p['scores'].get('rating', 0)) if product_analyses else None
+            
+            summary = f"Among the compared products, {best_price_obj.name} from {best_price_obj.store.name} offers the best price value, " if best_price_obj else ""
+            summary += f"while {best_rating['name']} has the highest customer ratings. " if best_rating else ""
             
             # Add more insights based on scores
             avg_scores = {}
@@ -625,9 +632,9 @@ class ComparisonService:
             
             for criterion, scores in avg_scores.items():
                 avg_score = sum(scores) / len(scores)
-                if avg_score > 80:
-                    summary += f"All products perform well in {criterion}. "
-                elif avg_score < 60:
+                # if avg_score > 80:
+                #     summary += f"All products perform well in {criterion}. "
+                if avg_score < 60: # Changed condition to be more specific to the request
                     summary += f"Consider {criterion} carefully as scores vary significantly. "
             
             return summary

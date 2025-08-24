@@ -7942,3 +7942,836 @@ WARNING 2025-08-23 05:06:23,261 log 7832 10836 Not Found: /api/dashboard/stores/
 WARNING 2025-08-23 05:06:41,440 log 7832 17556 Not Found: /api/dashboard/stores/undefined/products/
 INFO 2025-08-23 05:12:53,071 views 7832 4144 User logged in: alio
 INFO 2025-08-23 05:20:14,824 views 7832 14536 User logged in: alio
+INFO 2025-08-24 09:01:09,719 autoreload 13744 6984 Watching for file changes with StatReloader
+WARNING 2025-08-24 09:03:49,099 log 13744 18608 Unauthorized: /api/auth/profile/
+WARNING 2025-08-24 09:03:49,107 log 13744 18608 Unauthorized: /api/auth/profile/
+INFO 2025-08-24 09:04:48,446 services 13744 6916 Logged view for product 506
+INFO 2025-08-24 09:04:48,570 services 13744 6916 Logged view for product 509
+INFO 2025-08-24 09:04:48,665 services 13744 6916 Logged view for product 505
+INFO 2025-08-24 09:04:48,782 services 13744 6916 Logged view for product 507
+INFO 2025-08-24 09:04:48,906 services 13744 6916 Logged view for product 510
+INFO 2025-08-24 09:04:52,990 services 13744 16416 Logged view for product 502
+INFO 2025-08-24 09:04:53,113 services 13744 16416 Logged view for product 504
+INFO 2025-08-24 09:04:53,215 services 13744 16416 Logged view for product 501
+INFO 2025-08-24 09:04:53,322 services 13744 16416 Logged view for product 500
+INFO 2025-08-24 09:04:53,404 services 13744 16416 Logged view for product 503
+INFO 2025-08-24 09:04:53,574 services 13744 16416 Logged view for product 499
+INFO 2025-08-24 09:04:53,700 services 13744 16416 Logged view for product 498
+INFO 2025-08-24 09:04:53,830 services 13744 16416 Logged view for product 497
+INFO 2025-08-24 09:04:53,939 services 13744 16416 Logged view for product 493
+INFO 2025-08-24 09:04:53,966 services 13744 2904 Logged view for product 495
+INFO 2025-08-24 09:04:54,132 services 13744 16416 Logged view for product 491
+INFO 2025-08-24 09:04:54,180 services 13744 2904 Logged view for product 496
+INFO 2025-08-24 09:04:54,268 services 13744 2904 Logged view for product 494
+INFO 2025-08-24 09:04:54,395 services 13744 2904 Logged view for product 492
+INFO 2025-08-24 09:04:54,527 services 13744 2904 Logged view for product 490
+INFO 2025-08-24 09:04:55,291 services 13744 2904 Logged view for product 505
+INFO 2025-08-24 09:04:55,419 services 13744 2904 Logged view for product 507
+INFO 2025-08-24 09:04:55,559 services 13744 2904 Logged view for product 509
+INFO 2025-08-24 09:04:55,679 services 13744 2904 Logged view for product 504
+INFO 2025-08-24 09:04:55,827 services 13744 2904 Logged view for product 506
+INFO 2025-08-24 09:05:18,117 services 13744 2904 Logged view for product 502
+INFO 2025-08-24 09:05:18,167 services 13744 2904 Logged view for product 510
+INFO 2025-08-24 09:05:18,209 services 13744 2904 Logged view for product 487
+INFO 2025-08-24 09:05:18,243 services 13744 2904 Logged view for product 503
+INFO 2025-08-24 09:05:18,292 services 13744 2904 Logged view for product 434
+INFO 2025-08-24 09:06:03,106 services 13744 2904 Logged view for product 509
+INFO 2025-08-24 09:06:03,141 services 13744 2904 Logged view for product 507
+INFO 2025-08-24 09:06:03,202 services 13744 2904 Logged view for product 505
+INFO 2025-08-24 09:06:03,268 services 13744 2904 Logged view for product 506
+INFO 2025-08-24 09:06:03,352 services 13744 2904 Logged view for product 504
+INFO 2025-08-24 09:06:08,157 services 13744 2904 Logged view for product 493
+INFO 2025-08-24 09:06:08,283 services 13744 2904 Logged view for product 503
+INFO 2025-08-24 09:06:08,449 services 13744 2904 Logged view for product 494
+INFO 2025-08-24 09:06:08,583 services 13744 2904 Logged view for product 499
+INFO 2025-08-24 09:06:08,723 services 13744 2904 Logged view for product 510
+INFO 2025-08-24 09:06:08,951 services 13744 2904 Logged view for product 498
+INFO 2025-08-24 09:06:09,005 services 13744 7500 Logged view for product 502
+INFO 2025-08-24 09:06:09,131 services 13744 7500 Logged view for product 497
+INFO 2025-08-24 09:06:09,360 services 13744 7500 Logged view for product 495
+INFO 2025-08-24 09:06:09,467 services 13744 7500 Logged view for product 496
+INFO 2025-08-24 09:06:09,568 services 13744 7500 Logged view for product 501
+INFO 2025-08-24 09:06:09,667 services 13744 7500 Logged view for product 434
+INFO 2025-08-24 09:06:09,766 services 13744 7500 Logged view for product 500
+INFO 2025-08-24 09:06:09,916 services 13744 7500 Logged view for product 488
+INFO 2025-08-24 09:06:10,006 services 13744 7500 Logged view for product 492
+INFO 2025-08-24 09:07:19,974 views 13744 22252 User logged in: alio
+INFO 2025-08-24 09:11:02,711 views 13744 6548 User logged in: mugahed
+INFO 2025-08-24 09:54:03,796 services 13744 16920 Logged view for product 509
+INFO 2025-08-24 09:54:03,864 services 13744 16920 Logged view for product 507
+INFO 2025-08-24 09:54:03,905 services 13744 16920 Logged view for product 474
+INFO 2025-08-24 09:54:03,968 services 13744 16920 Logged view for product 506
+INFO 2025-08-24 09:54:04,013 services 13744 16920 Logged view for product 427
+INFO 2025-08-24 09:54:04,065 services 13744 16920 Logged view for product 510
+INFO 2025-08-24 09:54:04,122 services 13744 16920 Logged view for product 509
+INFO 2025-08-24 09:54:04,200 services 13744 16920 Logged view for product 502
+INFO 2025-08-24 09:54:04,266 services 13744 16920 Logged view for product 507
+INFO 2025-08-24 09:54:04,309 services 13744 16920 Logged view for product 501
+INFO 2025-08-24 09:54:04,686 services 13744 16920 Logged view for product 506
+INFO 2025-08-24 09:54:04,748 services 13744 16920 Logged view for product 504
+INFO 2025-08-24 09:54:04,812 services 13744 16920 Logged view for product 500
+INFO 2025-08-24 09:54:04,883 services 13744 16920 Logged view for product 503
+INFO 2025-08-24 09:54:04,945 services 13744 16920 Logged view for product 505
+INFO 2025-08-24 09:54:52,664 services 13744 14068 Logged view for product 505
+INFO 2025-08-24 09:54:52,811 services 13744 14068 Logged view for product 507
+INFO 2025-08-24 09:54:52,864 services 13744 14068 Logged view for product 509
+INFO 2025-08-24 09:54:52,911 services 13744 14068 Logged view for product 506
+INFO 2025-08-24 09:54:52,964 services 13744 14068 Logged view for product 504
+INFO 2025-08-24 09:54:53,025 services 13744 14068 Logged view for product 507
+INFO 2025-08-24 09:54:53,068 services 13744 14068 Logged view for product 509
+INFO 2025-08-24 09:54:53,135 services 13744 14068 Logged view for product 434
+INFO 2025-08-24 09:54:53,188 services 13744 14068 Logged view for product 510
+INFO 2025-08-24 09:54:53,243 services 13744 14068 Logged view for product 431
+INFO 2025-08-24 09:54:54,676 services 13744 16920 Logged view for product 504
+INFO 2025-08-24 09:54:54,718 services 13744 16920 Logged view for product 448
+INFO 2025-08-24 09:54:54,765 services 13744 16920 Logged view for product 506
+INFO 2025-08-24 09:54:54,818 services 13744 16920 Logged view for product 488
+INFO 2025-08-24 09:54:54,860 services 13744 16920 Logged view for product 505
+INFO 2025-08-24 09:55:42,829 services 13744 14068 Logged view for product 506
+INFO 2025-08-24 09:55:42,899 services 13744 14068 Logged view for product 507
+INFO 2025-08-24 09:55:42,982 services 13744 14068 Logged view for product 504
+INFO 2025-08-24 09:55:43,060 services 13744 14068 Logged view for product 505
+INFO 2025-08-24 09:55:43,160 services 13744 14068 Logged view for product 509
+INFO 2025-08-24 09:55:43,305 services 13744 14068 Logged view for product 475
+INFO 2025-08-24 09:55:43,385 services 13744 14068 Logged view for product 506
+INFO 2025-08-24 09:55:43,470 services 13744 14068 Logged view for product 488
+INFO 2025-08-24 09:55:43,554 services 13744 14068 Logged view for product 471
+INFO 2025-08-24 09:55:43,642 services 13744 14068 Logged view for product 507
+INFO 2025-08-24 09:55:44,687 services 13744 16920 Logged view for product 505
+INFO 2025-08-24 09:55:44,724 services 13744 16920 Logged view for product 509
+INFO 2025-08-24 09:55:44,780 services 13744 16920 Logged view for product 434
+INFO 2025-08-24 09:55:44,833 services 13744 16920 Logged view for product 504
+INFO 2025-08-24 09:55:44,889 services 13744 16920 Logged view for product 510
+ERROR 2025-08-24 09:55:45,471 services 13744 16920 Error comparing products: division by zero
+ERROR 2025-08-24 09:55:45,471 views 13744 16920 Error comparing products: 'criteria'
+ERROR 2025-08-24 09:55:45,473 log 13744 16920 Internal Server Error: /api/comparisons/products/
+ERROR 2025-08-24 09:57:11,954 services 13744 14068 Error comparing products: division by zero
+ERROR 2025-08-24 09:57:11,980 views 13744 14068 Error comparing products: 'criteria'
+ERROR 2025-08-24 09:57:12,030 log 13744 14068 Internal Server Error: /api/comparisons/products/
+ERROR 2025-08-24 09:59:01,274 services 13744 8776 Error comparing products: division by zero
+ERROR 2025-08-24 09:59:01,279 views 13744 8776 Error comparing products: 'criteria'
+ERROR 2025-08-24 09:59:01,280 log 13744 8776 Internal Server Error: /api/comparisons/products/
+ERROR 2025-08-24 09:59:39,055 services 13744 11408 Error comparing products: division by zero
+ERROR 2025-08-24 09:59:39,056 views 13744 11408 Error comparing products: 'criteria'
+ERROR 2025-08-24 09:59:39,059 log 13744 11408 Internal Server Error: /api/comparisons/products/
+ERROR 2025-08-24 10:00:51,495 services 13744 20488 Error comparing products: division by zero
+ERROR 2025-08-24 10:00:51,528 views 13744 20488 Error comparing products: 'criteria'
+ERROR 2025-08-24 10:00:51,546 log 13744 20488 Internal Server Error: /api/comparisons/products/
+ERROR 2025-08-24 10:05:49,655 services 13744 16612 Error comparing products: division by zero
+ERROR 2025-08-24 10:05:49,692 views 13744 16612 Error comparing products: 'criteria'
+ERROR 2025-08-24 10:05:49,697 log 13744 16612 Internal Server Error: /api/comparisons/products/
+WARNING 2025-08-24 10:05:51,782 log 13744 2956 Not Found: /placeholder.jpg
+ERROR 2025-08-24 10:06:13,991 services 13744 15296 Error comparing products: division by zero
+ERROR 2025-08-24 10:06:14,004 views 13744 15296 Error comparing products: 'criteria'
+ERROR 2025-08-24 10:06:14,005 log 13744 15296 Internal Server Error: /api/comparisons/products/
+WARNING 2025-08-24 10:06:14,371 log 13744 15168 Not Found: /placeholder.jpg
+WARNING 2025-08-24 10:11:07,087 log 13744 10080 Unauthorized: /api/auth/profile/
+WARNING 2025-08-24 10:11:07,133 log 13744 10080 Unauthorized: /api/auth/profile/
+INFO 2025-08-24 10:14:29,683 services 13744 14244 Logged view for product 509
+INFO 2025-08-24 10:14:29,782 services 13744 14244 Logged view for product 505
+INFO 2025-08-24 10:14:29,839 services 13744 14244 Logged view for product 510
+INFO 2025-08-24 10:14:29,914 services 13744 14244 Logged view for product 507
+INFO 2025-08-24 10:14:29,982 services 13744 14244 Logged view for product 506
+INFO 2025-08-24 10:14:30,031 services 13744 14244 Logged view for product 503
+INFO 2025-08-24 10:14:30,091 services 13744 14244 Logged view for product 500
+INFO 2025-08-24 10:14:30,131 services 13744 14244 Logged view for product 502
+INFO 2025-08-24 10:14:30,187 services 13744 14244 Logged view for product 501
+INFO 2025-08-24 10:14:30,260 services 13744 14244 Logged view for product 504
+INFO 2025-08-24 10:14:30,301 services 13744 14244 Logged view for product 496
+INFO 2025-08-24 10:14:30,347 services 13744 14244 Logged view for product 498
+INFO 2025-08-24 10:14:30,381 services 13744 14244 Logged view for product 495
+INFO 2025-08-24 10:14:30,458 services 13744 14244 Logged view for product 499
+INFO 2025-08-24 10:14:30,497 services 13744 14244 Logged view for product 497
+INFO 2025-08-24 10:14:30,579 services 13744 14244 Logged view for product 491
+INFO 2025-08-24 10:14:30,621 services 13744 14244 Logged view for product 492
+INFO 2025-08-24 10:14:30,662 services 13744 14244 Logged view for product 494
+INFO 2025-08-24 10:14:30,700 services 13744 14244 Logged view for product 493
+INFO 2025-08-24 10:14:30,742 services 13744 14244 Logged view for product 490
+INFO 2025-08-24 10:14:30,813 services 13744 14244 Logged view for product 507
+INFO 2025-08-24 10:14:30,852 services 13744 14244 Logged view for product 505
+INFO 2025-08-24 10:14:30,888 services 13744 14244 Logged view for product 506
+INFO 2025-08-24 10:14:30,930 services 13744 14244 Logged view for product 509
+INFO 2025-08-24 10:14:30,969 services 13744 14244 Logged view for product 504
+INFO 2025-08-24 10:14:31,010 services 13744 14244 Logged view for product 502
+INFO 2025-08-24 10:14:31,045 services 13744 14244 Logged view for product 434
+INFO 2025-08-24 10:14:31,097 services 13744 14244 Logged view for product 487
+INFO 2025-08-24 10:14:31,154 services 13744 14244 Logged view for product 510
+INFO 2025-08-24 10:14:31,175 services 13744 18392 Logged view for product 504
+INFO 2025-08-24 10:14:31,219 services 13744 14244 Logged view for product 507
+INFO 2025-08-24 10:14:31,246 services 13744 18392 Logged view for product 503
+INFO 2025-08-24 10:14:31,281 services 13744 14244 Logged view for product 506
+INFO 2025-08-24 10:14:31,344 services 13744 14244 Logged view for product 505
+INFO 2025-08-24 10:14:31,381 services 13744 18392 Logged view for product 495
+INFO 2025-08-24 10:14:31,424 services 13744 14244 Logged view for product 509
+INFO 2025-08-24 10:14:31,459 services 13744 14244 Logged view for product 510
+INFO 2025-08-24 10:14:31,504 services 13744 18392 Logged view for product 493
+INFO 2025-08-24 10:14:31,541 services 13744 14244 Logged view for product 500
+INFO 2025-08-24 10:14:31,578 services 13744 14244 Logged view for product 496
+INFO 2025-08-24 10:14:31,615 services 13744 18392 Logged view for product 503
+INFO 2025-08-24 10:14:31,644 services 13744 14244 Logged view for product 497
+INFO 2025-08-24 10:14:31,673 services 13744 18392 Logged view for product 502
+INFO 2025-08-24 10:14:31,708 services 13744 14244 Logged view for product 494
+INFO 2025-08-24 10:14:31,740 services 13744 18392 Logged view for product 434
+INFO 2025-08-24 10:14:31,759 services 13744 14244 Logged view for product 499
+INFO 2025-08-24 10:14:31,793 services 13744 14244 Logged view for product 488
+INFO 2025-08-24 10:14:31,825 services 13744 14244 Logged view for product 501
+INFO 2025-08-24 10:14:31,860 services 13744 14244 Logged view for product 498
+INFO 2025-08-24 10:14:31,905 services 13744 14244 Logged view for product 492
+INFO 2025-08-24 10:25:55,693 views 13744 12884 User logged in: mugahed
+INFO 2025-08-24 10:26:03,786 services 13744 20868 Logged view for product 506
+INFO 2025-08-24 10:26:03,832 services 13744 20868 Logged view for product 509
+INFO 2025-08-24 10:26:03,873 services 13744 20868 Logged view for product 507
+INFO 2025-08-24 10:26:03,922 services 13744 20868 Logged view for product 505
+INFO 2025-08-24 10:26:03,967 services 13744 20868 Logged view for product 510
+ERROR 2025-08-24 10:26:05,685 services 13744 17220 Error comparing products: unsupported operand type(s) for +: 'float' and 'decimal.Decimal'
+ERROR 2025-08-24 10:26:05,688 views 13744 17220 Error comparing products: 'criteria'
+ERROR 2025-08-24 10:26:05,689 log 13744 17220 Internal Server Error: /api/comparisons/products/
+INFO 2025-08-24 10:27:47,371 autoreload 13744 6984 C:\Users\maaab\OneDrive\Documents\GitHub\binc_main\bestinclickbackend\ai_models\services.py changed, reloading.
+INFO 2025-08-24 10:28:01,754 autoreload 13264 6828 Watching for file changes with StatReloader
+INFO 2025-08-24 10:29:00,822 views 13264 1920 User logged in: mugahed
+INFO 2025-08-24 10:29:07,797 services 13264 1920 Logged view for product 509
+INFO 2025-08-24 10:29:07,834 services 13264 1920 Logged view for product 507
+INFO 2025-08-24 10:29:07,879 services 13264 1920 Logged view for product 510
+INFO 2025-08-24 10:29:07,937 services 13264 1920 Logged view for product 505
+INFO 2025-08-24 10:29:07,977 services 13264 1920 Logged view for product 506
+INFO 2025-08-24 10:31:33,992 autoreload 13264 6828 C:\Users\maaab\OneDrive\Documents\GitHub\binc_main\bestinclickbackend\ai_models\services.py changed, reloading.
+INFO 2025-08-24 10:31:42,545 autoreload 12876 21804 Watching for file changes with StatReloader
+INFO 2025-08-24 10:34:50,983 autoreload 12876 21804 C:\Users\maaab\OneDrive\Documents\GitHub\binc_main\bestinclickbackend\ai_models\services.py changed, reloading.
+INFO 2025-08-24 10:34:58,840 autoreload 12592 18516 Watching for file changes with StatReloader
+ERROR 2025-08-24 10:35:30,814 services 12592 20424 Error generating comparison summary: name 'best_rating' is not defined
+ERROR 2025-08-24 10:36:12,689 services 12592 10420 Error generating comparison summary: name 'best_rating' is not defined
+ERROR 2025-08-24 10:36:31,072 services 12592 11744 Error generating comparison summary: name 'best_rating' is not defined
+ERROR 2025-08-24 10:36:47,805 services 12592 22312 Error generating comparison summary: name 'best_rating' is not defined
+ERROR 2025-08-24 10:37:10,926 services 12592 5204 Error generating comparison summary: name 'best_rating' is not defined
+ERROR 2025-08-24 10:37:20,197 services 12592 7128 Error generating comparison summary: name 'best_rating' is not defined
+ERROR 2025-08-24 10:37:57,643 services 12592 14160 Error generating comparison summary: name 'best_rating' is not defined
+INFO 2025-08-24 10:38:11,580 services 12592 5204 Logged view for product 505
+INFO 2025-08-24 10:38:11,664 services 12592 5204 Logged view for product 509
+INFO 2025-08-24 10:38:11,788 services 12592 5204 Logged view for product 510
+INFO 2025-08-24 10:38:12,027 services 12592 5204 Logged view for product 507
+INFO 2025-08-24 10:38:12,288 services 12592 5204 Logged view for product 506
+INFO 2025-08-24 10:38:15,543 services 12592 14160 Logged view for product 503
+INFO 2025-08-24 10:38:15,625 services 12592 14160 Logged view for product 501
+INFO 2025-08-24 10:38:15,705 services 12592 14160 Logged view for product 504
+INFO 2025-08-24 10:38:15,763 services 12592 14160 Logged view for product 502
+INFO 2025-08-24 10:38:15,824 services 12592 14160 Logged view for product 500
+INFO 2025-08-24 10:38:15,913 services 12592 14160 Logged view for product 497
+INFO 2025-08-24 10:38:15,979 services 12592 14160 Logged view for product 498
+INFO 2025-08-24 10:38:16,029 services 12592 14160 Logged view for product 496
+INFO 2025-08-24 10:38:16,085 services 12592 14160 Logged view for product 495
+INFO 2025-08-24 10:38:16,138 services 12592 14160 Logged view for product 499
+INFO 2025-08-24 10:38:16,524 services 12592 14160 Logged view for product 490
+INFO 2025-08-24 10:38:16,575 services 12592 14160 Logged view for product 492
+INFO 2025-08-24 10:38:16,635 services 12592 14160 Logged view for product 491
+INFO 2025-08-24 10:38:16,692 services 12592 14160 Logged view for product 493
+INFO 2025-08-24 10:38:16,742 services 12592 14160 Logged view for product 494
+INFO 2025-08-24 10:38:17,189 services 12592 14160 Logged view for product 409
+INFO 2025-08-24 10:38:17,232 services 12592 14160 Logged view for product 506
+INFO 2025-08-24 10:38:17,285 services 12592 14160 Logged view for product 507
+INFO 2025-08-24 10:38:17,346 services 12592 14160 Logged view for product 509
+INFO 2025-08-24 10:38:17,408 services 12592 14160 Logged view for product 411
+INFO 2025-08-24 10:38:17,465 services 12592 14160 Logged view for product 488
+INFO 2025-08-24 10:38:17,560 services 12592 14160 Logged view for product 504
+INFO 2025-08-24 10:38:17,620 services 12592 14160 Logged view for product 510
+INFO 2025-08-24 10:38:17,673 services 12592 14160 Logged view for product 505
+INFO 2025-08-24 10:38:17,731 services 12592 14160 Logged view for product 434
+INFO 2025-08-24 10:38:18,740 services 12592 14160 Logged view for product 506
+INFO 2025-08-24 10:38:18,935 services 12592 14160 Logged view for product 504
+INFO 2025-08-24 10:38:19,159 services 12592 14160 Logged view for product 507
+INFO 2025-08-24 10:38:19,262 services 12592 14160 Logged view for product 505
+INFO 2025-08-24 10:38:19,313 services 12592 14160 Logged view for product 509
+INFO 2025-08-24 10:38:19,459 services 12592 14160 Logged view for product 500
+INFO 2025-08-24 10:38:19,527 services 12592 14160 Logged view for product 503
+INFO 2025-08-24 10:38:19,593 services 12592 14160 Logged view for product 502
+INFO 2025-08-24 10:38:19,658 services 12592 14160 Logged view for product 434
+INFO 2025-08-24 10:38:19,722 services 12592 14160 Logged view for product 510
+INFO 2025-08-24 10:38:22,526 services 12592 14160 Logged view for product 493
+INFO 2025-08-24 10:38:22,573 services 12592 14160 Logged view for product 496
+INFO 2025-08-24 10:38:22,640 services 12592 14160 Logged view for product 497
+INFO 2025-08-24 10:38:22,742 services 12592 14160 Logged view for product 494
+INFO 2025-08-24 10:38:22,819 services 12592 14160 Logged view for product 495
+INFO 2025-08-24 10:38:22,912 services 12592 14160 Logged view for product 488
+INFO 2025-08-24 10:38:22,978 services 12592 14160 Logged view for product 501
+INFO 2025-08-24 10:38:23,038 services 12592 14160 Logged view for product 499
+INFO 2025-08-24 10:38:23,106 services 12592 14160 Logged view for product 492
+INFO 2025-08-24 10:38:23,196 services 12592 14160 Logged view for product 498
+INFO 2025-08-24 10:38:34,140 services 12592 14160 Logged view for product 440
+INFO 2025-08-24 10:38:34,193 services 12592 14160 Logged view for product 441
+INFO 2025-08-24 10:38:34,240 services 12592 14160 Logged view for product 506
+INFO 2025-08-24 10:38:34,291 services 12592 14160 Logged view for product 507
+INFO 2025-08-24 10:38:34,346 services 12592 14160 Logged view for product 509
+INFO 2025-08-24 10:38:34,411 services 12592 14160 Logged view for product 504
+INFO 2025-08-24 10:38:34,493 services 12592 14160 Logged view for product 488
+INFO 2025-08-24 10:38:34,925 services 12592 14160 Logged view for product 505
+INFO 2025-08-24 10:38:35,039 services 12592 14160 Logged view for product 434
+INFO 2025-08-24 10:38:35,083 services 12592 14160 Logged view for product 510
+INFO 2025-08-24 10:38:41,519 services 12592 14160 Logged view for product 419
+INFO 2025-08-24 10:38:41,575 services 12592 14160 Logged view for product 507
+INFO 2025-08-24 10:38:41,657 services 12592 14160 Logged view for product 509
+INFO 2025-08-24 10:38:41,712 services 12592 14160 Logged view for product 506
+INFO 2025-08-24 10:38:41,770 services 12592 14160 Logged view for product 461
+INFO 2025-08-24 10:38:48,516 services 12592 14160 Logged view for product 423
+INFO 2025-08-24 10:38:49,037 services 12592 14160 Logged view for product 506
+INFO 2025-08-24 10:38:49,258 services 12592 14160 Logged view for product 507
+INFO 2025-08-24 10:38:49,352 services 12592 14160 Logged view for product 509
+INFO 2025-08-24 10:38:49,490 services 12592 14160 Logged view for product 425
+INFO 2025-08-24 10:38:49,677 services 12592 14160 Logged view for product 505
+INFO 2025-08-24 10:38:49,872 services 12592 14160 Logged view for product 434
+INFO 2025-08-24 10:38:49,995 services 12592 14160 Logged view for product 504
+INFO 2025-08-24 10:38:50,082 services 12592 14160 Logged view for product 510
+INFO 2025-08-24 10:38:50,157 services 12592 14160 Logged view for product 488
+INFO 2025-08-24 10:39:05,956 services 12592 5204 Logged view for product 505
+INFO 2025-08-24 10:39:06,101 services 12592 5204 Logged view for product 507
+INFO 2025-08-24 10:39:06,222 services 12592 5204 Logged view for product 509
+INFO 2025-08-24 10:39:06,345 services 12592 5204 Logged view for product 504
+INFO 2025-08-24 10:39:06,420 services 12592 5204 Logged view for product 506
+INFO 2025-08-24 10:39:06,508 services 12592 5204 Logged view for product 449
+INFO 2025-08-24 10:39:06,536 services 12592 7128 Logged view for product 509
+INFO 2025-08-24 10:39:06,607 services 12592 5204 Logged view for product 510
+INFO 2025-08-24 10:39:06,635 services 12592 7128 Logged view for product 434
+INFO 2025-08-24 10:39:06,773 services 12592 5204 Logged view for product 507
+INFO 2025-08-24 10:39:06,816 services 12592 7128 Logged view for product 506
+INFO 2025-08-24 10:39:06,931 services 12592 5204 Logged view for product 488
+INFO 2025-08-24 10:39:07,023 services 12592 7128 Logged view for product 428
+INFO 2025-08-24 10:39:07,134 services 12592 5204 Logged view for product 504
+INFO 2025-08-24 10:39:07,172 services 12592 7128 Logged view for product 505
+INFO 2025-08-24 10:39:11,531 services 12592 7128 Logged view for product 490
+INFO 2025-08-24 10:39:11,579 services 12592 7128 Logged view for product 492
+INFO 2025-08-24 10:39:11,649 services 12592 7128 Logged view for product 494
+INFO 2025-08-24 10:39:11,712 services 12592 7128 Logged view for product 493
+INFO 2025-08-24 10:39:11,768 services 12592 7128 Logged view for product 491
+INFO 2025-08-24 10:39:13,447 services 12592 14160 Logged view for product 507
+INFO 2025-08-24 10:39:13,498 services 12592 14160 Logged view for product 450
+INFO 2025-08-24 10:39:13,567 services 12592 14160 Logged view for product 509
+INFO 2025-08-24 10:39:13,715 services 12592 14160 Logged view for product 462
+INFO 2025-08-24 10:39:14,073 services 12592 14160 Logged view for product 506
+INFO 2025-08-24 10:39:14,153 services 12592 14160 Logged view for product 434
+INFO 2025-08-24 10:39:14,394 services 12592 14160 Logged view for product 505
+INFO 2025-08-24 10:39:14,703 services 12592 14160 Logged view for product 510
+INFO 2025-08-24 10:39:14,904 services 12592 14160 Logged view for product 488
+INFO 2025-08-24 10:39:15,100 services 12592 14160 Logged view for product 504
+INFO 2025-08-24 10:39:17,792 services 12592 14160 Logged view for product 510
+INFO 2025-08-24 10:39:17,846 services 12592 14160 Logged view for product 503
+INFO 2025-08-24 10:39:17,906 services 12592 14160 Logged view for product 434
+INFO 2025-08-24 10:39:17,963 services 12592 14160 Logged view for product 500
+INFO 2025-08-24 10:39:18,052 services 12592 14160 Logged view for product 502
+INFO 2025-08-24 10:39:18,111 services 12592 14160 Logged view for product 494
+INFO 2025-08-24 10:39:18,166 services 12592 14160 Logged view for product 495
+INFO 2025-08-24 10:39:18,235 services 12592 14160 Logged view for product 496
+INFO 2025-08-24 10:39:18,301 services 12592 14160 Logged view for product 497
+INFO 2025-08-24 10:39:18,352 services 12592 14160 Logged view for product 493
+INFO 2025-08-24 10:39:21,540 services 12592 14160 Logged view for product 499
+INFO 2025-08-24 10:39:21,668 services 12592 14160 Logged view for product 497
+INFO 2025-08-24 10:39:21,736 services 12592 14160 Logged view for product 498
+INFO 2025-08-24 10:39:21,829 services 12592 14160 Logged view for product 495
+INFO 2025-08-24 10:39:21,888 services 12592 14160 Logged view for product 496
+INFO 2025-08-24 10:39:26,534 services 12592 7128 Logged view for product 503
+INFO 2025-08-24 10:39:26,581 services 12592 7128 Logged view for product 504
+INFO 2025-08-24 10:39:26,620 services 12592 7128 Logged view for product 500
+INFO 2025-08-24 10:39:26,665 services 12592 7128 Logged view for product 502
+INFO 2025-08-24 10:39:26,725 services 12592 7128 Logged view for product 501
+INFO 2025-08-24 10:39:31,243 services 12592 7128 Logged view for product 466
+INFO 2025-08-24 10:39:31,294 services 12592 7128 Logged view for product 507
+INFO 2025-08-24 10:39:31,337 services 12592 7128 Logged view for product 506
+INFO 2025-08-24 10:39:31,520 services 12592 7128 Logged view for product 469
+INFO 2025-08-24 10:39:31,567 services 12592 7128 Logged view for product 509
+INFO 2025-08-24 10:39:31,622 services 12592 7128 Logged view for product 434
+INFO 2025-08-24 10:39:31,669 services 12592 7128 Logged view for product 488
+INFO 2025-08-24 10:39:31,713 services 12592 7128 Logged view for product 504
+INFO 2025-08-24 10:39:31,759 services 12592 7128 Logged view for product 505
+INFO 2025-08-24 10:39:31,801 services 12592 7128 Logged view for product 510
+INFO 2025-08-24 10:39:49,673 services 12592 15688 Logged view for product 491
+INFO 2025-08-24 10:39:49,728 services 12592 5204 Logged view for product 506
+INFO 2025-08-24 10:39:49,794 services 12592 15688 Logged view for product 494
+INFO 2025-08-24 10:39:49,814 services 12592 5204 Logged view for product 505
+INFO 2025-08-24 10:39:49,847 services 12592 15688 Logged view for product 492
+INFO 2025-08-24 10:39:49,924 services 12592 15688 Logged view for product 490
+INFO 2025-08-24 10:39:49,950 services 12592 5204 Logged view for product 507
+INFO 2025-08-24 10:39:50,051 services 12592 15688 Logged view for product 493
+INFO 2025-08-24 10:39:50,080 services 12592 5204 Logged view for product 509
+INFO 2025-08-24 10:39:50,251 services 12592 5204 Logged view for product 504
+INFO 2025-08-24 10:39:50,675 services 12592 5204 Logged view for product 506
+INFO 2025-08-24 10:39:51,002 services 12592 5204 Logged view for product 509
+INFO 2025-08-24 10:39:51,745 services 12592 5204 Logged view for product 480
+INFO 2025-08-24 10:39:52,365 services 12592 5204 Logged view for product 507
+INFO 2025-08-24 10:39:52,646 services 12592 5204 Logged view for product 482
+INFO 2025-08-24 10:39:52,976 services 12592 5204 Logged view for product 510
+INFO 2025-08-24 10:39:53,225 services 12592 5204 Logged view for product 505
+INFO 2025-08-24 10:39:53,511 services 12592 5204 Logged view for product 434
+INFO 2025-08-24 10:39:53,814 services 12592 5204 Logged view for product 488
+INFO 2025-08-24 10:39:54,126 services 12592 5204 Logged view for product 504
+INFO 2025-08-24 10:39:56,409 services 12592 5204 Logged view for product 499
+INFO 2025-08-24 10:39:56,814 services 12592 5204 Logged view for product 495
+INFO 2025-08-24 10:39:57,164 services 12592 5204 Logged view for product 496
+INFO 2025-08-24 10:39:57,467 services 12592 5204 Logged view for product 498
+INFO 2025-08-24 10:39:57,763 services 12592 5204 Logged view for product 497
+INFO 2025-08-24 10:39:58,180 services 12592 5204 Logged view for product 503
+INFO 2025-08-24 10:39:58,691 services 12592 5204 Logged view for product 500
+INFO 2025-08-24 10:39:58,997 services 12592 5204 Logged view for product 501
+INFO 2025-08-24 10:39:59,165 services 12592 7128 Logged view for product 507
+INFO 2025-08-24 10:39:59,335 services 12592 5204 Logged view for product 502
+INFO 2025-08-24 10:39:59,682 services 12592 7128 Logged view for product 505
+INFO 2025-08-24 10:40:00,366 services 12592 7128 Logged view for product 506
+INFO 2025-08-24 10:40:00,401 services 12592 5204 Logged view for product 504
+INFO 2025-08-24 10:40:00,423 services 12592 7128 Logged view for product 510
+INFO 2025-08-24 10:40:00,813 services 12592 5204 Logged view for product 509
+INFO 2025-08-24 10:40:14,107 services 12592 14256 Logged view for product 507
+INFO 2025-08-24 10:40:14,143 services 12592 14256 Logged view for product 507
+INFO 2025-08-24 10:40:39,172 services 12592 19232 Logged view for product 507
+INFO 2025-08-24 10:40:39,744 services 12592 19232 Logged view for product 506
+INFO 2025-08-24 10:40:44,620 services 12592 18760 Logged view for product 510
+INFO 2025-08-24 10:40:44,744 services 12592 18760 Logged view for product 509
+INFO 2025-08-24 10:40:44,900 services 12592 18760 Logged view for product 505
+INFO 2025-08-24 10:41:14,336 services 12592 21084 Logged view for product 503
+INFO 2025-08-24 10:41:14,408 services 12592 21084 Logged view for product 504
+INFO 2025-08-24 10:41:14,518 services 12592 21084 Logged view for product 500
+INFO 2025-08-24 10:41:14,630 services 12592 21084 Logged view for product 501
+INFO 2025-08-24 10:41:14,664 services 12592 21084 Logged view for product 502
+INFO 2025-08-24 10:42:03,181 services 12592 11900 Logged view for product 507
+INFO 2025-08-24 10:42:03,241 services 12592 11900 Logged view for product 505
+INFO 2025-08-24 10:42:03,345 services 12592 11900 Logged view for product 509
+INFO 2025-08-24 10:42:03,484 services 12592 11900 Logged view for product 506
+INFO 2025-08-24 10:42:03,588 services 12592 11900 Logged view for product 496
+INFO 2025-08-24 10:42:03,734 services 12592 11900 Logged view for product 510
+INFO 2025-08-24 10:42:03,819 services 12592 11900 Logged view for product 498
+INFO 2025-08-24 10:42:03,950 services 12592 11900 Logged view for product 495
+INFO 2025-08-24 10:42:04,010 services 12592 11140 Logged view for product 500
+INFO 2025-08-24 10:42:04,088 services 12592 11900 Logged view for product 499
+INFO 2025-08-24 10:42:04,215 services 12592 11140 Logged view for product 503
+INFO 2025-08-24 10:42:04,333 services 12592 11900 Logged view for product 497
+INFO 2025-08-24 10:42:04,377 services 12592 11140 Logged view for product 504
+INFO 2025-08-24 10:42:04,486 services 12592 11140 Logged view for product 502
+INFO 2025-08-24 10:42:04,518 services 12592 11900 Logged view for product 492
+INFO 2025-08-24 10:42:04,679 services 12592 11140 Logged view for product 501
+INFO 2025-08-24 10:42:04,725 services 12592 11900 Logged view for product 494
+INFO 2025-08-24 10:42:04,995 services 12592 11900 Logged view for product 491
+INFO 2025-08-24 10:42:05,086 services 12592 11900 Logged view for product 493
+INFO 2025-08-24 10:42:05,163 services 12592 11900 Logged view for product 507
+INFO 2025-08-24 10:42:05,188 services 12592 9524 Logged view for product 490
+INFO 2025-08-24 10:42:05,257 services 12592 11900 Logged view for product 505
+INFO 2025-08-24 10:42:05,315 services 12592 11900 Logged view for product 504
+INFO 2025-08-24 10:42:05,374 services 12592 11900 Logged view for product 506
+INFO 2025-08-24 10:42:05,420 services 12592 11900 Logged view for product 509
+INFO 2025-08-24 10:42:05,560 services 12592 11900 Logged view for product 509
+INFO 2025-08-24 10:42:05,608 services 12592 11900 Logged view for product 416
+INFO 2025-08-24 10:42:05,681 services 12592 11900 Logged view for product 506
+INFO 2025-08-24 10:42:05,780 services 12592 11900 Logged view for product 507
+INFO 2025-08-24 10:42:05,833 services 12592 11900 Logged view for product 459
+INFO 2025-08-24 10:42:09,110 services 12592 6424 Logged view for product 504
+INFO 2025-08-24 10:42:09,152 services 12592 6424 Logged view for product 503
+INFO 2025-08-24 10:42:09,208 services 12592 6424 Logged view for product 505
+INFO 2025-08-24 10:42:09,271 services 12592 6424 Logged view for product 434
+INFO 2025-08-24 10:42:09,309 services 12592 6424 Logged view for product 510
+ERROR 2025-08-24 10:42:24,395 log 12592 10504 Internal Server Error: /api/products/bookworld-led-2024/reviews/
+Traceback (most recent call last):
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\backends\sqlite3\base.py", line 328, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+sqlite3.IntegrityError: UNIQUE constraint failed: product_reviews.user_id, product_reviews.product_id
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\views\generic\base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\rest_framework\generics.py", line 246, in post
+    return self.create(request, *args, **kwargs)
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\rest_framework\mixins.py", line 21, in create
+    self.perform_create(serializer)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "C:\Users\maaab\OneDrive\Documents\GitHub\binc_main\bestinclickbackend\products\views.py", line 293, in perform_create
+    review = serializer.save(user=self.request.user, product=product, is_owner=is_owner)
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\rest_framework\serializers.py", line 208, in save
+    self.instance = self.create(validated_data)
+                    ~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\rest_framework\serializers.py", line 989, in create
+    instance = ModelClass._default_manager.create(**validated_data)
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\models\query.py", line 677, in create
+    obj.save(force_insert=True, using=self.db)
+    ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\models\base.py", line 822, in save
+    self.save_base(
+    ~~~~~~~~~~~~~~^
+        using=using,
+        ^^^^^^^^^^^^
+    ...<2 lines>...
+        update_fields=update_fields,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\models\base.py", line 909, in save_base
+    updated = self._save_table(
+        raw,
+    ...<4 lines>...
+        update_fields,
+    )
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\models\base.py", line 1067, in _save_table
+    results = self._do_insert(
+        cls._base_manager, using, fields, returning_fields, raw
+    )
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\models\base.py", line 1108, in _do_insert
+    return manager._insert(
+           ~~~~~~~~~~~~~~~^
+        [self],
+        ^^^^^^^
+    ...<3 lines>...
+        raw=raw,
+        ^^^^^^^^
+    )
+    ^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\models\query.py", line 1845, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\models\sql\compiler.py", line 1823, in execute_sql
+    cursor.execute(sql, params)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        sql, params, many=False, executor=self._execute
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\backends\sqlite3\base.py", line 328, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+django.db.utils.IntegrityError: UNIQUE constraint failed: product_reviews.user_id, product_reviews.product_id
+INFO 2025-08-24 10:42:29,545 services 12592 1744 Logged view for product 506
+INFO 2025-08-24 10:42:29,674 services 12592 1744 Logged view for product 507
+INFO 2025-08-24 10:42:29,787 services 12592 1744 Logged view for product 505
+INFO 2025-08-24 10:42:29,888 services 12592 1744 Logged view for product 504
+INFO 2025-08-24 10:42:30,029 services 12592 1744 Logged view for product 509
+INFO 2025-08-24 10:42:31,013 services 12592 8272 Logged view for product 495
+INFO 2025-08-24 10:42:31,107 services 12592 8272 Logged view for product 496
+INFO 2025-08-24 10:42:31,189 services 12592 8272 Logged view for product 510
+INFO 2025-08-24 10:42:31,307 services 12592 8272 Logged view for product 498
+INFO 2025-08-24 10:42:31,468 services 12592 8272 Logged view for product 507
+INFO 2025-08-24 10:42:31,744 services 12592 8272 Logged view for product 500
+INFO 2025-08-24 10:42:31,949 services 12592 8272 Logged view for product 497
+INFO 2025-08-24 10:42:32,157 services 12592 8272 Logged view for product 501
+INFO 2025-08-24 10:42:32,265 services 12592 8272 Logged view for product 499
+INFO 2025-08-24 10:42:32,663 services 12592 8272 Logged view for product 502
+INFO 2025-08-24 10:42:33,218 services 12592 8272 Logged view for product 505
+INFO 2025-08-24 10:42:33,303 services 12592 8272 Logged view for product 506
+INFO 2025-08-24 10:42:33,369 services 12592 8272 Logged view for product 503
+INFO 2025-08-24 10:42:33,448 services 12592 8272 Logged view for product 504
+INFO 2025-08-24 10:42:33,519 services 12592 8272 Logged view for product 509
+INFO 2025-08-24 10:42:33,620 services 12592 8272 Logged view for product 490
+INFO 2025-08-24 10:42:33,766 services 12592 8272 Logged view for product 493
+INFO 2025-08-24 10:42:33,853 services 12592 8272 Logged view for product 494
+INFO 2025-08-24 10:42:33,928 services 12592 8272 Logged view for product 492
+INFO 2025-08-24 10:42:34,007 services 12592 8272 Logged view for product 491
+INFO 2025-08-24 10:42:34,126 services 12592 8272 Logged view for product 432
+INFO 2025-08-24 10:42:34,287 services 12592 8272 Logged view for product 507
+INFO 2025-08-24 10:42:34,380 services 12592 8272 Logged view for product 497
+INFO 2025-08-24 10:42:34,447 services 12592 8272 Logged view for product 506
+INFO 2025-08-24 10:42:34,501 services 12592 8272 Logged view for product 509
+INFO 2025-08-24 10:42:37,638 services 12592 8272 Logged view for product 505
+INFO 2025-08-24 10:42:37,698 services 12592 8272 Logged view for product 434
+INFO 2025-08-24 10:42:37,777 services 12592 8272 Logged view for product 510
+INFO 2025-08-24 10:42:37,850 services 12592 8272 Logged view for product 433
+INFO 2025-08-24 10:42:37,908 services 12592 8272 Logged view for product 504
+INFO 2025-08-24 10:42:37,946 services 12592 8272 Logged view for product 497
+INFO 2025-08-24 10:42:37,986 services 12592 8272 Logged view for product 433
+INFO 2025-08-24 10:42:38,026 services 12592 8272 Logged view for product 434
+INFO 2025-08-24 10:42:38,067 services 12592 8272 Logged view for product 504
+INFO 2025-08-24 10:42:38,110 services 12592 8272 Logged view for product 510
+INFO 2025-08-24 10:42:39,108 services 12592 8272 Logged view for product 465
+INFO 2025-08-24 10:42:39,168 services 12592 8272 Logged view for product 507
+INFO 2025-08-24 10:42:39,225 services 12592 8272 Logged view for product 506
+INFO 2025-08-24 10:42:39,310 services 12592 8272 Logged view for product 509
+INFO 2025-08-24 10:42:39,358 services 12592 8272 Logged view for product 505
+INFO 2025-08-24 10:42:44,101 services 12592 4512 Logged view for product 509
+INFO 2025-08-24 10:42:44,149 services 12592 4512 Logged view for product 509
+INFO 2025-08-24 10:43:07,227 services 12592 15060 Logged view for product 506
+INFO 2025-08-24 10:43:07,469 services 12592 15060 Logged view for product 504
+INFO 2025-08-24 10:43:08,073 services 12592 15060 Logged view for product 509
+INFO 2025-08-24 10:43:08,194 services 12592 15060 Logged view for product 507
+INFO 2025-08-24 10:43:08,344 services 12592 15060 Logged view for product 505
+INFO 2025-08-24 10:43:09,338 services 12592 6096 Logged view for product 499
+INFO 2025-08-24 10:43:09,511 services 12592 6096 Logged view for product 503
+INFO 2025-08-24 10:43:09,622 services 12592 6096 Logged view for product 504
+INFO 2025-08-24 10:43:09,768 services 12592 6096 Logged view for product 498
+INFO 2025-08-24 10:43:09,885 services 12592 6096 Logged view for product 501
+INFO 2025-08-24 10:43:10,091 services 12592 6096 Logged view for product 497
+INFO 2025-08-24 10:43:10,166 services 12592 6096 Logged view for product 496
+INFO 2025-08-24 10:43:10,220 services 12592 6096 Logged view for product 502
+INFO 2025-08-24 10:43:10,426 services 12592 6096 Logged view for product 507
+INFO 2025-08-24 10:43:10,794 services 12592 6096 Logged view for product 500
+INFO 2025-08-24 10:43:11,287 services 12592 6096 Logged view for product 495
+INFO 2025-08-24 10:43:11,407 services 12592 6096 Logged view for product 505
+INFO 2025-08-24 10:43:11,698 services 12592 6096 Logged view for product 506
+INFO 2025-08-24 10:43:11,848 services 12592 6096 Logged view for product 509
+INFO 2025-08-24 10:43:11,996 services 12592 6096 Logged view for product 510
+INFO 2025-08-24 10:43:12,118 services 12592 6096 Logged view for product 492
+INFO 2025-08-24 10:43:12,283 services 12592 6096 Logged view for product 494
+INFO 2025-08-24 10:43:12,414 services 12592 6096 Logged view for product 490
+INFO 2025-08-24 10:43:12,553 services 12592 6096 Logged view for product 491
+INFO 2025-08-24 10:43:12,714 services 12592 6096 Logged view for product 493
+INFO 2025-08-24 10:43:17,216 services 12592 2460 Logged view for product 507
+INFO 2025-08-24 10:43:17,537 services 12592 2460 Logged view for product 420
+INFO 2025-08-24 10:43:17,605 services 12592 2460 Logged view for product 497
+INFO 2025-08-24 10:43:17,647 services 12592 2460 Logged view for product 506
+INFO 2025-08-24 10:43:17,704 services 12592 2460 Logged view for product 509
+ERROR 2025-08-24 10:43:40,336 log 12592 19824 Internal Server Error: /api/products/dell-prod-03/reviews/
+Traceback (most recent call last):
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\backends\sqlite3\base.py", line 328, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+sqlite3.IntegrityError: UNIQUE constraint failed: product_reviews.user_id, product_reviews.product_id
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\views\generic\base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\rest_framework\generics.py", line 246, in post
+    return self.create(request, *args, **kwargs)
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\rest_framework\mixins.py", line 21, in create
+    self.perform_create(serializer)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "C:\Users\maaab\OneDrive\Documents\GitHub\binc_main\bestinclickbackend\products\views.py", line 293, in perform_create
+    review = serializer.save(user=self.request.user, product=product, is_owner=is_owner)
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\rest_framework\serializers.py", line 208, in save
+    self.instance = self.create(validated_data)
+                    ~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\rest_framework\serializers.py", line 989, in create
+    instance = ModelClass._default_manager.create(**validated_data)
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\models\query.py", line 677, in create
+    obj.save(force_insert=True, using=self.db)
+    ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\models\base.py", line 822, in save
+    self.save_base(
+    ~~~~~~~~~~~~~~^
+        using=using,
+        ^^^^^^^^^^^^
+    ...<2 lines>...
+        update_fields=update_fields,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\models\base.py", line 909, in save_base
+    updated = self._save_table(
+        raw,
+    ...<4 lines>...
+        update_fields,
+    )
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\models\base.py", line 1067, in _save_table
+    results = self._do_insert(
+        cls._base_manager, using, fields, returning_fields, raw
+    )
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\models\base.py", line 1108, in _do_insert
+    return manager._insert(
+           ~~~~~~~~~~~~~~~^
+        [self],
+        ^^^^^^^
+    ...<3 lines>...
+        raw=raw,
+        ^^^^^^^^
+    )
+    ^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\models\query.py", line 1845, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\models\sql\compiler.py", line 1823, in execute_sql
+    cursor.execute(sql, params)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        sql, params, many=False, executor=self._execute
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\maaab\AppData\Roaming\Python\Python313\site-packages\django\db\backends\sqlite3\base.py", line 328, in execute
+    return super().execute(query, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+django.db.utils.IntegrityError: UNIQUE constraint failed: product_reviews.user_id, product_reviews.product_id
+INFO 2025-08-24 10:44:03,899 services 12592 8708 Logged view for product 500
+INFO 2025-08-24 10:44:03,960 services 12592 8708 Logged view for product 503
+INFO 2025-08-24 10:44:04,016 services 12592 8708 Logged view for product 506
+INFO 2025-08-24 10:44:04,090 services 12592 8708 Logged view for product 505
+INFO 2025-08-24 10:44:04,150 services 12592 8708 Logged view for product 509
+INFO 2025-08-24 10:44:04,217 services 12592 8708 Logged view for product 501
+INFO 2025-08-24 10:44:04,277 services 12592 8708 Logged view for product 507
+INFO 2025-08-24 10:44:04,336 services 12592 8708 Logged view for product 510
+INFO 2025-08-24 10:44:04,397 services 12592 8708 Logged view for product 504
+INFO 2025-08-24 10:44:04,457 services 12592 8708 Logged view for product 502
+INFO 2025-08-24 10:44:06,555 services 12592 23492 Logged view for product 499
+INFO 2025-08-24 10:44:06,606 services 12592 23492 Logged view for product 495
+INFO 2025-08-24 10:44:06,658 services 12592 23492 Logged view for product 496
+INFO 2025-08-24 10:44:06,699 services 12592 23492 Logged view for product 498
+INFO 2025-08-24 10:44:06,775 services 12592 23492 Logged view for product 497
+INFO 2025-08-24 10:44:06,827 services 12592 23492 Logged view for product 492
+INFO 2025-08-24 10:44:06,882 services 12592 23492 Logged view for product 490
+INFO 2025-08-24 10:44:06,931 services 12592 23492 Logged view for product 494
+INFO 2025-08-24 10:44:06,980 services 12592 23492 Logged view for product 493
+INFO 2025-08-24 10:44:07,025 services 12592 23492 Logged view for product 491
+INFO 2025-08-24 10:44:12,501 services 12592 5260 Logged view for product 506
+INFO 2025-08-24 10:44:12,544 services 12592 5260 Logged view for product 509
+INFO 2025-08-24 10:44:12,580 services 12592 5260 Logged view for product 497
+INFO 2025-08-24 10:44:12,627 services 12592 5260 Logged view for product 421
+INFO 2025-08-24 10:44:12,664 services 12592 5260 Logged view for product 507
+INFO 2025-08-24 10:44:17,181 services 12592 5260 Logged view for product 434
+INFO 2025-08-24 10:44:17,221 services 12592 5260 Logged view for product 505
+INFO 2025-08-24 10:44:17,256 services 12592 5260 Logged view for product 504
+INFO 2025-08-24 10:44:17,291 services 12592 5260 Logged view for product 510
+INFO 2025-08-24 10:44:17,331 services 12592 5260 Logged view for product 435
+INFO 2025-08-24 10:44:28,892 services 12592 8324 Logged view for product 506
+INFO 2025-08-24 10:44:28,950 services 12592 8324 Logged view for product 510
+INFO 2025-08-24 10:44:29,023 services 12592 8324 Logged view for product 509
+INFO 2025-08-24 10:44:29,096 services 12592 8324 Logged view for product 507
+INFO 2025-08-24 10:44:29,156 services 12592 8324 Logged view for product 505
+INFO 2025-08-24 10:44:29,242 services 12592 8324 Logged view for product 503
+INFO 2025-08-24 10:44:29,315 services 12592 8324 Logged view for product 500
+INFO 2025-08-24 10:44:29,382 services 12592 8324 Logged view for product 501
+INFO 2025-08-24 10:44:29,454 services 12592 8324 Logged view for product 502
+INFO 2025-08-24 10:44:29,528 services 12592 8324 Logged view for product 504
+INFO 2025-08-24 10:44:30,606 services 12592 20220 Logged view for product 499
+INFO 2025-08-24 10:44:30,675 services 12592 20220 Logged view for product 497
+INFO 2025-08-24 10:44:30,724 services 12592 20220 Logged view for product 498
+INFO 2025-08-24 10:44:30,789 services 12592 20220 Logged view for product 496
+INFO 2025-08-24 10:44:30,859 services 12592 20220 Logged view for product 495
+INFO 2025-08-24 10:44:30,909 services 12592 20220 Logged view for product 490
+INFO 2025-08-24 10:44:30,954 services 12592 20220 Logged view for product 493
+INFO 2025-08-24 10:44:31,015 services 12592 20220 Logged view for product 494
+INFO 2025-08-24 10:44:31,090 services 12592 20220 Logged view for product 492
+INFO 2025-08-24 10:44:31,147 services 12592 20220 Logged view for product 491
+INFO 2025-08-24 10:44:32,173 services 12592 15156 Logged view for product 507
+INFO 2025-08-24 10:44:32,215 services 12592 15156 Logged view for product 509
+INFO 2025-08-24 10:44:32,253 services 12592 15156 Logged view for product 421
+INFO 2025-08-24 10:44:32,288 services 12592 15156 Logged view for product 497
+INFO 2025-08-24 10:44:32,322 services 12592 15156 Logged view for product 506
+INFO 2025-08-24 10:44:37,170 services 12592 15156 Logged view for product 434
+INFO 2025-08-24 10:44:37,208 services 12592 15156 Logged view for product 504
+INFO 2025-08-24 10:44:37,245 services 12592 15156 Logged view for product 444
+INFO 2025-08-24 10:44:37,283 services 12592 15156 Logged view for product 505
+INFO 2025-08-24 10:44:37,327 services 12592 15156 Logged view for product 442
+INFO 2025-08-24 10:44:42,319 services 12592 15704 Logged view for product 509
+INFO 2025-08-24 10:44:42,389 services 12592 15704 Logged view for product 509
+INFO 2025-08-24 10:44:51,655 views 12592 7992 User logged out: mugahed
+INFO 2025-08-24 10:44:55,270 services 12592 17600 Logged view for product 509
+INFO 2025-08-24 10:44:55,364 services 12592 17600 Logged view for product 507
+INFO 2025-08-24 10:44:55,437 services 12592 17600 Logged view for product 506
+INFO 2025-08-24 10:44:55,525 services 12592 17600 Logged view for product 505
+INFO 2025-08-24 10:44:55,596 services 12592 17600 Logged view for product 504
+INFO 2025-08-24 10:44:55,671 services 12592 17600 Logged view for product 510
+INFO 2025-08-24 10:44:55,732 services 12592 17600 Logged view for product 506
+INFO 2025-08-24 10:44:55,802 services 12592 17600 Logged view for product 509
+INFO 2025-08-24 10:44:55,872 services 12592 17600 Logged view for product 505
+INFO 2025-08-24 10:44:55,945 services 12592 17600 Logged view for product 507
+INFO 2025-08-24 10:45:03,174 services 12592 14824 Logged view for product 500
+INFO 2025-08-24 10:45:03,216 services 12592 14824 Logged view for product 501
+INFO 2025-08-24 10:45:03,266 services 12592 14824 Logged view for product 502
+INFO 2025-08-24 10:45:03,336 services 12592 14824 Logged view for product 503
+INFO 2025-08-24 10:45:03,408 services 12592 14824 Logged view for product 504
+INFO 2025-08-24 10:45:03,453 services 12592 14824 Logged view for product 496
+INFO 2025-08-24 10:45:03,509 services 12592 14824 Logged view for product 499
+INFO 2025-08-24 10:45:03,553 services 12592 14824 Logged view for product 497
+INFO 2025-08-24 10:45:03,590 services 12592 14824 Logged view for product 495
+INFO 2025-08-24 10:45:03,638 services 12592 14824 Logged view for product 498
+INFO 2025-08-24 10:45:04,612 services 12592 14824 Logged view for product 492
+INFO 2025-08-24 10:45:04,652 services 12592 14824 Logged view for product 494
+INFO 2025-08-24 10:45:04,689 services 12592 14824 Logged view for product 491
+INFO 2025-08-24 10:45:04,736 services 12592 14824 Logged view for product 490
+INFO 2025-08-24 10:45:04,783 services 12592 14824 Logged view for product 493
+INFO 2025-08-24 10:45:04,822 services 12592 14824 Logged view for product 503
+INFO 2025-08-24 10:45:04,871 services 12592 14824 Logged view for product 421
+INFO 2025-08-24 10:45:04,910 services 12592 14824 Logged view for product 434
+INFO 2025-08-24 10:45:04,954 services 12592 14824 Logged view for product 510
+INFO 2025-08-24 10:45:05,017 services 12592 14824 Logged view for product 497
+INFO 2025-08-24 10:45:23,064 views 12592 22816 User logged in: mugahed
+INFO 2025-08-24 10:45:27,422 services 12592 24512 Logged view for product 506
+INFO 2025-08-24 10:45:27,484 services 12592 24512 Logged view for product 504
+INFO 2025-08-24 10:45:27,566 services 12592 24512 Logged view for product 507
+INFO 2025-08-24 10:45:27,625 services 12592 24512 Logged view for product 509
+INFO 2025-08-24 10:45:27,695 services 12592 24512 Logged view for product 505
+INFO 2025-08-24 10:45:29,073 services 12592 22816 Logged view for product 506
+INFO 2025-08-24 10:45:29,146 services 12592 22816 Logged view for product 446
+INFO 2025-08-24 10:45:29,228 services 12592 22816 Logged view for product 505
+INFO 2025-08-24 10:45:29,286 services 12592 22816 Logged view for product 421
+INFO 2025-08-24 10:45:29,354 services 12592 22816 Logged view for product 507
+INFO 2025-08-24 10:45:29,417 services 12592 22816 Logged view for product 497
+INFO 2025-08-24 10:45:29,479 services 12592 22816 Logged view for product 457
+INFO 2025-08-24 10:45:29,543 services 12592 22816 Logged view for product 504
+INFO 2025-08-24 10:45:29,588 services 12592 22816 Logged view for product 509
+INFO 2025-08-24 10:45:29,629 services 12592 22816 Logged view for product 434
+ERROR 2025-08-24 10:45:32,189 services 12592 7048 Error generating comparison summary: name 'best_rating' is not defined

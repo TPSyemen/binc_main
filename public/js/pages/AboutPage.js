@@ -69,32 +69,30 @@ export default function AboutPage() {
             <!-- Team Section -->
             <div class="mb-12">
                 <h2 class="text-3xl font-bold text-center mb-8">Our Team</h2>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <div class="card text-center">
-                        <div class="w-24 h-24 bg-secondary rounded-full flex items-center justify-center text-white text-3xl mx-auto mb-4">
-                            <i class="fa-solid fa-user"></i>
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                    <div class="card text-center"> 
+                        <div class="w-24 h-24 bg-secondary rounded-full mx-auto mb-4 overflow-hidden"> 
+                            <img src="/assets/1.jpg" alt="Mugahed Ahmed" class="w-full h-full object-cover"> 
                         </div>
-                        <h3 class="text-xl font-bold mb-2">John Smith</h3>
-                        <p class="text-secondary font-medium mb-2">CEO & Founder</p>
-                        <p class="text-muted text-sm">Leading the vision for the future of e-commerce</p>
+                        <h3 class="text-xl font-bold mb-2">MUGAHED AHMED</h3>
                     </div>
                     
                     <div class="card text-center">
                         <div class="w-24 h-24 bg-primary rounded-full flex items-center justify-center text-white text-3xl mx-auto mb-4">
                             <i class="fa-solid fa-user"></i>
                         </div>
-                        <h3 class="text-xl font-bold mb-2">Sarah Johnson</h3>
-                        <p class="text-secondary font-medium mb-2">CTO</p>
-                        <p class="text-muted text-sm">Building the technology that powers our platform</p>
-                    </div>
+                        <h3 class="text-xl font-bold mb-2">Khalid Badhawi</h3> </div>
                     
                     <div class="card text-center">
                         <div class="w-24 h-24 bg-success rounded-full flex items-center justify-center text-white text-3xl mx-auto mb-4">
                             <i class="fa-solid fa-user"></i>
                         </div>
-                        <h3 class="text-xl font-bold mb-2">Mike Davis</h3>
-                        <p class="text-secondary font-medium mb-2">Head of AI</p>
-                        <p class="text-muted text-sm">Developing intelligent recommendation systems</p>
+                        <h3 class="text-xl font-bold mb-2">OSAMA BAHSHWAN</h3></div>
+                         <div class="card text-center"> 
+                        <div class="w-24 h-24 bg-secondary rounded-full mx-auto mb-4 overflow-hidden"> 
+                            <img src="/assets/2.jpg" alt="" class="w-full h-full object-cover"> 
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Ebrahim Ba_Haggag</h3>
                     </div>
                 </div>
             </div>
