@@ -34,3 +34,25 @@ class IsStoreOwner(permissions.BasePermission):
     
     def has_permission(self, request, view):
         return request.user.is_authenticated and request.user.is_store_owner
+
+
+class IsStoreOwnerOfStore(permissions.BasePermission):
+    """
+    Permission to only allow store owners to edit their own store.
+    """
+    
+    def has_permission(self, request, view):
+        # Read permissions for any request
+        if request.method in permissions.SAFE_METHODS:
+            return True
+        
+        # Write permissions only for authenticated store owners
+        return request.user.is_authenticated and request.user.is_store_owner
+    
+    def has_object_permission(self, request, view, obj):
+        # Read permissions for any request
+        if request.method in permissions.SAFE_METHODS:
+            return True
+        
+        # Write permissions only for the store owner
+        return obj.owner == request.user

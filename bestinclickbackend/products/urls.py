@@ -19,7 +19,9 @@ urlpatterns = [
     
     # Stores
     path('stores/', StoreListCreateView.as_view(), name='store_list_create'),
+    path('stores/my-store/', views.my_store, name='my_store'),
     path('stores/<slug:slug>/', views.StoreDetailView.as_view(), name='store_detail'),
+    path('stores/<slug:slug>/update/', views.StoreUpdateView.as_view(), name='store_update'),
     
     # Products
     path('', views.ProductListView.as_view(), name='product_list'),

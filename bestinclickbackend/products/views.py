@@ -23,13 +23,14 @@ from .serializers import (
     CategorySerializer,
     BrandSerializer,
     StoreSerializer,
+    StoreUpdateSerializer,
     ProductSerializer,
     ProductCreateUpdateSerializer,
     ProductLikeSerializer,
     ProductReviewSerializer
 )
 from .filters import ProductFilter
-from .permissions import IsStoreOwnerOrReadOnly
+from .permissions import IsStoreOwnerOrReadOnly, IsStoreOwnerOfStore
 import logging
 
 logger = logging.getLogger(__name__)
@@ -77,6 +78,78 @@ class StoreDetailView(generics.RetrieveAPIView):
     serializer_class = StoreSerializer
     permission_classes = [AllowAny]
     lookup_field = 'slug'
+
+
+class StoreUpdateView(generics.RetrieveUpdateAPIView):
+    """
+    Update store information (store owners only - own store).
+    """
+    serializer_class = StoreUpdateSerializer
+    permission_classes = [IsAuthenticated, IsStoreOwnerOfStore]
+    lookup_field = 'slug'
+    
+    def get_queryset(self):
+        """
+        Return only stores owned by the current user.
+        """
+        return Store.objects.filter(owner=self.request.user)
+    
+    def get_serializer_class(self):
+        """
+        Use different serializers for GET and PUT/PATCH requests.
+        """
+        if self.request.method == 'GET':
+            return StoreSerializer
+        return StoreUpdateSerializer
+    
+    def perform_update(self, serializer):
+        """
+        Update store and regenerate slug if name changed.
+        """
+        store = serializer.save()
+        
+        # Regenerate slug if name changed
+        if 'name' in serializer.validated_data:
+            from django.utils.text import slugify
+            new_slug = slugify(f"{store.name}-{store.owner.username}")
+            
+            # Ensure slug uniqueness
+            original_slug = new_slug
+            counter = 1
+            while Store.objects.filter(slug=new_slug).exclude(pk=store.pk).exists():
+                new_slug = f"{original_slug}-{counter}"
+                counter += 1
+            
+            store.slug = new_slug
+            store.save()
+        
+        return store
+
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def my_store(request):
+    """
+    Get current user's store information.
+    """
+    try:
+        if not request.user.is_store_owner:
+            return Response(
+                {'error': 'يجب أن تكون مالك متجر للوصول لهذه الخاصية'},
+                status=status.HTTP_403_FORBIDDEN
+            )
+        
+        store = get_object_or_404(Store, owner=request.user)
+        serializer = StoreSerializer(store, context={'request': request})
+        
+        return Response(serializer.data, status=status.HTTP_200_OK)
+        
+    except Exception as e:
+        logger.error(f"Error getting user store: {str(e)}")
+        return Response(
+            {'error': 'حدث خطأ في جلب معلومات المتجر'},
+            status=status.HTTP_500_INTERNAL_SERVER_ERROR
+        )
 
 
 class ProductListView(generics.ListAPIView):
@@ -312,3 +385,74 @@ class ProductReviewListCreateView(generics.ListCreateAPIView):
         product.interaction_score = round(interaction_score, 3)
 
         product.save()
+
+
+class StoreUpdateView(generics.RetrieveUpdateAPIView):
+    """
+    View for store owners to update their store information.
+    """
+    queryset = Store.objects.all()
+    serializer_class = StoreUpdateSerializer
+    permission_classes = [IsAuthenticated, IsStoreOwnerOfStore]
+    lookup_field = 'slug'
+
+    def get_object(self):
+        """
+        Override to ensure store owner can only access their own store.
+        """
+        store = get_object_or_404(Store, slug=self.kwargs['slug'])
+        
+        # Check if the current user is the owner of this store
+        if store.owner != self.request.user:
+            from django.core.exceptions import PermissionDenied
+            raise PermissionDenied("You can only update your own store.")
+        
+        return store
+
+    def perform_update(self, serializer):
+        """
+        Handle store update with slug regeneration if name changes.
+        """
+        old_name = self.get_object().name
+        new_name = serializer.validated_data.get('name', old_name)
+        
+        # If name changed, regenerate slug
+        if old_name != new_name:
+            from django.utils.text import slugify
+            import uuid
+            base_slug = slugify(new_name)
+            slug = base_slug
+            
+            # Ensure slug uniqueness
+            counter = 1
+            while Store.objects.filter(slug=slug).exclude(pk=self.get_object().pk).exists():
+                slug = f"{base_slug}-{counter}"
+                counter += 1
+            
+            serializer.validated_data['slug'] = slug
+        
+        serializer.save()
+
+    def update(self, request, *args, **kwargs):
+        """
+        Override update to provide better error handling and logging.
+        """
+        try:
+            partial = kwargs.pop('partial', False)
+            instance = self.get_object()
+            serializer = self.get_serializer(instance, data=request.data, partial=partial)
+            
+            if serializer.is_valid():
+                self.perform_update(serializer)
+                logger.info(f"Store {instance.slug} updated successfully by user {request.user.id}")
+                return Response(serializer.data)
+            else:
+                logger.warning(f"Store update validation failed: {serializer.errors}")
+                return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+                
+        except Exception as e:
+            logger.error(f"Error updating store: {str(e)}")
+            return Response(
+                {'error': 'Failed to update store information'},
+                status=status.HTTP_500_INTERNAL_SERVER_ERROR
+            )

@@ -129,7 +129,7 @@ export function renderNavbar(container) {
                         Best in Click
                     </a>
                     <div class="hidden lg:flex items-center gap-6 text-muted font-bold">
-                        <a href="#/" class="hover:text-secondary transition-colors">Home</a>
+                        <a href="#/" class="hover:text-secondary transition-colors">Main</a>
                         ${user && user.role === 'store_owner' ? '' : '<a href="#/products" class="hover:text-secondary transition-colors">Products</a>'}
                         <a href="#/about" class="hover:text-secondary transition-colors">About</a>
                         <a href="#/contact" class="hover:text-secondary transition-colors">Contact</a>
@@ -162,7 +162,7 @@ export function renderNavbar(container) {
             <div id="mobile-menu" class="hidden lg:hidden border-t bg-white">
                 <div class="container mx-auto px-4 py-4">
                     <div class="flex flex-col space-y-4">
-                        <a href="#/" class="text-muted hover:text-secondary transition-colors font-bold">Home</a>
+                        <a href="#/" class="text-muted hover:text-secondary transition-colors font-bold">Main</a>
                         ${user && user.role === 'store_owner' ? '' : '<a href="#/products" class="text-muted hover:text-secondary transition-colors font-bold">Products</a>'}
                         <a href="#/about" class="text-muted hover:text-secondary transition-colors font-bold">About</a>
                         <a href="#/contact" class="text-muted hover:text-secondary transition-colors font-bold">Contact</a>

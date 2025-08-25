@@ -77,13 +77,13 @@ export default function AboutPage() {
                         <h3 class="text-xl font-bold mb-2">MUGAHED AHMED</h3>
                     </div>
                     
-                    <div class="card text-center">
-                        <div class="w-24 h-24 bg-primary rounded-full flex items-center justify-center text-white text-3xl mx-auto mb-4">
-                            <i class="fa-solid fa-user"></i>
+                    <div class="card text-center"> 
+                         <div class="w-24 h-24 bg-secondary rounded-full mx-auto mb-4 overflow-hidden"> 
+                            <img src="/assets/4.jpg" alt="" class="w-full h-full object-cover"> 
                         </div>
-                        <h3 class="text-xl font-bold mb-2">Khalid Badhawi</h3> 
+                        <h3 class="text-xl font-bold mb-2">Khalid Badhawi</h3>
                     </div>
-                    
+
                     <div class="card text-center"> 
                          <div class="w-24 h-24 bg-secondary rounded-full mx-auto mb-4 overflow-hidden"> 
                             <img src="/assets/3.jpg" alt="" class="w-full h-full object-cover"> 

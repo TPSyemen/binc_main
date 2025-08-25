@@ -13,6 +13,7 @@ import AboutPage from "./pages/AboutPage.js"
 import ContactPage from "./pages/ContactPage.js"
 import NotFoundPage from "./pages/NotFoundPage.js"
 import CreateStorePage from "./pages/CreateStore.js"
+import EditStorePage from "./pages/EditStorePage.js"
 import store from "./state/store.js"
 
 // Define the routes and their corresponding page components
@@ -33,6 +34,7 @@ const routes = {
   "/about": AboutPage,
   "/contact": ContactPage,
   "/create-store": CreateStorePage,
+  "/store/edit": EditStorePage,
   "/reports": ReportsPage,
   "/compare": ComparePage,
   "/wishlist": WishlistPage
@@ -103,7 +105,7 @@ export const router = () => {
     }
 
     // Check if this is a protected route
-    const protectedRoutes = ["/dashboard", "/store-dashboard", "/products-management", "/products/add", "/products/edit", "/create-store", "/reports"];
+    const protectedRoutes = ["/dashboard", "/store-dashboard", "/products-management", "/products/add", "/products/edit", "/create-store", "/store/edit", "/reports"];
     const isProtectedRoute = protectedRoutes.some(route => path.startsWith(route));
     
     // For protected routes, check authentication with a small delay to allow state initialization

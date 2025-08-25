@@ -31,8 +31,12 @@ async function apiFetch(endpoint, options = {}) {
   const { token } = store.getState()
 
   const headers = {
-    "Content-Type": "application/json",
     ...options.headers,
+  }
+
+  // Add default Content-Type only if it's not FormData and not already set
+  if (!(options.body instanceof FormData) && !headers['Content-Type']) {
+    headers['Content-Type'] = 'application/json';
   }
 
   
@@ -373,6 +377,21 @@ export const productService = {
       method: "POST",
       body: JSON.stringify(storeData),
     }),
+  updateStore: (slug, storeData) => {
+    const options = {
+      method: "PATCH",
+      body: storeData instanceof FormData ? storeData : JSON.stringify(storeData),
+    }
+    
+    // Don't set Content-Type for FormData, let browser set it with boundary
+    if (!(storeData instanceof FormData)) {
+      options.headers = {
+        'Content-Type': 'application/json'
+      }
+    }
+    
+    return apiFetch(`/products/stores/${slug}/update/`, options)
+  },
 }
 
 export const cartService = {

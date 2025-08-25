@@ -8775,3 +8775,63 @@ INFO 2025-08-24 10:45:29,543 services 12592 22816 Logged view for product 504
 INFO 2025-08-24 10:45:29,588 services 12592 22816 Logged view for product 509
 INFO 2025-08-24 10:45:29,629 services 12592 22816 Logged view for product 434
 ERROR 2025-08-24 10:45:32,189 services 12592 7048 Error generating comparison summary: name 'best_rating' is not defined
+INFO 2025-08-25 17:55:45,606 autoreload 12948 5692 Watching for file changes with StatReloader
+INFO 2025-08-25 17:58:36,143 views 12948 9808 User logged in: alio
+WARNING 2025-08-25 18:47:45,088 log 12948 10192 Bad Request: /api/products/stores/alio/update/
+WARNING 2025-08-25 18:49:14,843 log 12948 13592 Bad Request: /api/products/stores/alio/update/
+INFO 2025-08-25 18:49:47,627 autoreload 12948 5692 C:\Users\maaab\OneDrive\Documents\GitHub\binc_main\bestinclickbackend\products\views.py changed, reloading.
+INFO 2025-08-25 18:50:02,579 autoreload 16144 17696 Watching for file changes with StatReloader
+WARNING 2025-08-25 18:53:49,040 views 16144 8152 Store update validation failed: {'email': [ErrorDetail(string='ÌÊÃœ „ Ã— ¬Œ— »‰›” «·»—Ìœ «·≈·ﬂ —Ê‰Ì', code='invalid')]}
+WARNING 2025-08-25 18:53:49,042 log 16144 8152 Bad Request: /api/products/stores/alio/update/
+INFO 2025-08-25 18:54:13,425 views 16144 3944 Store alio updated successfully by user 339
+WARNING 2025-08-25 18:54:44,248 log 16144 18420 Bad Request: /api/auth/login/
+INFO 2025-08-25 18:55:31,999 views 16144 18420 New user registered: seeed
+INFO 2025-08-25 18:59:30,082 autoreload 16144 17696 C:\Users\maaab\OneDrive\Documents\GitHub\binc_main\bestinclickbackend\products\serializers.py changed, reloading.
+INFO 2025-08-25 18:59:35,949 autoreload 14668 11120 Watching for file changes with StatReloader
+INFO 2025-08-25 19:00:23,761 views 14668 3496 User logged in: alio
+INFO 2025-08-25 19:00:40,255 views 14668 13096 Store 3 updated successfully by user 339
+INFO 2025-08-25 19:10:16,808 views 14668 15556 New user registered: seeed33
+INFO 2025-08-25 19:20:23,817 views 14668 10788 User logged in: alio
+INFO 2025-08-25 19:24:17,859 views 14668 13424 User logged in: alio
+INFO 2025-08-25 19:24:45,541 views 14668 16636 User logged in: seeed33
+INFO 2025-08-25 19:24:58,153 views 14668 21000 User logged in: seeed
+INFO 2025-08-25 19:26:18,576 services 14668 21100 Logged view for product 507
+INFO 2025-08-25 19:26:18,646 services 14668 21100 Logged view for product 506
+INFO 2025-08-25 19:26:18,766 services 14668 21100 Logged view for product 510
+INFO 2025-08-25 19:26:19,100 services 14668 21100 Logged view for product 505
+INFO 2025-08-25 19:26:19,368 services 14668 21100 Logged view for product 495
+INFO 2025-08-25 19:26:19,536 services 14668 21100 Logged view for product 496
+INFO 2025-08-25 19:26:19,708 services 14668 11148 Logged view for product 509
+INFO 2025-08-25 19:26:20,367 services 14668 21100 Logged view for product 499
+INFO 2025-08-25 19:26:20,558 services 14668 11148 Logged view for product 500
+INFO 2025-08-25 19:26:20,712 services 14668 21100 Logged view for product 497
+INFO 2025-08-25 19:26:20,768 services 14668 5088 Logged view for product 494
+INFO 2025-08-25 19:26:20,834 services 14668 11148 Logged view for product 502
+INFO 2025-08-25 19:26:21,423 services 14668 21100 Logged view for product 498
+INFO 2025-08-25 19:26:21,467 services 14668 5088 Logged view for product 493
+INFO 2025-08-25 19:26:21,606 services 14668 11148 Logged view for product 503
+INFO 2025-08-25 19:26:21,975 services 14668 4856 Logged view for product 503
+INFO 2025-08-25 19:26:22,236 services 14668 5088 Logged view for product 492
+INFO 2025-08-25 19:26:22,289 services 14668 4856 Logged view for product 505
+INFO 2025-08-25 19:26:22,380 services 14668 11148 Logged view for product 501
+INFO 2025-08-25 19:26:22,437 services 14668 5088 Logged view for product 491
+INFO 2025-08-25 19:26:22,512 services 14668 4856 Logged view for product 510
+INFO 2025-08-25 19:26:22,579 services 14668 11148 Logged view for product 504
+INFO 2025-08-25 19:26:22,626 services 14668 5088 Logged view for product 490
+INFO 2025-08-25 19:26:22,795 services 14668 4856 Logged view for product 434
+INFO 2025-08-25 19:26:22,983 services 14668 5088 Logged view for product 509
+INFO 2025-08-25 19:26:23,170 services 14668 4856 Logged view for product 504
+INFO 2025-08-25 19:26:23,292 services 14668 5088 Logged view for product 421
+INFO 2025-08-25 19:26:23,462 services 14668 4856 Logged view for product 506
+INFO 2025-08-25 19:26:23,518 services 14668 5088 Logged view for product 507
+INFO 2025-08-25 19:26:23,558 services 14668 4856 Logged view for product 509
+INFO 2025-08-25 19:26:23,613 services 14668 5088 Logged view for product 506
+INFO 2025-08-25 19:26:23,677 services 14668 5088 Logged view for product 497
+INFO 2025-08-25 19:26:23,696 services 14668 4856 Logged view for product 504
+INFO 2025-08-25 19:26:23,784 services 14668 4856 Logged view for product 507
+INFO 2025-08-25 19:26:23,865 services 14668 4856 Logged view for product 505
+INFO 2025-08-25 19:26:24,063 services 14668 4856 Logged view for product 503
+INFO 2025-08-25 19:26:24,133 services 14668 4856 Logged view for product 434
+INFO 2025-08-25 19:26:24,278 services 14668 4856 Logged view for product 502
+INFO 2025-08-25 19:26:24,446 services 14668 4856 Logged view for product 510
+INFO 2025-08-25 19:26:24,656 services 14668 4856 Logged view for product 497

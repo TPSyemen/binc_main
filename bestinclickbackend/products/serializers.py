@@ -59,6 +59,86 @@ class StoreSerializer(serializers.ModelSerializer):
         return obj.products.filter(is_active=True).count()
 
 
+class StoreUpdateSerializer(serializers.ModelSerializer):
+    """
+    Serializer for updating store information by store owners.
+    """
+    
+    class Meta:
+        model = Store
+        fields = [
+            'name', 'description', 'email', 'phone', 'address', 
+            'logo', 'banner'
+        ]
+    
+    def validate_name(self, value):
+        """
+        Validate that store name is not empty and unique for this owner.
+        """
+        if not value or not value.strip():
+            raise serializers.ValidationError("اسم المتجر مطلوب")
+        
+        instance = getattr(self, 'instance', None)
+        if instance:
+            # Check if another store with same name exists for different owners
+            existing_store = Store.objects.filter(
+                name__iexact=value.strip()
+            ).exclude(pk=instance.pk).first()
+            
+            if existing_store:
+                raise serializers.ValidationError("يوجد متجر آخر بنفس الاسم")
+        
+        return value.strip()
+    
+    def validate_email(self, value):
+        """
+        Validate email format and uniqueness.
+        Allow email to be optional for partial updates.
+        """
+        # Only validate if email is provided in the request data
+        if self.partial and 'email' not in self.initial_data:
+            return self.instance.email # Keep the existing email if not provided in partial update
+
+        if not value:
+            raise serializers.ValidationError("البريد الإلكتروني مطلوب")
+        
+        instance = getattr(self, 'instance', None)
+        if instance:
+            # Check if another store with same email exists
+            existing_store = Store.objects.filter(
+                email__iexact=value
+            ).exclude(pk=instance.pk).first()
+            
+            if existing_store:
+                raise serializers.ValidationError("يوجد متجر آخر بنفس البريد الإلكتروني")
+        
+        return value
+    
+    def validate_phone(self, value):
+        """
+        Validate phone number.
+        """
+        if not value:
+            raise serializers.ValidationError("رقم الهاتف مطلوب")
+        
+        # Basic phone validation
+        import re
+        phone_pattern = r'^[\+]?[1-9][\d]{0,15}$'
+        if not re.match(phone_pattern, value.replace(' ', '').replace('-', '')):
+            raise serializers.ValidationError("رقم الهاتف غير صحيح")
+        
+        return value
+    
+    def validate_address(self, value):
+        """
+        Validate address is not empty.
+        """
+        if not value or not value.strip():
+            raise serializers.ValidationError("العنوان مطلوب")
+        
+        return value.strip()
+
+
 class ProductImageSerializer(serializers.ModelSerializer):
     """
     Serializer for product images.

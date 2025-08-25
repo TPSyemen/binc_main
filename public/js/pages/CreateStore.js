@@ -3,7 +3,7 @@ import store from "../state/store.js"
 import { productService } from "../services/api.js"
 
 /**
- * صفحة إنشاء متجر جديد
+ * Create New Store Page
  */
 export default function CreateStorePage() {
   const { user } = store.getState()
@@ -20,25 +20,25 @@ export default function CreateStorePage() {
 
   const page = createElementFromHTML(`
     <div class="container mx-auto py-8 px-4 max-w-lg">
-      <h1 class="text-3xl font-extrabold mb-6 text-center">إنشاء متجر جديد</h1>
+      <h1 class="text-3xl font-extrabold mb-6 text-center">Create New Store</h1>
       <form id="create-store-form" class="space-y-4">
         <div>
-          <label class="block mb-1 font-semibold">اسم المتجر</label>
+          <label class="block mb-1 font-semibold">Store Name</label>
           <input type="text" name="name" class="input input-bordered w-full" required />
         </div>
         <div>
-          <label class="block mb-1 font-semibold">البريد الإلكتروني</label>
+          <label class="block mb-1 font-semibold">Email</label>
           <input type="email" name="email" class="input input-bordered w-full" required />
         </div>
         <div>
-          <label class="block mb-1 font-semibold">رقم الهاتف</label>
+          <label class="block mb-1 font-semibold">Phone Number</label>
           <input type="text" name="phone" class="input input-bordered w-full" required />
         </div>
         <div>
-          <label class="block mb-1 font-semibold">العنوان</label>
+          <label class="block mb-1 font-semibold">Address</label>
           <input type="text" name="address" class="input input-bordered w-full" required />
         </div>
-        <button type="submit" class="btn btn-primary w-full">إنشاء المتجر</button>
+        <button type="submit" class="btn btn-primary w-full">Create Store</button>
       </form>
     </div>
   `)

@@ -250,7 +250,7 @@ async function loadStoreInfo(page, storeId) {
             ${storeInfo.is_active ? 'Active' : 'Inactive'}
           </span>
         </div>
-        <button class="btn btn-outline mt-3">
+        <button id="edit-store-btn" class="btn btn-outline mt-3">
           <i class="fa-solid fa-edit mr-2"></i>
           Edit Store Info
         </button>
@@ -654,12 +654,13 @@ function setupEventListeners(page, storeId) {
     location.hash = '#/products/add'
   })
 
-  // page.querySelector('#manage-inventory-btn').addEventListener('click', () => {
-  //   location.hash = '#/inventory'
-  // })
-
-  
-  // })
+  // Edit store info button
+  const editStoreBtn = page.querySelector('#edit-store-btn')
+  if (editStoreBtn) {
+    editStoreBtn.addEventListener('click', () => {
+      location.hash = '#/store/edit'
+    })
+  }
 
   page.querySelector('#generate-report-btn').addEventListener('click', () => {
     location.hash = '#/reports'
